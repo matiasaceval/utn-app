@@ -4,8 +4,9 @@
     <color name="black_500">#212121</color>
     <color name="black_700">#0a0a0a</color>
 
-    <color name="secondary_200">#415b6a</color>
-    <color name="secondary_700">#ced4da</color>
+    <color name="secondary_200">#20739F</color>
+    <color name="secondary_500">#11618C</color>
+    <color name="secondary_700">#084667</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
