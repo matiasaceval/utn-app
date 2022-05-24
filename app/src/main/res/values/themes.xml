@@ -1,6 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Theme.UTNApp" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+        <item name="android:fontFamily">@font/opensans_bold</item>
         <item name="colorPrimary">@color/black_500</item>
         <item name="colorPrimaryVariant">@color/black_700</item>
         <item name="colorOnPrimary">@color/white</item>
