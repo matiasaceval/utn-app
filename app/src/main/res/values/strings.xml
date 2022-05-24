@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">UTN App</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="logo_description">UTN Logo</string>
+    <string name="login_btn">LOGIN</string>
+    <string name="create_account_btn"><u>Create Account</u></string>
+
+    <string name="register_btn">REGISTER</string>
+    <string name="name">Name</string>
+    <string name="back_btn">Back Button</string>
+
+
 </resources>
