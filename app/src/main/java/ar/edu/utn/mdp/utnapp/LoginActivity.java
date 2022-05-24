@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Button login = findViewById(R.id.login);
 
-        TextView createAccount = findViewById(R.id.createAccountButton);
+        TextView signUpButton = findViewById(R.id.signUpButton);
 
         login.setOnClickListener(view -> {
             /// TODO: User verification
@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         });
 
-        createAccount.setOnClickListener(view -> {
+        signUpButton.setOnClickListener(view -> {
             /// TODO: Register verification
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);

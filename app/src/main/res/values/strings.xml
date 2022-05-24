@@ -2,13 +2,20 @@
     <string name="app_name">UTN App</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
     <string name="logo_description">UTN Logo</string>
     <string name="login_btn">LOGIN</string>
-    <string name="create_account_btn"><u>Create Account</u></string>
+
+    <string name="sign_up"><u>Sign up</u></string>
+    <string name="log_in"><u>Log in</u></string>
+
+    <string name="do_not_have_account">Don\'t have an account?</string>
+    <string name="already_have_account">Already have an account?</string>
 
     <string name="register_btn">REGISTER</string>
     <string name="name">Name</string>
     <string name="back_btn">Back Button</string>
+    <string name="registration">Registration</string>
 
 
 </resources>

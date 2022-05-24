@@ -1,10 +1,10 @@
 package ar.edu.utn.mdp.utnapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -13,7 +13,18 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
         ImageView back = findViewById(R.id.backToLogin);
+
+        TextView login = findViewById(R.id.logInButton);
+
+        login.setOnClickListener(view -> onBackPressed());
+
         back.setOnClickListener(view -> onBackPressed());
+
+
     }
 }
