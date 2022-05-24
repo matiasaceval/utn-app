@@ -2,27 +2,65 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".LoginActivity">
 
-    <ImageView
-        android:id="@+id/utnLogo"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+    <TextView
+        android:id="@+id/registration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:contentDescription="@string/logo_description"
-        android:src="@drawable/ic_utn"
+        android:text="@string/registration"
+        android:fontFamily="@font/opensans_bold"
+        android:textSize="32sp"
+        android:textColor="@color/black_700"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/backToLogin"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/back_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_back"
+        tools:ignore="RedundantDescriptionCheck" />
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:height="48dp"
+        android:autofillHints="name"
+        android:backgroundTint="@color/black_500"
+        android:ems="10"
+        android:fontFamily="@font/opensans_regular"
+        android:hint="@string/name"
+        android:inputType="textPersonName"
+        android:maxLength="32"
+        android:minHeight="48dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:scrollHorizontally="true"
+        android:textColor="@color/black_700"
+        android:textColorHint="@color/black_200"
+        android:textIsSelectable="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registration" />
 
     <EditText
         android:id="@+id/username"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="24dp"
         android:height="48dp"
         android:autofillHints="username"
         android:backgroundTint="@color/black_500"
@@ -40,7 +78,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/utnLogo" />
+        app:layout_constraintTop_toBottomOf="@+id/name" />
 
     <EditText
         android:id="@+id/password"
@@ -65,20 +103,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username" />
 
+    <EditText
+        android:id="@+id/confirmPassword"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="24dp"
+        android:height="48dp"
+        android:autofillHints="password"
+        android:backgroundTint="@color/black_500"
+        android:ems="10"
+        android:fontFamily="@font/opensans_regular"
+        android:hint="@string/confirm_password"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:maxLength="50"
+        android:textColor="@color/black_700"
+        android:textColorHint="@color/black_200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
+
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/login"
+        android:id="@+id/register"
         android:layout_width="177dp"
         android:layout_height="50dp"
         android:layout_marginTop="50dp"
         android:background="@drawable/button"
         android:ems="10"
         android:fontFamily="@font/opensans_bold"
-        android:text="@string/login_btn"
+        android:text="@string/register_btn"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintTop_toBottomOf="@+id/confirmPassword" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -87,24 +148,24 @@
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login">
+        app:layout_constraintTop_toBottomOf="@+id/register">
 
         <TextView
-            android:id="@+id/doNotHaveAccount"
+            android:id="@+id/alreadyHaveAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="6dp"
             android:fontFamily="@font/opensans_regular"
-            android:text="@string/do_not_have_account"
+            android:text="@string/already_have_account"
             android:textColor="@color/black_500"
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/signUpButton"
+            android:id="@+id/logInButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensans_regular"
-            android:text="@string/sign_up"
+            android:text="@string/log_in"
             android:textColor="@color/secondary_200"
             android:textSize="16sp" />
     </LinearLayout>

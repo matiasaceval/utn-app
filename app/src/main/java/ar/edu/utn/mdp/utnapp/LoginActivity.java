@@ -19,12 +19,12 @@ public class LoginActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
 
-        EditText username = (EditText) findViewById(R.id.username);
-        EditText password = (EditText) findViewById(R.id.password);
+        EditText username = findViewById(R.id.username);
+        EditText password = findViewById(R.id.password);
 
-        Button login = (Button) findViewById(R.id.login);
+        Button login = findViewById(R.id.login);
 
-        TextView createAccount = (TextView) findViewById(R.id.createAccountButton);
+        TextView signUpButton = findViewById(R.id.signUpButton);
 
         login.setOnClickListener(view -> {
             /// TODO: User verification
@@ -33,8 +33,10 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         });
 
-        createAccount.setOnClickListener(view -> {
-            /// TODO: RegisterActivity
+        signUpButton.setOnClickListener(view -> {
+            /// TODO: Register verification
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);
         });
     }
 }
