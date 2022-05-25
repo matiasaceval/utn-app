@@ -1,9 +1,9 @@
 package ar.edu.utn.mdp.utnapp.fetch.models;
 
 public final class User {
-    private String name = null;
-    private String username = null;
-    private String password = null;
+    private String name = "null";
+    private String username = "null";
+    private String password = "null";
     private String role = "user";
 
     public User(){
@@ -50,5 +50,9 @@ public final class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean canLogin(){
+        return !username.equals("null") && !password.equals("null");
     }
 }

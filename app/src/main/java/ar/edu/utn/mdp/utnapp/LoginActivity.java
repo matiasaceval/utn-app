@@ -5,8 +5,14 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.net.HttpURLConnection;
+
+import ar.edu.utn.mdp.utnapp.fetch.models.User;
+import ar.edu.utn.mdp.utnapp.fetch.request.RequestModel;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -28,9 +34,18 @@ public class LoginActivity extends AppCompatActivity {
 
         login.setOnClickListener(view -> {
             /// TODO: User verification
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
+            final String user = username.getText().toString().trim();
+            final String pass = password.getText().toString().trim();
+
+            User usr = new User(user, pass);
+
+            if(RequestModel.loginUser(LoginActivity.this, usr) == HttpURLConnection.HTTP_OK){
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+                Toast.makeText(this, "Error", Toast.LENGTH_LONG).show();
+            }
         });
 
         signUpButton.setOnClickListener(view -> {
