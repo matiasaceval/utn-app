@@ -34,97 +34,143 @@
 
     <EditText
         android:id="@+id/name"
-        android:layout_width="250dp"
+        android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginTop="50dp"
         android:height="48dp"
         android:autofillHints="name"
-        android:backgroundTint="@color/black_500"
         android:ems="10"
         android:fontFamily="@font/opensans_regular"
         android:hint="@string/name"
-        android:inputType="textPersonName"
-        android:maxLength="32"
-        android:minHeight="48dp"
-        android:maxLines="1"
-        android:ellipsize="end"
-        android:scrollHorizontally="true"
-        android:textColor="@color/black_700"
-        android:textColorHint="@color/black_200"
-        android:textIsSelectable="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registration" />
-
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="24dp"
-        android:height="48dp"
-        android:autofillHints="username"
-        android:backgroundTint="@color/black_500"
-        android:ems="10"
-        android:fontFamily="@font/opensans_regular"
-        android:hint="@string/username"
         android:inputType="text"
-        android:maxLength="20"
+        android:maxLength="@integer/name_length"
         android:minHeight="48dp"
         android:maxLines="1"
         android:ellipsize="end"
-        android:textColor="@color/black_700"
-        android:textColorHint="@color/black_200"
+        android:textColor="@color/text"
+        android:textColorHint="@color/hint"
         android:textIsSelectable="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        app:layout_constraintTop_toBottomOf="@+id/registration"
+        android:drawableStart="@drawable/user"
+        android:drawablePadding="8dp"
+        android:background="@drawable/custom_input" />
 
     <EditText
-        android:id="@+id/password"
-        android:layout_width="250dp"
+        android:id="@+id/email"
+        android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginTop="24dp"
         android:height="48dp"
-        android:autofillHints="password"
-        android:backgroundTint="@color/black_500"
+        android:autofillHints="emailAddress"
         android:ems="10"
         android:fontFamily="@font/opensans_regular"
-        android:hint="@string/password"
-        android:inputType="textPassword"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:maxLength="@integer/email_length"
         android:minHeight="48dp"
         android:maxLines="1"
         android:ellipsize="end"
-        android:maxLength="50"
-        android:textColor="@color/black_700"
-        android:textColorHint="@color/black_200"
+        android:textColor="@color/text"
+        android:textColorHint="@color/hint"
+        android:textIsSelectable="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        android:drawableStart="@drawable/email"
+        android:drawablePadding="8dp"
+        android:background="@drawable/custom_input" />
 
-    <EditText
-        android:id="@+id/confirmPassword"
-        android:layout_width="250dp"
+    <LinearLayout
+        android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="24dp"
-        android:height="48dp"
-        android:autofillHints="password"
-        android:backgroundTint="@color/black_500"
-        android:ems="10"
-        android:fontFamily="@font/opensans_regular"
-        android:hint="@string/confirm_password"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:maxLines="1"
-        android:ellipsize="end"
-        android:maxLength="50"
-        android:textColor="@color/black_700"
-        android:textColorHint="@color/black_200"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/email"
+        android:id="@+id/passwordLinearLayout"
+        android:paddingStart="0dp"
+        android:paddingEnd="8dp"
+        android:background="@drawable/custom_input"
+        android:focusable="false">
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="260dp"
+            android:layout_height="50dp"
+            android:height="48dp"
+            android:autofillHints="password"
+            android:ems="10"
+            android:fontFamily="@font/opensans_regular"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:maxLength="@integer/password_length"
+            android:textColor="@color/text"
+            android:textColorHint="@color/hint"
+            android:drawableStart="@drawable/key"
+            android:drawablePadding="8dp"
+            android:background="@drawable/transparent" />
+
+        <ImageView
+            android:id="@+id/viewPassword"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_eye"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:contentDescription="@string/see_password" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/passwordLinearLayout"
+        android:id="@+id/confirmPasswordLinearLayout"
+        android:paddingStart="0dp"
+        android:paddingEnd="8dp"
+        android:background="@drawable/custom_input"
+        android:focusable="false">
+
+        <EditText
+            android:id="@+id/confirmPassword"
+            android:layout_width="260dp"
+            android:layout_height="50dp"
+            android:height="48dp"
+            android:autofillHints="password"
+            android:ems="10"
+            android:fontFamily="@font/opensans_regular"
+            android:hint="@string/confirm_password"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:maxLength="@integer/password_length"
+            android:textColor="@color/text"
+            android:textColorHint="@color/hint"
+            android:drawableStart="@drawable/key"
+            android:drawablePadding="8dp"
+            android:background="@drawable/transparent" />
+
+        <ImageView
+            android:id="@+id/viewConfirmPassword"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_eye"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:contentDescription="@string/see_password" />
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/register"
@@ -139,7 +185,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirmPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/confirmPasswordLinearLayout" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -157,7 +203,7 @@
             android:layout_marginEnd="6dp"
             android:fontFamily="@font/opensans_regular"
             android:text="@string/already_have_account"
-            android:textColor="@color/black_500"
+            android:textColor="@color/text"
             android:textSize="16sp" />
 
         <TextView
@@ -166,7 +212,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensans_regular"
             android:text="@string/log_in"
-            android:textColor="@color/secondary_200"
+            android:textColor="@color/link"
             android:textSize="16sp" />
     </LinearLayout>
 

@@ -1,5 +1,6 @@
 package ar.edu.utn.mdp.utnapp.fetch.request;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import com.android.volley.Request;
@@ -8,9 +9,11 @@ import com.android.volley.toolbox.Volley;
 
 public final class RequestSingleton {
 
+    @SuppressLint("StaticFieldLeak")
     private static RequestSingleton instance;
-    private RequestQueue requestQueue;
+    @SuppressLint("StaticFieldLeak")
     private static Context ctx;
+    private RequestQueue requestQueue;
 
     private RequestSingleton(Context context) {
         ctx = context;

@@ -15,7 +15,9 @@
     <string name="register_btn">REGISTER</string>
     <string name="name">Name</string>
     <string name="back_btn">Back Button</string>
-    <string name="registration">Registration</string>
+    <string name="registration">Sign Up</string>
+    <string name="see_password">See Password</string>
+    <string name="email">Email</string>
 
 
 </resources>

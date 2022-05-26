@@ -4,10 +4,18 @@
     <color name="black_500">#212121</color>
     <color name="black_700">#0a0a0a</color>
 
-    <color name="secondary_200">#20739F</color>
-    <color name="secondary_500">#11618C</color>
-    <color name="secondary_700">#084667</color>
+    <color name="secondary_200">#3EA1CC</color>
+    <color name="secondary_500">#2B7EA1</color>
+    <color name="secondary_700">#1E5871</color>
+
+    <color name="focused">@color/secondary_500</color>
+
+    <color name="link">@color/secondary_500</color>
+
+    <color name="text">@color/black_700</color>
+    <color name="hint">@color/black_200</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>

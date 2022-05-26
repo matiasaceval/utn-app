@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,17 +27,38 @@ public class LoginActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
 
-        EditText username = findViewById(R.id.username);
+        LinearLayout passwordLinearLayout = findViewById(R.id.passwordLinearLayout);
+
+        EditText email = findViewById(R.id.email);
         EditText password = findViewById(R.id.password);
 
         Button login = findViewById(R.id.login);
 
         TextView signUpButton = findViewById(R.id.signUpButton);
 
+        ImageView seePassword = findViewById(R.id.viewPassword);
+
         login.setOnClickListener(view -> {
-            final String user = username.getText().toString().trim();
+            final String mail = email.getText().toString().trim();
             final String pass = password.getText().toString().trim();
-            final User usr = new User(user, pass);
+            final User usr = new User(mail, pass);
+
+            if (mail.isEmpty()) {
+                email.setError("Email is required");
+                email.requestFocus();
+                return;
+            }
+
+            if (pass.isEmpty()) {
+                password.setError("Password is required");
+                password.requestFocus();
+                return;
+            }
+
+            if (!UserFunctions.isValidEmail(mail)) {
+                Toast.makeText(LoginActivity.this, "Invalid email", Toast.LENGTH_LONG).show();
+                return;
+            }
 
             ProgressDialog pd = new ProgressDialog(LoginActivity.this);
             pd.setTitle("Processing...");
@@ -66,5 +89,9 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
         });
+
+        seePassword.setOnClickListener(view -> UserFunctions.showPassword(password, seePassword));
+
+        password.setOnFocusChangeListener((view, bool) -> UserFunctions.focusLinearLayout(passwordLinearLayout, bool));
     }
 }
