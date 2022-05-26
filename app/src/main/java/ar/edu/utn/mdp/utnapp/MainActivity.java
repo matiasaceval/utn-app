@@ -1,7 +1,10 @@
 package ar.edu.utn.mdp.utnapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,25 +16,47 @@ import ar.edu.utn.mdp.utnapp.fetch.request.RequestModel;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static SharedPreferences userPrefs;
+    private static SharedPreferences cookiePrefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_main);
 
-        TextView tv = findViewById(R.id.hello);
+        userPrefs = getSharedPreferences("User", Context.MODE_PRIVATE);
+        cookiePrefs = getSharedPreferences("Cookies", Context.MODE_PRIVATE);
+
+        TextView tv = findViewById(R.id.textView);
+        Button btn = findViewById(R.id.logout);
 
         try {
-            if(RequestModel.verifyAccountIntegration(MainActivity.this) == HttpURLConnection.HTTP_CONFLICT){
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
+            final int statusCode = RequestModel.verifyAccountIntegration(MainActivity.this);
+            if (statusCode == HttpURLConnection.HTTP_UNAUTHORIZED) {
+                logout(MainActivity.this);
                 finish();
             }
-            tv.setText("Entro al try");
+
+            final String username = userPrefs.getString("username", "null");
+            final String name = userPrefs.getString("name", "null");
+            final String role = userPrefs.getString("role", "null");
+
+            tv.setText(String.format("Hi %s! Your username is %s and your role is %s.", name, username, role));
         } catch (Exception e) {
             e.printStackTrace();
-            tv.setText("Entro al catch");
         }
-        //sino seguimo bla bla
+
+        btn.setOnClickListener(view -> {
+            logout(MainActivity.this);
+            finish();
+        });
+    }
+
+    public static void logout(Context ctx) {
+        userPrefs.edit().clear().apply();
+        cookiePrefs.edit().clear().apply();
+        Intent intent = new Intent(ctx, LoginActivity.class);
+        ctx.startActivity(intent);
     }
 }

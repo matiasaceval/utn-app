@@ -1,5 +1,6 @@
 package ar.edu.utn.mdp.utnapp;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -9,9 +10,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.net.HttpURLConnection;
-
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
+import ar.edu.utn.mdp.utnapp.fetch.request.LoginCallBack;
 import ar.edu.utn.mdp.utnapp.fetch.request.RequestModel;
 
 public class LoginActivity extends AppCompatActivity {
@@ -33,19 +33,32 @@ public class LoginActivity extends AppCompatActivity {
         TextView signUpButton = findViewById(R.id.signUpButton);
 
         login.setOnClickListener(view -> {
-            /// TODO: User verification
             final String user = username.getText().toString().trim();
             final String pass = password.getText().toString().trim();
+            final User usr = new User(user, pass);
 
-            User usr = new User(user, pass);
+            ProgressDialog pd = new ProgressDialog(LoginActivity.this);
+            pd.setTitle("Processing...");
+            pd.setMessage("Please wait.");
+            pd.setCancelable(false);
+            pd.setIndeterminate(true);
+            pd.show();
 
-            if(RequestModel.loginUser(LoginActivity.this, usr) == HttpURLConnection.HTTP_OK){
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            } else {
-                Toast.makeText(this, "Error", Toast.LENGTH_LONG).show();
-            }
+            RequestModel.loginUser(LoginActivity.this, usr, new LoginCallBack() {
+                @Override
+                public void onSuccess() {
+                    pd.dismiss();
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+
+                @Override
+                public void onError(int statusCode) {
+                    pd.dismiss();
+                    Toast.makeText(LoginActivity.this, "Error", Toast.LENGTH_LONG).show();
+                }
+            });
         });
 
         signUpButton.setOnClickListener(view -> {
