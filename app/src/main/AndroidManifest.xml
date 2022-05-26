@@ -15,15 +15,18 @@
         <activity
             android:name=".RegisterActivity"
             android:exported="false"
-            android:theme="@style/Theme.UTNApp" />
+            android:theme="@style/Theme.UTNApp"
+            android:launchMode="singleTask" />
         <activity
             android:name=".LoginActivity"
             android:exported="false"
-            android:theme="@style/Theme.UTNApp" />
+            android:theme="@style/Theme.UTNApp"
+            android:launchMode="singleTask" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"
-            android:theme="@style/NoActionBar">
+            android:theme="@style/NoActionBar"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,7 +36,8 @@
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:theme="@style/Theme.UTNApp" />
+            android:theme="@style/Theme.UTNApp"
+            android:launchMode="singleTask" />
     </application>
 
 </manifest>

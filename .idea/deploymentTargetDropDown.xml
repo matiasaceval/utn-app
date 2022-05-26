@@ -19,8 +19,8 @@
         <type value="RUNNING_DEVICE_TARGET" />
         <deviceKey>
           <Key>
-            <type value="SERIAL_NUMBER" />
-            <value value="f5109b78" />
+            <type value="VIRTUAL_DEVICE_PATH" />
+            <value value="C:\Users\Matute\.android\avd\UTN_Android_11.avd" />
           </Key>
         </deviceKey>
       </Target>
@@ -28,8 +28,8 @@
         <type value="RUNNING_DEVICE_TARGET" />
         <deviceKey>
           <Key>
-            <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\Matute\.android\avd\UTN.avd" />
+            <type value="SERIAL_NUMBER" />
+            <value value="f5109b78" />
           </Key>
         </deviceKey>
       </Target>
