@@ -5,4 +5,9 @@
     <string name="logo_description">UTN Logo</string>
     <string name="login_btn">LOGIN</string>
     <string name="create_account_btn"><u>Create Account</u></string>
+
+    <string name="dialog_error_title">TITLE</string>
+    <string name="example_loremIpsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu fermentum elit. Praesent eget lacus molestie, laoreet est quis, accumsan.</string>
+    <string name="dialog_close_button">Close button</string>
+    <string name="example_simpleLorem">Lorem ipsum</string>
 </resources>
