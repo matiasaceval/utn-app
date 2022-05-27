@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.net.HttpURLConnection;
+
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
 import ar.edu.utn.mdp.utnapp.fetch.request.LoginCallBack;
 import ar.edu.utn.mdp.utnapp.fetch.request.RequestModel;
@@ -60,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
+            // TODO: Make our own progress dialog
             ProgressDialog pd = new ProgressDialog(LoginActivity.this);
             pd.setTitle("Processing...");
             pd.setMessage("Please wait.");
@@ -79,13 +82,25 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onError(int statusCode) {
                     pd.dismiss();
-                    Toast.makeText(LoginActivity.this, "Error", Toast.LENGTH_LONG).show();
+                    switch (statusCode) {
+                        case HttpURLConnection.HTTP_UNAUTHORIZED:
+                            ErrorDialog.show(LoginActivity.this, "Invalid credentials", "Email or password is wrong. Please try again.", R.drawable.ic_alert);
+                            break;
+                        case HttpURLConnection.HTTP_INTERNAL_ERROR:
+                            ErrorDialog.show(LoginActivity.this, "Error", "Internal server error", R.drawable.ic_cloud_offline);
+                            break;
+                        case HttpURLConnection.HTTP_UNAVAILABLE:
+                            ErrorDialog.show(LoginActivity.this, "Error", "Service unavailable. Please try again later.", R.drawable.ic_cloud_offline);
+                            break;
+                        default:
+                            ErrorDialog.show(LoginActivity.this, "Error", "Unknown error. Please report it to the support.", R.drawable.ic_warning);
+                            break;
+                    }
                 }
             });
         });
 
         signUpButton.setOnClickListener(view -> {
-            /// TODO: Register verification
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
         });

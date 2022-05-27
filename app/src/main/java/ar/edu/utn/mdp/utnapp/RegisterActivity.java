@@ -47,5 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
         password.setOnFocusChangeListener((view, bool) -> UserFunctions.focusLinearLayout(passwordLinearLayout, bool));
 
         confirmPassword.setOnFocusChangeListener((view, bool) -> UserFunctions.focusLinearLayout(confirmPasswordLinearLayout, bool));
+
+        register.setOnClickListener(view -> { /* TODO: Validations and registration itself */ });
     }
 }
