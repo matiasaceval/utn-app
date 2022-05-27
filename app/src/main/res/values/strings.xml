@@ -10,4 +10,5 @@
     <string name="example_loremIpsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu fermentum elit. Praesent eget lacus molestie, laoreet est quis, accumsan.</string>
     <string name="dialog_close_button">Close button</string>
     <string name="example_simpleLorem">Lorem ipsum</string>
+    <string name="dialog_pleaseWait">Please wait...</string>
 </resources>
