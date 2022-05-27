@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">UTN App</string>
-    <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm password</string>
     <string name="logo_description">UTN Logo</string>

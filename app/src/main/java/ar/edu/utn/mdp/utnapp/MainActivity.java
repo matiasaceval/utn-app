@@ -38,11 +38,11 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
 
-            final String username = userPrefs.getString("username", "null");
+            final String email = userPrefs.getString("email", "null");
             final String name = userPrefs.getString("name", "null");
             final String role = userPrefs.getString("role", "null");
 
-            tv.setText(String.format("Hi %s! Your username is %s and your role is %s.", name, username, role));
+            tv.setText(String.format("Hi %s! Your email is %s and your role is %s.", name, email, role));
         } catch (Exception e) {
             e.printStackTrace();
         }

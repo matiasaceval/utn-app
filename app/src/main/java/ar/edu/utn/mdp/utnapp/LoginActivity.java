@@ -62,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
+            System.out.println(mail + " " + pass);
             // TODO: Make our own progress dialog
             ProgressDialog pd = new ProgressDialog(LoginActivity.this);
             pd.setTitle("Processing...");

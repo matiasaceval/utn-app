@@ -2,21 +2,21 @@ package ar.edu.utn.mdp.utnapp.fetch.models;
 
 public final class User {
     private String name = "null";
-    private String username = "null";
+    private String email = "null";
     private String password = "null";
     private String role = "user";
 
-    public User(){
+    public User() {
     }
 
-    public User(String username, String password){
-        setUsername(username);
+    public User(String email, String password) {
+        setEmail(email);
         setPassword(password);
     }
 
-    public User(String name, String username, String role){
+    public User(String name, String email, String role) {
         setName(name);
-        setUsername(username);
+        setEmail(email);
         setRole(role);
     }
 
@@ -28,12 +28,12 @@ public final class User {
         this.name = name;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getRole() {
@@ -53,6 +53,6 @@ public final class User {
     }
 
     public boolean canLogin(){
-        return !username.equals("null") && !password.equals("null");
+        return !email.equals("null") && !password.equals("null");
     }
 }

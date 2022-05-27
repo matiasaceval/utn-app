@@ -25,10 +25,10 @@ public abstract class RequestModel {
         userPrefs = ctx.getSharedPreferences("User", Context.MODE_PRIVATE);
         cookiePrefs = ctx.getSharedPreferences("Cookies", Context.MODE_PRIVATE);
 
-        final String username = userPrefs.getString("username", "null");
+        final String email = userPrefs.getString("email", "null");
         final String password = userPrefs.getString("password", "null");
         final String cookieBody = cookiePrefs.getString("access_token", "null");
-        final User user = new User(username, password);
+        final User user = new User(email, password);
 
         if (cookieBody.equals("null") || !user.canLogin()) {
             return HttpURLConnection.HTTP_UNAUTHORIZED;
@@ -39,7 +39,7 @@ public abstract class RequestModel {
         try {
             final JSONObject payload = new JSONObject(decode(chunks[1]));
             if (payload.getLong("exp") < (System.currentTimeMillis() / 1000)) {
-                return HttpURLConnection.HTTP_UNAUTHORIZED;
+                return HttpURLConnection.HTTP_UNAUTHORIZED; // TODO: should throw session expired exception
             }
             return HttpURLConnection.HTTP_OK;
         } catch (JSONException e) {
@@ -57,7 +57,7 @@ public abstract class RequestModel {
                     response -> {
                         try {
                             userPrefs.edit().putString("name", response.getString("name")).apply();
-                            userPrefs.edit().putString("username", response.getString("username")).apply();
+                            userPrefs.edit().putString("email", response.getString("email")).apply();
                             userPrefs.edit().putString("role", response.getString("role")).apply();
                             userPrefs.edit().putString("password", user.getPassword()).apply();
                             cookiePrefs.edit().putString("access_token", cookie).apply();
@@ -79,7 +79,7 @@ public abstract class RequestModel {
     public static JSONObject userLoginBodyObject(User user) {
         JSONObject body = new JSONObject();
         try {
-            body.put("username", user.getUsername());
+            body.put("email", user.getEmail());
             body.put("password", user.getPassword());
         } catch (JSONException e) {
             e.printStackTrace();
