@@ -3,16 +3,19 @@ package ar.edu.utn.mdp.utnapp.fetch.request.user;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import androidx.annotation.NonNull;
+
 import com.android.volley.Request;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.HttpURLConnection;
 import java.util.Base64;
 
+import ar.edu.utn.mdp.utnapp.UserFunctions;
 import ar.edu.utn.mdp.utnapp.fetch.API_URL;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
+import ar.edu.utn.mdp.utnapp.fetch.request.HTTP_STATUS;
 import ar.edu.utn.mdp.utnapp.fetch.request.IRequestCallBack;
 import ar.edu.utn.mdp.utnapp.fetch.request.RequestSingleton;
 
@@ -22,20 +25,17 @@ public final class UserModel {
     private static SharedPreferences userPrefs;
     private static SharedPreferences cookiePrefs;
 
-    public static int verifyAccountIntegration(Context ctx) {
+    public static int verifyAccountIntegration(@NonNull Context ctx) {
         userPrefs = ctx.getSharedPreferences("User", Context.MODE_PRIVATE);
-        cookiePrefs = ctx.getSharedPreferences("Cookies", Context.MODE_PRIVATE);
+        cookiePrefs = ctx.getSharedPreferences("Cookie", Context.MODE_PRIVATE);
 
-        final String password = userPrefs.getString("password", "null");
-        final String email = userPrefs.getString("email", "null");
         final String cookieBody = cookiePrefs.getString("access_token", "null");
-        final User user = new User(email, password);
+        final User user = UserFunctions.getUserCredentials(ctx);
 
         if (cookieBody.equals("null") || !user.canLogin()) {
-            return HttpURLConnection.HTTP_UNAUTHORIZED;
+            return HTTP_STATUS.CLIENT_ERROR_UNAUTHORIZED;
         }
 
-        user.setPassword(decode(password));
         cookie = cookieBody;
 
         final String[] chunks = cookieBody.split("=")[1].split("\\.");
@@ -43,18 +43,17 @@ public final class UserModel {
         try {
             final JSONObject payload = new JSONObject(decode(chunks[1]));
             if (payload.getLong("exp") < (System.currentTimeMillis() / 1000)) {
-                return HttpURLConnection.HTTP_UNAUTHORIZED; // TODO: should throw session expired exception
+                return HTTP_STATUS.REDIRECTION_TEMPORARY_REDIRECT;
             }
-            return HttpURLConnection.HTTP_OK;
+            return HTTP_STATUS.SUCCESS_OK;
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return HttpURLConnection.HTTP_UNAUTHORIZED;
+        return HTTP_STATUS.CLIENT_ERROR_UNAUTHORIZED;
     }
 
     public static void loginUser(Context ctx, User user, final IRequestCallBack callBack) {
         final String URL_LOGIN = API_URL.LOGIN.getURL();
-        System.out.println(URL_LOGIN);
 
         JSONObject body = userLoginBodyObject(user);
         try {
@@ -107,7 +106,6 @@ public final class UserModel {
     public static void setCookie(String cookie) {
         UserModel.cookie = cookie;
     }
-
 
     public static String getCookie() {
         return cookie;

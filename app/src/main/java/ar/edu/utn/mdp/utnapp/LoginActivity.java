@@ -34,23 +34,21 @@ public class LoginActivity extends AppCompatActivity {
         Button login = findViewById(R.id.login);
 
         login.setOnClickListener(view -> {
-            final String mail = email.getText().toString().trim();
-            final String pass = password.getText().toString().trim();
-            final User usr = new User(mail, pass);
+            final User usr = UserFunctions.getUserCredentials(this);
 
-            if (mail.isEmpty()) {
+            if (usr.getEmail().isEmpty()) {
                 email.setError("Email is required");
                 email.requestFocus();
                 return;
             }
 
-            if (pass.isEmpty()) {
+            if (usr.getPassword().isEmpty()) {
                 password.setError("Password is required");
                 password.requestFocus();
                 return;
             }
 
-            if (!UserFunctions.isValidEmail(mail)) {
+            if (!UserFunctions.isValidEmail(usr.getEmail())) {
                 Toast.makeText(LoginActivity.this, "Invalid email", Toast.LENGTH_LONG).show();
                 return;
             }
