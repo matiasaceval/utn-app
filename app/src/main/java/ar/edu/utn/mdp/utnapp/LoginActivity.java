@@ -12,11 +12,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONObject;
+
 import java.net.HttpURLConnection;
 
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
-import ar.edu.utn.mdp.utnapp.fetch.request.LoginCallBack;
-import ar.edu.utn.mdp.utnapp.fetch.request.RequestModel;
+import ar.edu.utn.mdp.utnapp.fetch.request.IRequestCallBack;
+import ar.edu.utn.mdp.utnapp.fetch.request.user.UserModel;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -70,9 +72,9 @@ public class LoginActivity extends AppCompatActivity {
             pd.setIndeterminate(true);
             pd.show();
 
-            RequestModel.loginUser(LoginActivity.this, usr, new LoginCallBack() {
+            UserModel.loginUser(LoginActivity.this, usr, new IRequestCallBack() {
                 @Override
-                public void onSuccess() {
+                public void onSuccess(JSONObject response) {
                     pd.dismiss();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);

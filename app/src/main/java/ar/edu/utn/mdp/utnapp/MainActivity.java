@@ -10,9 +10,13 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import org.json.JSONObject;
+
 import java.net.HttpURLConnection;
 
-import ar.edu.utn.mdp.utnapp.fetch.request.RequestModel;
+import ar.edu.utn.mdp.utnapp.fetch.request.IRequestCallBack;
+import ar.edu.utn.mdp.utnapp.fetch.request.calendar.CalendarModel;
+import ar.edu.utn.mdp.utnapp.fetch.request.user.UserModel;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         Button btn = findViewById(R.id.logout);
 
         try {
-            final int statusCode = RequestModel.verifyAccountIntegration(MainActivity.this);
+            final int statusCode = UserModel.verifyAccountIntegration(MainActivity.this);
             if (statusCode == HttpURLConnection.HTTP_UNAUTHORIZED) {
                 logout(MainActivity.this);
                 finish();
@@ -47,8 +51,22 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+
+
         btn.setOnClickListener(view -> {
-            logout(MainActivity.this);
+            CalendarModel.getHoliday(MainActivity.this, new IRequestCallBack() {
+                @Override
+                public void onSuccess(JSONObject response) {
+                    System.out.println(response);
+
+
+                }
+
+                @Override
+                public void onError(int statusCode) {
+                    System.out.println(statusCode);
+                }
+            });
             finish();
         });
     }
