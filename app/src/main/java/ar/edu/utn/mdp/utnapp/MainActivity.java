@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
-import org.json.JSONObject;
+import org.json.JSONArray;
 
 import java.net.HttpURLConnection;
 
@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         TextView tv = findViewById(R.id.textView);
         Button btn = findViewById(R.id.logout);
+        Button btn2 = findViewById(R.id.holidays);
 
         try {
             final int statusCode = UserModel.verifyAccountIntegration(MainActivity.this);
@@ -51,23 +52,27 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-
         btn.setOnClickListener(view -> {
+            logout(MainActivity.this);
+            finish();
+        });
+
+        btn2.setOnClickListener(view -> {
+            // TODO: Progress dialog here...
+
             CalendarModel.getHoliday(MainActivity.this, new IRequestCallBack() {
                 @Override
-                public void onSuccess(JSONObject response) {
-                    System.out.println(response);
-
-
+                public void onSuccess(JSONArray response) {
+                    // Dismiss progress dialog here...
+                    tv.setText(response.toString());
                 }
 
                 @Override
                 public void onError(int statusCode) {
+                    // Dismiss progress dialog here...
                     System.out.println(statusCode);
                 }
             });
-            finish();
         });
     }
 

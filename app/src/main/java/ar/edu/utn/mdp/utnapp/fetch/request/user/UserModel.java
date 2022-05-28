@@ -11,13 +11,12 @@ import org.json.JSONObject;
 import java.net.HttpURLConnection;
 import java.util.Base64;
 
+import ar.edu.utn.mdp.utnapp.fetch.API_URL;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
-import ar.edu.utn.mdp.utnapp.fetch.request.IRequest;
 import ar.edu.utn.mdp.utnapp.fetch.request.IRequestCallBack;
 import ar.edu.utn.mdp.utnapp.fetch.request.RequestSingleton;
-import ar.edu.utn.mdp.utnapp.fetch.request.API_URL;
 
-public final class UserModel implements IRequest {
+public final class UserModel {
 
     public static String cookie;
     private static SharedPreferences userPrefs;
@@ -35,6 +34,7 @@ public final class UserModel implements IRequest {
         if (cookieBody.equals("null") || !user.canLogin()) {
             return HttpURLConnection.HTTP_UNAUTHORIZED;
         }
+
         user.setPassword(decode(password));
         cookie = cookieBody;
 
@@ -61,15 +61,12 @@ public final class UserModel implements IRequest {
             UserRequest request = new UserRequest(Request.Method.POST, URL_LOGIN, body,
                     response -> {
                         try {
-
                             userPrefs.edit().putString("name", response.getString("name")).apply();
                             userPrefs.edit().putString("email", response.getString("email")).apply();
                             userPrefs.edit().putString("role", response.getString("role")).apply();
-                            // TODO : Encrypt password and save it in shared preferences
-
                             userPrefs.edit().putString("password", encode(user.getPassword())).apply();
                             cookiePrefs.edit().putString("access_token", cookie).apply();
-                            if (callBack != null) callBack.onSuccess(response);
+                            if (callBack != null) callBack.onSuccess(null);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -99,7 +96,6 @@ public final class UserModel implements IRequest {
         return body;
     }
 
-
     private static String encode(String string) {
         return Base64.getEncoder().encodeToString(string.getBytes());
     }
@@ -113,4 +109,7 @@ public final class UserModel implements IRequest {
     }
 
 
+    public static String getCookie() {
+        return cookie;
+    }
 }

@@ -15,25 +15,18 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        if (getSupportActionBar() != null) getSupportActionBar().hide();
 
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
-        }
-
-        LinearLayout passwordLinearLayout = findViewById(R.id.passwordLinearLayout);
         LinearLayout confirmPasswordLinearLayout = findViewById(R.id.confirmPasswordLinearLayout);
-
-        EditText name = findViewById(R.id.name);
-        EditText email = findViewById(R.id.email);
-        EditText password = findViewById(R.id.password);
-        EditText confirmPassword = findViewById(R.id.confirmPassword);
-
-        ImageView back = findViewById(R.id.backToLogin);
-        ImageView seePassword = findViewById(R.id.viewPassword);
+        LinearLayout passwordLinearLayout = findViewById(R.id.passwordLinearLayout);
         ImageView seeConfirmPassword = findViewById(R.id.viewConfirmPassword);
-
+        ImageView seePassword = findViewById(R.id.viewPassword);
+        ImageView back = findViewById(R.id.backToLogin);
+        EditText confirmPassword = findViewById(R.id.confirmPassword);
+        EditText password = findViewById(R.id.password);
+        EditText email = findViewById(R.id.email);
+        EditText name = findViewById(R.id.name);
         Button register = findViewById(R.id.register);
-
         TextView login = findViewById(R.id.logInButton);
 
         login.setOnClickListener(view -> onBackPressed());
