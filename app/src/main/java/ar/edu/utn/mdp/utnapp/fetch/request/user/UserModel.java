@@ -14,9 +14,9 @@ import java.util.Base64;
 
 import ar.edu.utn.mdp.utnapp.UserFunctions;
 import ar.edu.utn.mdp.utnapp.fetch.API_URL;
+import ar.edu.utn.mdp.utnapp.fetch.callback_request.CallBackRequest;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
 import ar.edu.utn.mdp.utnapp.fetch.request.HTTP_STATUS;
-import ar.edu.utn.mdp.utnapp.fetch.request.IRequestCallBack;
 import ar.edu.utn.mdp.utnapp.fetch.request.RequestSingleton;
 
 public final class UserModel {
@@ -52,9 +52,8 @@ public final class UserModel {
         return HTTP_STATUS.CLIENT_ERROR_UNAUTHORIZED;
     }
 
-    public static void loginUser(Context ctx, User user, final IRequestCallBack callBack) {
+    public static void loginUser(@NonNull Context ctx, User user, CallBackRequest<JSONObject> callBack) {
         final String URL_LOGIN = API_URL.LOGIN.getURL();
-
         JSONObject body = userLoginBodyObject(user);
         try {
             UserRequest request = new UserRequest(Request.Method.POST, URL_LOGIN, body,
@@ -66,6 +65,7 @@ public final class UserModel {
                             userPrefs.edit().putString("password", encode(user.getPassword())).apply();
                             cookiePrefs.edit().putString("access_token", cookie).apply();
                             if (callBack != null) callBack.onSuccess(null);
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

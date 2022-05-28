@@ -9,8 +9,8 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import org.json.JSONArray;
 
+import ar.edu.utn.mdp.utnapp.fetch.callback_request.CallBackRequest;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
-import ar.edu.utn.mdp.utnapp.fetch.request.IRequestCallBack;
 import ar.edu.utn.mdp.utnapp.fetch.request.calendar.CalendarModel;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         btn2.setOnClickListener(view -> {
             // TODO: Progress dialog here...
 
-            CalendarModel.getHoliday(MainActivity.this, new IRequestCallBack() {
+            CalendarModel.getHoliday(MainActivity.this, new CallBackRequest<JSONArray>() {
                 @Override
                 public void onSuccess(JSONArray response) {
                     // Dismiss progress dialog here...
