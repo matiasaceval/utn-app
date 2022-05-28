@@ -34,15 +34,17 @@ public class LoginActivity extends AppCompatActivity {
         Button login = findViewById(R.id.login);
 
         login.setOnClickListener(view -> {
-            final User usr = UserFunctions.getUserCredentials(this);
+            final String mail = email.getText().toString();
+            final String pass = password.getText().toString();
+            final User usr = new User(mail, pass);
 
-            if (usr.getEmail().isEmpty()) {
+            if (mail.isEmpty()) {
                 email.setError("Email is required");
                 email.requestFocus();
                 return;
             }
 
-            if (usr.getPassword().isEmpty()) {
+            if (pass.isEmpty()) {
                 password.setError("Password is required");
                 password.requestFocus();
                 return;
