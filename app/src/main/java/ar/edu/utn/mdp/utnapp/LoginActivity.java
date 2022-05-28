@@ -12,11 +12,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.net.HttpURLConnection;
+import org.json.JSONArray;
 
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
-import ar.edu.utn.mdp.utnapp.fetch.request.LoginCallBack;
-import ar.edu.utn.mdp.utnapp.fetch.request.RequestModel;
+import ar.edu.utn.mdp.utnapp.fetch.request.IRequestCallBack;
+import ar.edu.utn.mdp.utnapp.fetch.request.user.UserModel;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -24,21 +24,14 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
-        }
+        if (getSupportActionBar() != null) getSupportActionBar().hide();
 
         LinearLayout passwordLinearLayout = findViewById(R.id.passwordLinearLayout);
-
-        EditText email = findViewById(R.id.email);
-        EditText password = findViewById(R.id.password);
-
-        Button login = findViewById(R.id.login);
-
-        TextView signUpButton = findViewById(R.id.signUpButton);
-
         ImageView seePassword = findViewById(R.id.viewPassword);
+        TextView signUpButton = findViewById(R.id.signUpButton);
+        EditText password = findViewById(R.id.password);
+        EditText email = findViewById(R.id.email);
+        Button login = findViewById(R.id.login);
 
         login.setOnClickListener(view -> {
             final String mail = email.getText().toString().trim();
@@ -70,9 +63,9 @@ public class LoginActivity extends AppCompatActivity {
             pd.setIndeterminate(true);
             pd.show();
 
-            RequestModel.loginUser(LoginActivity.this, usr, new LoginCallBack() {
+            UserModel.loginUser(LoginActivity.this, usr, new IRequestCallBack() {
                 @Override
-                public void onSuccess() {
+                public void onSuccess(JSONArray response) {
                     pd.dismiss();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
@@ -82,20 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onError(int statusCode) {
                     pd.dismiss();
-                    switch (statusCode) {
-                        case HttpURLConnection.HTTP_UNAUTHORIZED:
-                            ErrorDialog.show(LoginActivity.this, "Invalid credentials", "Email or password is wrong. Please try again.", R.drawable.ic_alert);
-                            break;
-                        case HttpURLConnection.HTTP_INTERNAL_ERROR:
-                            ErrorDialog.show(LoginActivity.this, "Error", "Internal server error", R.drawable.ic_cloud_offline);
-                            break;
-                        case HttpURLConnection.HTTP_UNAVAILABLE:
-                            ErrorDialog.show(LoginActivity.this, "Error", "Service unavailable. Please try again later.", R.drawable.ic_cloud_offline);
-                            break;
-                        default:
-                            ErrorDialog.show(LoginActivity.this, "Error", "Unknown error. Please report it to the support.", R.drawable.ic_warning);
-                            break;
-                    }
+                    UserFunctions.handleErrorDialog(statusCode, LoginActivity.this);
                 }
             });
         });

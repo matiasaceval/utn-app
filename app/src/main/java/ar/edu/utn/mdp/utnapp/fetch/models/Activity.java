@@ -1,12 +1,9 @@
 package ar.edu.utn.mdp.utnapp.fetch.models;
 
-public final class Activity {
-}
+import java.time.LocalDateTime;
 
-/*
-* const activity = new Schema({
-    activity: String,
-    start: Date,
-    end: Date
-})
-* */
+public final class Activity {
+    private String activity;
+    private LocalDateTime start;
+    private LocalDateTime end;
+}

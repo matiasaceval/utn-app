@@ -6,9 +6,6 @@ public final class User {
     private String password = "null";
     private String role = "user";
 
-    public User() {
-    }
-
     public User(String email, String password) {
         setEmail(email);
         setPassword(password);
@@ -18,6 +15,12 @@ public final class User {
         setName(name);
         setEmail(email);
         setRole(role);
+    }
+    public User(String name, String email, String password, String role) {
+        setName(name);
+        setEmail(email);
+        setRole(role);
+        setPassword(password);
     }
 
     public String getName() {

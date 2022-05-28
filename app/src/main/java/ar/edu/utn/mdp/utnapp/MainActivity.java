@@ -10,9 +10,13 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import org.json.JSONArray;
+
 import java.net.HttpURLConnection;
 
-import ar.edu.utn.mdp.utnapp.fetch.request.RequestModel;
+import ar.edu.utn.mdp.utnapp.fetch.request.IRequestCallBack;
+import ar.edu.utn.mdp.utnapp.fetch.request.calendar.CalendarModel;
+import ar.edu.utn.mdp.utnapp.fetch.request.user.UserModel;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,9 +34,10 @@ public class MainActivity extends AppCompatActivity {
 
         TextView tv = findViewById(R.id.textView);
         Button btn = findViewById(R.id.logout);
+        Button btn2 = findViewById(R.id.holidays);
 
         try {
-            final int statusCode = RequestModel.verifyAccountIntegration(MainActivity.this);
+            final int statusCode = UserModel.verifyAccountIntegration(MainActivity.this);
             if (statusCode == HttpURLConnection.HTTP_UNAUTHORIZED) {
                 logout(MainActivity.this);
                 finish();
@@ -50,6 +55,24 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(view -> {
             logout(MainActivity.this);
             finish();
+        });
+
+        btn2.setOnClickListener(view -> {
+            // TODO: Progress dialog here...
+
+            CalendarModel.getHoliday(MainActivity.this, new IRequestCallBack() {
+                @Override
+                public void onSuccess(JSONArray response) {
+                    // Dismiss progress dialog here...
+                    tv.setText(response.toString());
+                }
+
+                @Override
+                public void onError(int statusCode) {
+                    // Dismiss progress dialog here...
+                    System.out.println(statusCode);
+                }
+            });
         });
     }
 

@@ -1,32 +1,16 @@
 package ar.edu.utn.mdp.utnapp.fetch.models;
 
-public final class Subject {
-}
+import org.json.JSONObject;
 
-/*
-* const subject = new Schema({
-    subject: String,
-    zoom: String,
-    code: String,
-    teacher: {
-        name: String,
-        email: String
-    },
-    timetable: {
-        monday: String,
-        tuesday: String,
-        wednesday: String,
-        thursday: String,
-        friday: String
-    },
-    exam: {
-        first: Date,
-        second: Date
-    },
-    makeupExam: {
-        first: Date,
-        second: Date
-    },
-    extra: Array
-})
-* */
+import java.util.ArrayList;
+
+public final class Subject {
+    private String subject;
+    private String zoom;
+    private String code;
+    private JSONObject teacher;
+    private JSONObject timetable;
+    private JSONObject exam;
+    private JSONObject makeupExam;
+    private ArrayList<JSONObject> extra;
+}
