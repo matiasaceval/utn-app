@@ -16,7 +16,6 @@ public final class CalendarModel  {
 
     public static void getHoliday(@NonNull Context ctx, CallBackRequest<JSONArray> callBack) {
         final String URL_HOLIDAY = API_URL.HOLIDAY.getURL();
-        System.out.println(URL_HOLIDAY);
 
         JSONArrayRequest request = new JSONArrayRequest(Request.Method.GET, URL_HOLIDAY, null,
                 response -> {
