@@ -16,6 +16,7 @@ public final class User {
         setEmail(email);
         setRole(role);
     }
+
     public User(String name, String email, String password, String role) {
         setName(name);
         setEmail(email);

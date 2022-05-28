@@ -1,5 +1,6 @@
 package ar.edu.utn.mdp.utnapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -85,6 +86,7 @@ public final class UserFunctions {
         cookiePrefs.edit().clear().apply();
         Intent intent = new Intent(ctx, LoginActivity.class);
         ctx.startActivity(intent);
+        ((Activity) ctx).finish();
     }
 
     public static void logUserAgain(Context ctx) {
