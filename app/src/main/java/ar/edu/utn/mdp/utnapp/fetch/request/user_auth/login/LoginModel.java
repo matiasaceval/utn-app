@@ -1,4 +1,4 @@
-package ar.edu.utn.mdp.utnapp.fetch.request.user;
+package ar.edu.utn.mdp.utnapp.fetch.request.user_auth.login;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -19,7 +19,7 @@ import ar.edu.utn.mdp.utnapp.fetch.models.User;
 import ar.edu.utn.mdp.utnapp.fetch.request.HTTP_STATUS;
 import ar.edu.utn.mdp.utnapp.fetch.request.RequestSingleton;
 
-public final class UserModel {
+public final class LoginModel {
 
     public static String cookie;
     private static SharedPreferences userPrefs;
@@ -56,7 +56,7 @@ public final class UserModel {
         final String URL_LOGIN = API_URL.LOGIN.getURL();
         JSONObject body = userLoginBodyObject(user);
         try {
-            UserRequest request = new UserRequest(Request.Method.POST, URL_LOGIN, body,
+            UserLoginRequest request = new UserLoginRequest(Request.Method.POST, URL_LOGIN, body,
                     response -> {
                         try {
                             userPrefs.edit().putString("name", response.getString("name")).apply();
@@ -104,7 +104,7 @@ public final class UserModel {
     }
 
     public static void setCookie(String cookie) {
-        UserModel.cookie = cookie;
+        LoginModel.cookie = cookie;
     }
 
     public static String getCookie() {

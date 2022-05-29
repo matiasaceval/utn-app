@@ -16,7 +16,7 @@ import org.json.JSONObject;
 
 import ar.edu.utn.mdp.utnapp.fetch.callback_request.CallBackRequest;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
-import ar.edu.utn.mdp.utnapp.fetch.request.user.UserModel;
+import ar.edu.utn.mdp.utnapp.fetch.request.user_auth.login.LoginModel;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
             pd.show();
 
 
-            UserModel.loginUser(LoginActivity.this, usr, new CallBackRequest<JSONObject>() {
+            LoginModel.loginUser(LoginActivity.this, usr, new CallBackRequest<JSONObject>() {
                 @Override
                 public void onSuccess(JSONObject response) {
                     pd.dismiss();

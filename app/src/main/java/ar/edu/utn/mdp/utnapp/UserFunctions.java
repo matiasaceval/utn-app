@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
 import ar.edu.utn.mdp.utnapp.fetch.request.HTTP_STATUS;
-import ar.edu.utn.mdp.utnapp.fetch.request.user.UserModel;
+import ar.edu.utn.mdp.utnapp.fetch.request.user_auth.login.LoginModel;
 
 public final class UserFunctions {
     public static boolean isValidEmail(String email) {
@@ -93,7 +93,7 @@ public final class UserFunctions {
         try {
             final User user = getUserCredentials(ctx);
             if (user.canLogin()) {
-                UserModel.loginUser(ctx, user, null);
+                LoginModel.loginUser(ctx, user, null);
             } else {
                 ErrorDialog.show(ctx, "Unexpected error", "Please login again.", view -> logout(ctx));
             }
@@ -104,7 +104,7 @@ public final class UserFunctions {
     }
 
     public static void verifyConnection(Context ctx) {
-        final int statusCode = UserModel.verifyAccountIntegration(ctx);
+        final int statusCode = LoginModel.verifyAccountIntegration(ctx);
 
         switch (statusCode) {
             case HTTP_STATUS.CLIENT_ERROR_UNAUTHORIZED:

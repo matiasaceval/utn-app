@@ -1,4 +1,4 @@
-package ar.edu.utn.mdp.utnapp.fetch.request.calendar;
+package ar.edu.utn.mdp.utnapp.fetch.request;
 
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -8,7 +8,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import ar.edu.utn.mdp.utnapp.fetch.request.user.UserModel;
+import ar.edu.utn.mdp.utnapp.fetch.request.user_auth.login.LoginModel;
 
 
 public class JSONObjectRequest extends JsonObjectRequest {
@@ -22,7 +22,7 @@ public class JSONObjectRequest extends JsonObjectRequest {
     public Map<String, String> getHeaders() {
         HashMap<String, String> headers = new HashMap<>();
         headers.put("Content-Type", "application/json");
-        headers.put("Cookie", UserModel.getCookie());
+        headers.put("Cookie", LoginModel.getCookie());
         return headers;
     }
 }
