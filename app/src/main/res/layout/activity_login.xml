@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:layout_gravity="center"
+    android:gravity="center">
 
     <ImageView
         android:id="@+id/utnLogo"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="100dp"
         android:contentDescription="@string/logo_description"
         android:src="@drawable/ic_utn"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,23 +23,13 @@
         android:id="@+id/email"
         android:layout_width="300dp"
         android:layout_height="50dp"
+        android:theme="@style/InputType"
         android:layout_marginTop="50dp"
-        android:height="48dp"
         android:autofillHints="emailAddress"
-        android:background="@drawable/custom_input"
         android:drawableStart="@drawable/email"
-        android:drawablePadding="8dp"
-        android:ellipsize="end"
-        android:ems="10"
-        android:fontFamily="@font/opensans_regular"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:maxLength="@integer/email_length"
-        android:maxLines="1"
-        android:minHeight="48dp"
-        android:textColor="@color/text"
-        android:textColorHint="@color/hint"
-        android:textIsSelectable="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,21 +53,13 @@
             android:id="@+id/password"
             android:layout_width="260dp"
             android:layout_height="50dp"
-            android:height="48dp"
+            android:inputType="textPassword"
             android:autofillHints="password"
             android:background="@drawable/transparent"
             android:drawableStart="@drawable/key"
-            android:drawablePadding="8dp"
-            android:ellipsize="end"
-            android:ems="10"
-            android:fontFamily="@font/opensans_regular"
             android:hint="@string/password"
-            android:inputType="textPassword"
             android:maxLength="@integer/password_max_length"
-            android:maxLines="1"
-            android:minHeight="48dp"
-            android:textColor="@color/text"
-            android:textColorHint="@color/hint" />
+            android:theme="@style/InputType" />
 
         <ImageView
             android:id="@+id/viewPassword"
@@ -132,4 +115,4 @@
             android:textSize="16sp" />
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
