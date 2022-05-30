@@ -8,9 +8,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
+import ar.edu.utn.mdp.utnapp.fetch.callback_request.CallBackRequest;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
-import ar.edu.utn.mdp.utnapp.fetch.request.IRequestCallBack;
 import ar.edu.utn.mdp.utnapp.fetch.request.calendar.CalendarModel;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,10 +38,10 @@ public class MainActivity extends AppCompatActivity {
 
         btn2.setOnClickListener(view -> {
             // TODO: Progress dialog here...
-
-            CalendarModel.getHoliday(MainActivity.this, new IRequestCallBack() {
+            String query = "?date=02/02/2022";
+            CalendarModel.getNextHoliday(MainActivity.this, query, new CallBackRequest<JSONObject>() {
                 @Override
-                public void onSuccess(JSONArray response) {
+                public void onSuccess(JSONObject response) {
                     // Dismiss progress dialog here...
                     tv.setText(response.toString());
                 }
