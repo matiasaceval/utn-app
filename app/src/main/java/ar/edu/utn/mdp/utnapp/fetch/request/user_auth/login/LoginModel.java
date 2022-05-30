@@ -14,6 +14,7 @@ import java.util.Base64;
 
 import ar.edu.utn.mdp.utnapp.UserFunctions;
 import ar.edu.utn.mdp.utnapp.fetch.API_URL;
+import ar.edu.utn.mdp.utnapp.utils.Password;
 import ar.edu.utn.mdp.utnapp.fetch.callback_request.CallBackRequest;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
 import ar.edu.utn.mdp.utnapp.fetch.request.HTTP_STATUS;
@@ -41,7 +42,7 @@ public final class LoginModel {
         final String[] chunks = cookieBody.split("=")[1].split("\\.");
 
         try {
-            final JSONObject payload = new JSONObject(decode(chunks[1]));
+            final JSONObject payload = new JSONObject(Password.decode(chunks[1]));
             if (payload.getLong("exp") < (System.currentTimeMillis() / 1000)) {
                 return HTTP_STATUS.REDIRECTION_TEMPORARY_REDIRECT;
             }
@@ -62,7 +63,7 @@ public final class LoginModel {
                             userPrefs.edit().putString("name", response.getString("name")).apply();
                             userPrefs.edit().putString("email", response.getString("email")).apply();
                             userPrefs.edit().putString("role", response.getString("role")).apply();
-                            userPrefs.edit().putString("password", encode(user.getPassword())).apply();
+                            userPrefs.edit().putString("password", Password.encode(user.getPassword())).apply();
                             cookiePrefs.edit().putString("access_token", cookie).apply();
                             if (callBack != null) callBack.onSuccess(null);
 
@@ -93,14 +94,6 @@ public final class LoginModel {
             e.printStackTrace();
         }
         return body;
-    }
-
-    private static String encode(String string) {
-        return Base64.getEncoder().encodeToString(string.getBytes());
-    }
-
-    private static String decode(String encodedString) {
-        return new String(Base64.getUrlDecoder().decode(encodedString));
     }
 
     public static void setCookie(String cookie) {

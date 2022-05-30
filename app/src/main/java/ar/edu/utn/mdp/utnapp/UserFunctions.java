@@ -10,13 +10,24 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
+
+import org.json.JSONObject;
+
 import java.net.HttpURLConnection;
 import java.util.Base64;
+import java.util.Map;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
+import ar.edu.utn.mdp.utnapp.fetch.callback_request.CallBackRequest;
+import ar.edu.utn.mdp.utnapp.fetch.models.Roles;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
 import ar.edu.utn.mdp.utnapp.fetch.request.HTTP_STATUS;
 import ar.edu.utn.mdp.utnapp.fetch.request.user_auth.login.LoginModel;
+import ar.edu.utn.mdp.utnapp.fetch.request.user_auth.signup.Register;
+import ar.edu.utn.mdp.utnapp.fetch.request.user_auth.signup.RegisterModel;
+import ar.edu.utn.mdp.utnapp.utils.Password;
 
 public final class UserFunctions {
     public static boolean isValidEmail(String email) {
@@ -75,7 +86,7 @@ public final class UserFunctions {
         final SharedPreferences userPrefs = ctx.getSharedPreferences("User", Context.MODE_PRIVATE);
         final String email = userPrefs.getString("email", "null");
         final String password = userPrefs.getString("password", "null");
-        final String decodedPassword = !password.equals("null") ? decode(password) : "null";
+        final String decodedPassword = !password.equals("null") ? Password.decode(password) : "null";
         return new User(email, decodedPassword);
     }
 
@@ -116,7 +127,6 @@ public final class UserFunctions {
         }
     }
 
-    private static String decode(String encodedString) {
-        return new String(Base64.getUrlDecoder().decode(encodedString));
-    }
+
+
 }

@@ -7,7 +7,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import ar.edu.utn.mdp.utnapp.fetch.callback_request.CallBackRequest;
