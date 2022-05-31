@@ -35,7 +35,7 @@
             android:indeterminate="true"
             android:progressTint="@color/primary_700"
             android:progressTintMode="src_atop"
-            android:theme="@style/Black200"
+            android:theme="@style/Black500"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/progressDialogText" />

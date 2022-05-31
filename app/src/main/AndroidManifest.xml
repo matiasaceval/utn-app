@@ -25,7 +25,7 @@
         <activity
             android:name=".SplashActivity"
             android:exported="true"
-            android:theme="@style/NoActionBar"
+            android:theme="@style/Theme.UTNApp"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

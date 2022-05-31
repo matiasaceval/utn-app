@@ -1,19 +1,25 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Theme.UTNApp" parent="Theme.MaterialComponents.Light.DarkActionBar">
-        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
-        <item name="android:fontFamily">@font/opensans_bold</item>
-        <item name="colorPrimary">@color/primary_500</item>
-        <item name="colorPrimaryVariant">@color/primary_700</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="colorPrimaryDark">@color/primary_700</item>
-        <item name="android:navigationBarColor">@color/primary_700</item>
+<style name="Theme.UTNApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
+    <item name="android:fontFamily">@font/opensans_bold</item>
 
-        <item name="colorSecondary">@color/secondary_200</item>
-        <item name="colorSecondaryVariant">@color/secondary_500</item>
-        <item name="colorOnSecondary">@color/black</item>
+    <item name="colorPrimary">@color/primary_700</item>
+    <item name="colorPrimaryVariant">@color/primary_500</item>
+    <item name="colorOnPrimary">@color/white</item>
 
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-    </style>
+    <item name="backgroundColor">?attr/colorPrimary</item>
+
+    <item name="colorPrimaryDark">@color/primary_700</item>
+
+    <item name="android:navigationBarColor">@color/primary_700</item>
+
+    <item name="colorSecondary">@color/secondary_500</item>
+    <item name="colorSecondaryVariant">@color/secondary_200</item>
+    <item name="colorOnSecondary">@color/white</item>
+
+    <item name="colorOnSurface">?attr/colorSecondaryVariant</item>
+    <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+</style>
 
     <style name="NoActionBar" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
@@ -26,9 +32,10 @@
 
     <style name="InputType">
         <item name="android:fontFamily">@font/opensans_regular</item>
-        <item name="android:textColorHint">@color/hint</item>
+        <item name="android:textColorHint">@color/alpha_white</item>
         <item name="android:textIsSelectable">false</item>
-        <item name="android:textColor">@color/text</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:textColorHighlight">?attr/colorSecondaryVariant</item>
         <item name="android:minHeight">48dp</item>
         <item name="android:ellipsize">end</item>
         <item name="android:maxLines">1</item>
@@ -41,8 +48,38 @@
         <item name="android:textSize">12sp</item>
     </style>
 
-
-    <style name="Black200" parent="ThemeOverlay.AppCompat.Light">
+    <style name="Black500" parent="ThemeOverlay.AppCompat.Light">
         <item name="colorAccent">@color/primary_500</item>
+    </style>
+
+    <style name="TextInputLayoutCustom" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+        <item name="android:textColorHint">?attr/colorOnPrimary</item>
+        <item name="boxBackgroundColor">?attr/colorPrimaryVariant</item>
+
+        <item name="boxStrokeColor">?attr/colorSecondaryVariant</item>
+        <item name="hintTextColor">?attr/colorSecondaryVariant</item>
+
+        <item name="placeholderTextColor">?attr/colorOnPrimary</item>
+        <item name="suffixTextColor">?attr/colorOnPrimary</item>
+        <item name="prefixTextColor">?attr/colorOnPrimary</item>
+        <item name="counterTextColor">?attr/colorOnPrimary</item>
+        <item name="helperTextTextColor">?attr/colorOnPrimary</item>
+        <item name="counterOverflowTextColor">?attr/colorOnPrimary</item>
+
+        <item name="endIconTint">?attr/colorOnSecondary</item>
+
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+
+        <item name="boxStrokeErrorColor">@color/error</item>
+        <item name="errorIconTint">@color/error</item>
+        <item name="errorEnabled">true</item>
+        <item name="errorTextColor">@color/error</item>
+        <item name="errorTextAppearance">@style/ErrorStyle</item>
+
+        <item name="boxCornerRadiusTopStart">10dp</item>
+        <item name="boxCornerRadiusBottomEnd">0dp</item>
+        <item name="boxCornerRadiusBottomStart">0dp</item>
+        <item name="boxCornerRadiusTopEnd">10dp</item>
     </style>
 </resources>

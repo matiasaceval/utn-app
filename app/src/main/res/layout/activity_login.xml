@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true"
+    android:background="?backgroundColor"
     tools:context=".LoginActivity">
 
     <LinearLayout
@@ -24,7 +25,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensans_bold"
             android:text="@string/login_title"
-            android:textColor="@color/primary_700"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="32sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,38 +33,30 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/emailLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            style="@style/TextInputLayoutCustom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            app:boxStrokeColor="@color/input_stroke"
-            app:boxStrokeWidth="1dp"
-            app:errorEnabled="true"
-            app:errorTextAppearance="@style/ErrorStyle"
             app:layout_constraintTop_toBottomOf="@+id/utnLogo">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email"
+                style="@style/InputType"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:autofillHints="emailAddress"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
-                android:maxLength="@integer/email_length"
-                android:theme="@style/InputType" />
+                android:maxLength="@integer/email_length" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passwordLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            style="@style/TextInputLayoutCustom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            app:boxStrokeColor="@color/input_stroke"
-            app:boxStrokeWidth="1dp"
-            app:endIconMode="password_toggle"
-            app:errorEnabled="true"
-            app:errorTextAppearance="@style/ErrorStyle">
+            app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password"
@@ -107,7 +100,7 @@
                 android:layout_marginEnd="6dp"
                 android:fontFamily="@font/opensans_regular"
                 android:text="@string/do_not_have_account"
-                android:textColor="@color/text"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="16sp" />
 
             <TextView
@@ -127,10 +120,10 @@
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
         android:layout_marginBottom="16dp"
-        android:fontFamily="@font/opensans_lightitalic"
+        android:fontFamily="@font/opensans_italic"
         android:orientation="vertical"
         android:text="@string/footer"
-        android:textColor="@color/footer"
+        android:textColor="?attr/colorOnPrimary"
         android:textSize="16sp" />
 
 </RelativeLayout>
