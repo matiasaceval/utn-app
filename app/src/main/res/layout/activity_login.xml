@@ -1,119 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    android:orientation="vertical"
+    tools:context=".LoginActivity"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true">
 
     <ImageView
         android:id="@+id/utnLogo"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:contentDescription="@string/logo_description"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/ic_utn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.179"
-        android:src="@drawable/ic_utn" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/username"
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="340dp"
-        android:height="48dp"
-        android:autofillHints="username"
-        android:backgroundTint="@color/black_500"
-        android:ems="10"
-        android:fontFamily="@font/opensans_regular"
-        android:hint="@string/username"
-        android:inputType="text"
-        android:maxLength="20"
-        android:minHeight="48dp"
-        android:singleLine="true"
-        android:textColor="@color/black_700"
-        android:textColorHint="@color/black_200"
-        android:textIsSelectable="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="50dp"
+        android:id="@+id/emailLayout"
         app:layout_constraintTop_toBottomOf="@+id/utnLogo"
-        app:layout_constraintVertical_bias="0.403" />
+        app:errorTextAppearance="@style/ErrorStyle"
+        app:boxStrokeWidth="1dp"
+        app:errorEnabled="true">
 
-    <EditText
-        android:id="@+id/password"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:autofillHints="emailAddress"
+            android:inputType="textEmailAddress"
+            android:maxLength="@integer/email_length"
+            android:theme="@style/InputType" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:height="48dp"
-        android:autofillHints="password"
-        android:backgroundTint="@color/black_500"
-        android:ems="10"
-        android:fontFamily="@font/opensans_regular"
-        android:hint="@string/password"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:singleLine="true"
-        android:textColor="@color/black_700"
-        android:textColorHint="@color/black_200"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username"
-        app:layout_constraintVertical_bias="0.099" />
+        android:layout_marginTop="6dp"
+        android:id="@+id/passwordLayout"
+        app:endIconMode="password_toggle"
+        app:errorTextAppearance="@style/ErrorStyle"
+        app:boxStrokeWidth="1dp"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="password"
+            android:inputType="textPassword"
+            android:hint="@string/password"
+            android:maxLength="@integer/password_max_length"
+            style="@style/InputType"></com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/login"
         android:layout_width="177dp"
         android:layout_height="50dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/button"
+        android:ems="10"
+        android:fontFamily="@font/opensans_bold"
         android:text="@string/login_btn"
         android:textColor="@color/white"
-        android:fontFamily="@font/opensans_bold"
         android:textSize="20sp"
-        android:ems="10"
-        android:background="@drawable/button"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.271" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordLinearLayout"></androidx.appcompat.widget.AppCompatButton>
 
-    <TextView
-        android:id="@+id/or"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="or"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="HardcodedText" />
+        app:layout_constraintTop_toBottomOf="@+id/login">
 
-    <TextView
-        android:id="@+id/createAccountButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:autoLink="all"
-        android:background="@color/white"
-        android:linksClickable="false"
-        android:selectAllOnFocus="false"
-        android:text="@string/create_account_btn"
-        android:textColor="@color/secondary_200"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/or"
-        app:layout_constraintVertical_bias="0.058" />
+        <TextView
+            android:id="@+id/doNotHaveAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:fontFamily="@font/opensans_regular"
+            android:text="@string/do_not_have_account"
+            android:textColor="@color/text"
+            android:textSize="16sp"></TextView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/signUpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/opensans_regular"
+            android:text="@string/sign_up"
+            android:textColor="@color/link"
+            android:textSize="16sp"></TextView>
+    </LinearLayout>
+
+</LinearLayout>

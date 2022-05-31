@@ -24,6 +24,24 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+    <style name="InputType">
+        <item name="android:fontFamily">@font/opensans_regular</item>
+        <item name="android:textColorHint">@color/hint</item>
+        <item name="android:textIsSelectable">false</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ems">10</item>
+    </style>
+
+    <style name="ErrorStyle">
+        <item name="android:fontFamily">@font/opensans_italic</item>
+        <item name="android:textColor">@color/error</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+
     <style name="Black200" parent="ThemeOverlay.AppCompat.Light">
         <item name="colorAccent">@color/black_200</item>
     </style>

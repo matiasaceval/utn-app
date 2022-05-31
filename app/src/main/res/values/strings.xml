@@ -6,9 +6,22 @@
     <string name="login_btn">LOGIN</string>
     <string name="create_account_btn"><u>Create Account</u></string>
 
+    <!-- Title in activity_register -->
+    <string name="registration">Sign Up</string>
+
+    <!-- Error dialog template -->
     <string name="dialog_error_title">TITLE</string>
     <string name="example_loremIpsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu fermentum elit. Praesent eget lacus molestie, laoreet est quis, accumsan.</string>
     <string name="dialog_close_button">Close button</string>
-    <string name="example_simpleLorem">Lorem ipsum</string>
+    <string name="default_dialog_button_message">OK</string>
     <string name="dialog_pleaseWait">Please wait...</string>
+
+    <!-- Errors -->
+    <string name="invalid_email">Invalid email</string>
+    <string name="field_required">%s is required</string>
+    <string name="invalid_password">Password is weak. Must be 8–64 length with upper &amp; lowercase characters and numbers</string>
+    <string name="password_mismatch">Passwords don\'t match</string>
+    <string name="email_already_exists">Email is already on use</string>
+    <string name="example_simpleLorem">Lorem ipsum</string>
+
 </resources>
