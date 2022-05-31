@@ -36,7 +36,7 @@
     <!-- Errors -->
     <string name="invalid_email">Invalid email</string>
     <string name="field_required">%s is required</string>
-    <string name="invalid_password">Password is weak. Must be 8–64 length with upper &amp; lowercase characters and numbers</string>
+    <string name="password_not_secure">Password is weak. Must be 8–64 length with upper &amp; lowercase characters and numbers</string>
     <string name="password_mismatch">Passwords don\'t match</string>
     <string name="email_already_exists">Email is already on use</string>
 </resources>

@@ -1,5 +1,6 @@
 package ar.edu.utn.mdp.utnapp;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -36,19 +37,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btn2.setOnClickListener(view -> {
-            // TODO: Progress dialog here...
+            Dialog progress = new ProgressDialog(this);
             String query = "?date=02/02/2022";
             CalendarModel.getNextHoliday(MainActivity.this, query, new CallBackRequest<JSONObject>() {
                 @Override
                 public void onSuccess(JSONObject response) {
-                    // Dismiss progress dialog here...
+                    progress.dismiss();
                     tv.setText(response.toString());
                 }
 
                 @Override
                 public void onError(int statusCode) {
-                    // Dismiss progress dialog here...
-                    System.out.println(statusCode);
+                    progress.dismiss();
+                    UserFunctions.handleErrorDialog(statusCode, MainActivity.this);
                 }
             });
         });

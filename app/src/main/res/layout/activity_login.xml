@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".LoginActivity"
     android:layout_gravity="center"
-    android:gravity="center"
     android:descendantFocusability="beforeDescendants"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
 
     <ImageView
         android:id="@+id/utnLogo"
@@ -22,47 +22,47 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:id="@+id/emailLayout"
-        app:layout_constraintTop_toBottomOf="@+id/utnLogo"
-        app:errorTextAppearance="@style/ErrorStyle"
         app:boxStrokeWidth="1dp"
-        app:errorEnabled="true">
+        app:errorEnabled="true"
+        app:errorTextAppearance="@style/ErrorStyle"
+        app:layout_constraintTop_toBottomOf="@+id/utnLogo">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/email"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:hint="@string/email"
             android:autofillHints="emailAddress"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:maxLength="@integer/email_length"
             android:theme="@style/InputType" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
-        android:id="@+id/passwordLayout"
-        app:endIconMode="password_toggle"
-        app:errorTextAppearance="@style/ErrorStyle"
         app:boxStrokeWidth="1dp"
-        app:errorEnabled="true">
+        app:endIconMode="password_toggle"
+        app:errorEnabled="true"
+        app:errorTextAppearance="@style/ErrorStyle">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password"
+            style="@style/InputType"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:autofillHints="password"
-            android:inputType="textPassword"
             android:hint="@string/password"
-            android:maxLength="@integer/password_max_length"
-            style="@style/InputType"></com.google.android.material.textfield.TextInputEditText>
+            android:inputType="textPassword"
+            android:maxLength="@integer/password_max_length" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -78,7 +78,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordLinearLayout"></androidx.appcompat.widget.AppCompatButton>
+        app:layout_constraintTop_toBottomOf="@+id/passwordLinearLayout" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -97,7 +97,7 @@
             android:fontFamily="@font/opensans_regular"
             android:text="@string/do_not_have_account"
             android:textColor="@color/text"
-            android:textSize="16sp"></TextView>
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/signUpButton"
@@ -106,7 +106,7 @@
             android:fontFamily="@font/opensans_regular"
             android:text="@string/sign_up"
             android:textColor="@color/link"
-            android:textSize="16sp"></TextView>
+            android:textSize="16sp" />
     </LinearLayout>
 
 </LinearLayout>

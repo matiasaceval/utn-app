@@ -1,6 +1,6 @@
 package ar.edu.utn.mdp.utnapp;
 
-import android.app.ProgressDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -47,19 +47,12 @@ public class LoginActivity extends AppCompatActivity {
 
             if (UserFunctions.existInputError(this, layouts)) return;
 
-            // TODO: Make our own progress dialog
-            ProgressDialog pd = new ProgressDialog(LoginActivity.this);
-            pd.setTitle("Processing...");
-            pd.setMessage("Please wait.");
-            pd.setCancelable(false);
-            pd.setIndeterminate(true);
-            pd.show();
-
+            Dialog progress = new ProgressDialog(this);
 
             LoginModel.loginUser(LoginActivity.this, usr, new CallBackRequest<JSONObject>() {
                 @Override
                 public void onSuccess(JSONObject response) {
-                    pd.dismiss();
+                    progress.dismiss();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
@@ -67,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 @Override
                 public void onError(int statusCode) {
-                    pd.dismiss();
+                    progress.dismiss();
                     UserFunctions.handleErrorDialog(statusCode, LoginActivity.this);
                 }
             });

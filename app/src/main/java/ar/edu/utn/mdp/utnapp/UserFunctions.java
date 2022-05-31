@@ -34,16 +34,16 @@ public final class UserFunctions {
     public static void handleErrorDialog(int statusCode, Context ctx, View.OnClickListener onClickListener) {
         switch (statusCode) {
             case HttpURLConnection.HTTP_UNAUTHORIZED:
-                ErrorDialog.show(ctx, "Invalid credentials", "Email or password is wrong. Please try again.", R.drawable.ic_alert, onClickListener);
+                new ErrorDialog(ctx, "Invalid credentials", "Email or password is wrong. Please try again.", R.drawable.ic_alert, onClickListener);
                 break;
             case HttpURLConnection.HTTP_INTERNAL_ERROR:
-                ErrorDialog.show(ctx, "Error", "Internal server error", R.drawable.ic_cloud_offline, onClickListener);
+                new ErrorDialog(ctx, "Error", "Internal server error", R.drawable.ic_cloud_offline, onClickListener);
                 break;
             case HttpURLConnection.HTTP_UNAVAILABLE:
-                ErrorDialog.show(ctx, "Error", "Service unavailable. Please try again later.", R.drawable.ic_cloud_offline, onClickListener);
+                new ErrorDialog(ctx, "Error", "Service unavailable. Please try again later.", R.drawable.ic_cloud_offline, onClickListener);
                 break;
             default:
-                ErrorDialog.show(ctx, "Error", "Unknown error. Please report it to the support.", R.drawable.ic_warning, onClickListener);
+                new ErrorDialog(ctx, "Error", "Unknown error. Please report it to the support.", R.drawable.ic_warning, onClickListener);
                 break;
         }
     }
@@ -86,11 +86,11 @@ public final class UserFunctions {
                     }
                 });
             } else {
-                ErrorDialog.show(ctx, "Unexpected error", "Please login again.", view -> logout(ctx));
+                new ErrorDialog(ctx, "Unexpected error", "Please login again.", view -> logout(ctx));
             }
         } catch (Exception e) {
             e.printStackTrace();
-            ErrorDialog.show(ctx, "Unexpected error", e.getMessage(), view -> logout(ctx));
+            new ErrorDialog(ctx, "Unexpected error", e.getMessage(), view -> logout(ctx));
         }
     }
 
@@ -114,10 +114,8 @@ public final class UserFunctions {
     public static boolean existInputError(Context ctx, List<TextInputLayout> inputs) {
         final Resources res = ctx.getResources();
         final String emailHint = res.getString(R.string.email);
-        final String passwordHint = res.getString(R.string.password);
 
         final String invalidEmail = res.getString(R.string.invalid_email);
-        final String invalidPassword = res.getString(R.string.invalid_password);
         final String fieldRequired = res.getString(R.string.field_required);
 
         for (TextInputLayout input : inputs) {
@@ -132,11 +130,6 @@ public final class UserFunctions {
 
             if (hint.equals(emailHint) && !Email.isValidEmail(text)) {
                 setError(input, invalidEmail);
-                return true;
-            }
-
-            if (hint.equals(passwordHint) && !Password.isPasswordSecure(ctx, text, false)) {
-                setError(input, invalidPassword);
                 return true;
             }
         }
