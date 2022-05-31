@@ -12,7 +12,7 @@
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="alpha_white">#CCFFFFFF</color>
+    <color name="alpha_white">#1AFFFFFF</color>
     <color name="transparent">#00FFFFFF</color>
 
     <color name="focused">@color/secondary_500</color>

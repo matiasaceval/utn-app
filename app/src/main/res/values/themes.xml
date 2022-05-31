@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 <style name="Theme.UTNApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-    <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
+    <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
     <item name="android:fontFamily">@font/opensans_bold</item>
 
     <item name="colorPrimary">@color/primary_700</item>
@@ -11,14 +11,16 @@
 
     <item name="colorPrimaryDark">@color/primary_700</item>
 
-    <item name="android:navigationBarColor">@color/primary_700</item>
-
     <item name="colorSecondary">@color/secondary_500</item>
     <item name="colorSecondaryVariant">@color/secondary_200</item>
     <item name="colorOnSecondary">@color/white</item>
 
+    <item name="colorAccent">@color/white</item>
+
     <item name="colorOnSurface">?attr/colorSecondaryVariant</item>
+
     <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    <item name="android:navigationBarColor">?attr/colorPrimary</item>
 </style>
 
     <style name="NoActionBar" parent="Theme.MaterialComponents.Light.NoActionBar">
@@ -35,7 +37,8 @@
         <item name="android:textColorHint">@color/alpha_white</item>
         <item name="android:textIsSelectable">false</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
-        <item name="android:textColorHighlight">?attr/colorSecondaryVariant</item>
+        <item name="android:textColorHighlight">@color/alpha_white</item>
+        <item name="android:textCursorDrawable">@null</item>
         <item name="android:minHeight">48dp</item>
         <item name="android:ellipsize">end</item>
         <item name="android:maxLines">1</item>
