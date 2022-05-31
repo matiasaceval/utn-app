@@ -11,6 +11,7 @@
     <color name="focused">@color/secondary_500</color>
 
     <color name="link">@color/secondary_500</color>
+    <color name="error">#FB4545</color>
 
     <color name="text">@color/black_700</color>
     <color name="hint">@color/black_200</color>

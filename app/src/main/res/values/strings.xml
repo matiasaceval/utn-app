@@ -1,25 +1,38 @@
 <resources>
     <string name="app_name">UTN App</string>
-    <string name="password">Password</string>
-    <string name="confirm_password">Confirm password</string>
     <string name="logo_description">UTN Logo</string>
+
+    <!-- Buttons at login/register -->
     <string name="login_btn">LOGIN</string>
+    <string name="register_btn">REGISTER</string>
 
-    <string name="sign_up"><u>Sign up</u></string>
+    <!-- Texts under button in login/register -->
     <string name="log_in"><u>Log in</u></string>
-
+    <string name="sign_up"><u>Sign up</u></string>
     <string name="do_not_have_account">Don\'t have an account?</string>
     <string name="already_have_account">Already have an account?</string>
 
-    <string name="register_btn">REGISTER</string>
     <string name="name">Name</string>
-    <string name="back_btn">Back Button</string>
-    <string name="registration">Sign Up</string>
-    <string name="see_password">See Password</string>
     <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="see_password">See Password</string>
 
+    <string name="back_btn">Back Button</string>
+
+    <!-- Title in activity_register -->
+    <string name="registration">Sign Up</string>
+
+    <!-- Error dialog template -->
     <string name="dialog_error_title">TITLE</string>
     <string name="example_loremIpsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu fermentum elit. Praesent eget lacus molestie, laoreet est quis, accumsan.</string>
     <string name="dialog_close_button">Close button</string>
     <string name="default_dialog_button_message">OK</string>
+
+    <!-- Errors -->
+    <string name="invalid_email">Invalid email</string>
+    <string name="field_required">%s is required</string>
+    <string name="invalid_password">Password is weak. Must be 8–64 length with upper &amp; lowercase characters and numbers</string>
+    <string name="password_mismatch">Passwords don\'t match</string>
+    <string name="email_already_exists">Email is already on use</string>
 </resources>

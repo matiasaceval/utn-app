@@ -25,16 +25,20 @@
     </style>
 
     <style name="InputType">
-        <item name="android:height">48dp</item>
-        <item name="android:background">@drawable/custom_input</item>
-        <item name="android:drawablePadding">8dp</item>
-        <item name="android:ellipsize">end</item>
-        <item name="android:ems">10</item>
         <item name="android:fontFamily">@font/opensans_regular</item>
-        <item name="android:maxLines">1</item>
-        <item name="android:minHeight">48dp</item>
-        <item name="android:textColor">@color/text</item>
         <item name="android:textColorHint">@color/hint</item>
         <item name="android:textIsSelectable">false</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ems">10</item>
     </style>
+
+    <style name="ErrorStyle">
+        <item name="android:fontFamily">@font/opensans_italic</item>
+        <item name="android:textColor">@color/error</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
 </resources>

@@ -86,6 +86,10 @@ public final class ErrorDialog {
         show(context, title, message, buttonText, false, 0, null);
     }
 
+    public static void show(Context context, String title, String message, int logo, View.OnClickListener listener) {
+        show(context, title, message, null, false, logo, listener);
+    }
+
     public static void show(Context context, String title, String message, View.OnClickListener listener) {
         show(context, title, message, null, false, 0, listener);
     }

@@ -6,7 +6,7 @@ import java.util.Base64;
 
 import ar.edu.utn.mdp.utnapp.R;
 
-public class Password {
+public final class Password {
     public static String encode(String string) {
         return Base64.getEncoder().encodeToString(string.getBytes());
     }

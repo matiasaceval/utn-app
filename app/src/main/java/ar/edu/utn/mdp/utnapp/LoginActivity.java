@@ -4,15 +4,18 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
 import org.json.JSONObject;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 import ar.edu.utn.mdp.utnapp.fetch.callback_request.CallBackRequest;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
@@ -26,34 +29,23 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         if (getSupportActionBar() != null) getSupportActionBar().hide();
 
-        LinearLayout passwordLinearLayout = findViewById(R.id.passwordLinearLayout);
-        ImageView seePassword = findViewById(R.id.viewPassword);
+        TextInputLayout passwordLayout = findViewById(R.id.passwordLayout);
+        TextInputLayout emailLayout = findViewById(R.id.emailLayout);
+        List<TextInputLayout> layouts = Arrays.asList(emailLayout, passwordLayout);
+
+        TextInputEditText password = findViewById(R.id.password);
+        TextInputEditText email = findViewById(R.id.email);
+
         TextView signUpButton = findViewById(R.id.signUpButton);
-        EditText password = findViewById(R.id.password);
-        EditText email = findViewById(R.id.email);
         Button login = findViewById(R.id.login);
 
         login.setOnClickListener(view -> {
-            final String mail = email.getText().toString();
-            final String pass = password.getText().toString();
+            UserFunctions.clearError(layouts);
+            final String mail = Objects.requireNonNull(email.getText()).toString();
+            final String pass = Objects.requireNonNull(password.getText()).toString();
             final User usr = new User(mail, pass);
 
-            if (mail.isEmpty()) {
-                email.setError("Email is required");
-                email.requestFocus();
-                return;
-            }
-
-            if (pass.isEmpty()) {
-                password.setError("Password is required");
-                password.requestFocus();
-                return;
-            }
-
-            if (!UserFunctions.isValidEmail(usr.getEmail())) {
-                Toast.makeText(LoginActivity.this, "Invalid email", Toast.LENGTH_LONG).show();
-                return;
-            }
+            if (UserFunctions.existInputError(this, layouts)) return;
 
             // TODO: Make our own progress dialog
             ProgressDialog pd = new ProgressDialog(LoginActivity.this);
@@ -82,12 +74,12 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         signUpButton.setOnClickListener(view -> {
+            UserFunctions.clearError(layouts);
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
         });
 
-        seePassword.setOnClickListener(view -> UserFunctions.showPassword(password, seePassword));
-
-        password.setOnFocusChangeListener((view, bool) -> UserFunctions.focusLinearLayout(passwordLinearLayout, bool));
+        email.setOnFocusChangeListener((v, hasFocus) -> UserFunctions.clearError(layouts));
+        password.setOnFocusChangeListener((v, hasFocus) -> UserFunctions.clearError(layouts));
     }
 }
