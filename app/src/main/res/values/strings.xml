@@ -21,7 +21,8 @@
     <string name="back_btn">Back Button</string>
 
     <!-- Title in activity_register -->
-    <string name="registration">Sign Up</string>
+    <string name="register_title">Sign Up</string>
+    <string name="login_title">Login</string>
 
     <!-- Error dialog template -->
     <string name="dialog_error_title">TITLE</string>
@@ -39,4 +40,5 @@
     <string name="password_not_secure">Password is weak. Must be 8–64 length with upper &amp; lowercase characters and numbers</string>
     <string name="password_mismatch">Passwords don\'t match</string>
     <string name="email_already_exists">Email is already on use</string>
+    <string name="footer">By students, for students</string>
 </resources>

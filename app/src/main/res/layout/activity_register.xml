@@ -33,8 +33,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensans_bold"
-            android:text="@string/registration"
-            android:textColor="@color/black_700"
+            android:text="@string/register_title"
+            android:textColor="@color/primary_700"
             android:textSize="32sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,8 @@
             android:layout_marginTop="50dp"
             app:boxStrokeWidth="1dp"
             app:errorEnabled="true"
-            app:errorTextAppearance="@style/ErrorStyle">
+            app:errorTextAppearance="@style/ErrorStyle"
+            app:boxStrokeColor="@color/input_stroke">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/name"
@@ -69,7 +70,8 @@
             android:layout_marginTop="6dp"
             app:boxStrokeWidth="1dp"
             app:errorEnabled="true"
-            app:errorTextAppearance="@style/ErrorStyle">
+            app:errorTextAppearance="@style/ErrorStyle"
+            app:boxStrokeColor="@color/input_stroke">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email"
@@ -91,7 +93,8 @@
             app:boxStrokeWidth="1dp"
             app:endIconMode="password_toggle"
             app:errorEnabled="true"
-            app:errorTextAppearance="@style/ErrorStyle">
+            app:errorTextAppearance="@style/ErrorStyle"
+            app:boxStrokeColor="@color/input_stroke">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password"
@@ -113,7 +116,8 @@
             app:boxStrokeWidth="1dp"
             app:endIconMode="password_toggle"
             app:errorEnabled="true"
-            app:errorTextAppearance="@style/ErrorStyle">
+            app:errorTextAppearance="@style/ErrorStyle"
+            app:boxStrokeColor="@color/input_stroke">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/confirmPassword"

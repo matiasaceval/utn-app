@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black_200">#4d4d4d</color>
-    <color name="black_500">#212121</color>
-    <color name="black_700">#0a0a0a</color>
+    <color name="primary_500">#4e596f</color>
+    <color name="primary_700">#242a38</color>
 
-    <color name="secondary_200">#3EA1CC</color>
-    <color name="secondary_500">#2B7EA1</color>
-    <color name="secondary_700">#1E5871</color>
+    <color name="secondary_200">#f78361</color>
+    <color name="secondary_500">#f54b64</color>
 
     <color name="focused">@color/secondary_500</color>
 
     <color name="link">@color/secondary_500</color>
     <color name="error">#FB4545</color>
 
-    <color name="text">@color/black_700</color>
-    <color name="hint">@color/black_200</color>
+    <color name="input_stroke">@color/secondary_500</color>
+    <color name="text">@color/primary_700</color>
+    <color name="hint">@color/primary_500</color>
+    <color name="footer">@color/primary_500</color>
+    <color name="footer_drawable">@color/primary_700</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
