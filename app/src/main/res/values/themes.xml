@@ -3,6 +3,8 @@
     <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
     <item name="android:fontFamily">@font/opensans_bold</item>
 
+    <item name="background">@color/primary_700</item>
+
     <item name="colorPrimary">@color/primary_700</item>
     <item name="colorPrimaryVariant">@color/primary_500</item>
     <item name="colorOnPrimary">@color/white</item>

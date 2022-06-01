@@ -4,8 +4,8 @@
         @color/white
     </color>
 
-    <color name="primary_500">#1F2329</color>
-    <color name="primary_700">#171B23</color>
+    <color name="primary_500">#2a2e34</color>
+    <color name="primary_700">#1e2328</color>
 
     <color name="secondary_200">#f78361</color>
     <color name="secondary_500">#f54b64</color>

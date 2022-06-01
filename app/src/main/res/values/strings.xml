@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">UTN App</string>
+    <string name="app_name">UTN</string>
     <string name="logo_description">UTN Logo</string>
 
     <!-- Buttons at login/register -->
@@ -32,7 +32,7 @@
     <string name="default_dialog_button_message">OK</string>
 
     <!-- Loading dialog -->
-    <string name="dialog_pleaseWait">Please wait…</string>
+    <string name="dialog_pleaseWait">Please wait</string>
 
     <!-- Errors -->
     <string name="invalid_email">Invalid email</string>
