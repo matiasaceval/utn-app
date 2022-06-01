@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="black_200">#4d4d4d</color>
-    <color name="black_500">#212121</color>
-    <color name="black_700">#0a0a0a</color>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="mtrl_textinput_default_box_stroke_color" tools:ignore="PrivateResource">
+        @color/white
+    </color>
 
-    <color name="secondary_200">#20739F</color>
-    <color name="secondary_500">#11618C</color>
-    <color name="secondary_700">#084667</color>
+    <color name="primary_500">#2a2e34</color>
+    <color name="primary_700">#1e2328</color>
+
+    <color name="secondary_500">#f78361</color>
+    <color name="secondary_700">#DD345C</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="alpha_white">#1AFFFFFF</color>
+    <color name="transparent">#00FFFFFF</color>
+
+    <color name="focused">@color/secondary_700</color>
+    <color name="link">@color/secondary_500</color>
+    <color name="error">#FB4545</color>
+    <color name="footer_drawable">@color/primary_700</color>
 </resources>

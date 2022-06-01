@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="300dp"
-    android:layout_height="450dp"
-    android:layout_gravity="center">
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/dialog_style">
 
     <ImageView
         android:id="@+id/cancelDialog"
@@ -20,9 +21,9 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="32dp"
         android:contentDescription="@string/logo_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -32,45 +33,49 @@
 
     <TextView
         android:id="@+id/dialogErrorTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:elegantTextHeight="false"
         android:fontFamily="@font/opensans_bold"
         android:text="@string/dialog_error_title"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textColor="@color/black_500"
+        android:textColor="?attr/colorOnPrimary"
         android:textIsSelectable="false"
-        android:textSize="34sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <TextView
-        android:id="@+id/textContent"
+        android:id="@+id/dialogErrorMessage"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="6dp"
         android:fontFamily="@font/opensans_regular"
         android:text="@string/example_loremIpsum"
         android:textAlignment="center"
-        android:textColor="@color/black_200"
+        android:textColor="?attr/colorOnPrimary"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dialogErrorTitle" />
 
-    <Button
-        android:id="@+id/button"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/error_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="@string/example_simpleLorem"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="32dp"
+        android:text="@string/default_dialog_button_message"
+        android:textColor="?attr/colorOnSecondary"
+        android:background="@drawable/button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textContent" />
+        app:layout_constraintTop_toBottomOf="@+id/dialogErrorMessage" />
     <!--TODO: Add div between title and detail. -->
 
 
