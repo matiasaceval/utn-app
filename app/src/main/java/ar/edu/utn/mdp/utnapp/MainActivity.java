@@ -6,7 +6,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 
 import org.json.JSONObject;
 
@@ -19,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_main);
 
         TextView tv = findViewById(R.id.textView);
@@ -37,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btn2.setOnClickListener(view -> {
+            if (!UserFunctions.isNetworkConnected(this, true)) return;
+
             Dialog progress = new ProgressDialog(this);
             String query = "?date=02/02/2022";
             CalendarModel.getNextHoliday(MainActivity.this, query, new CallBackRequest<JSONObject>() {

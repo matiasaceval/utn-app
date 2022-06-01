@@ -55,6 +55,24 @@ public final class ErrorDialog extends Dialog {
         show();
     }
 
+    public ErrorDialog(Context context, String title, String message, int logo) {
+        super(context);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.dialog_error);
+        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        setCancelable(false);
+
+        findViewById(R.id.cancelDialog).setVisibility(View.VISIBLE);
+        findViewById(R.id.cancelDialog).setOnClickListener(v -> dismiss());
+        findViewById(R.id.error_button).setOnClickListener(v -> dismiss());
+
+        ((ImageView) findViewById(R.id.logo)).setImageResource(logo);
+        ((TextView) findViewById(R.id.dialogErrorTitle)).setText(title);
+        ((TextView) findViewById(R.id.dialogErrorMessage)).setText(message);
+
+        show();
+    }
+
     public ErrorDialog(Context context, String title, String message, View.OnClickListener listener) {
         super(context);
         requestWindowFeature(Window.FEATURE_NO_TITLE);

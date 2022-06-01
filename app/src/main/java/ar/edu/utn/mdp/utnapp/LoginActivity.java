@@ -41,6 +41,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
         login.setOnClickListener(view -> {
+            if (!UserFunctions.isNetworkConnected(this, true)) return;
+
             UserFunctions.clearError(layouts);
             final String mail = Objects.requireNonNull(email.getText()).toString().trim();
             final String pass = Objects.requireNonNull(password.getText()).toString().trim();
