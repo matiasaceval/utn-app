@@ -39,8 +39,6 @@ public class LoginActivity extends AppCompatActivity {
         TextView signUpButton = findViewById(R.id.signUpButton);
         Button login = findViewById(R.id.login);
 
-        TextView footer = findViewById(R.id.footer);
-
 
         login.setOnClickListener(view -> {
             UserFunctions.clearError(layouts);
