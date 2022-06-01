@@ -7,16 +7,16 @@
     <color name="primary_500">#2a2e34</color>
     <color name="primary_700">#1e2328</color>
 
-    <color name="secondary_200">#f78361</color>
-    <color name="secondary_500">#f54b64</color>
+    <color name="secondary_500">#f78361</color>
+    <color name="secondary_700">#DD345C</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="alpha_white">#1AFFFFFF</color>
     <color name="transparent">#00FFFFFF</color>
 
-    <color name="focused">@color/secondary_500</color>
-    <color name="link">@color/secondary_200</color>
+    <color name="focused">@color/secondary_700</color>
+    <color name="link">@color/secondary_500</color>
     <color name="error">#FB4545</color>
     <color name="footer_drawable">@color/primary_700</color>
 </resources>

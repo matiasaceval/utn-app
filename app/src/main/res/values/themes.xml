@@ -13,8 +13,8 @@
 
     <item name="colorPrimaryDark">@color/primary_700</item>
 
-    <item name="colorSecondary">@color/secondary_500</item>
-    <item name="colorSecondaryVariant">@color/secondary_200</item>
+    <item name="colorSecondary">@color/secondary_700</item>
+    <item name="colorSecondaryVariant">@color/secondary_500</item>
     <item name="colorOnSecondary">@color/white</item>
 
     <item name="colorAccent">@color/white</item>
