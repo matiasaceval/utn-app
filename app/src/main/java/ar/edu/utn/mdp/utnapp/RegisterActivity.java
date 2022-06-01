@@ -61,6 +61,8 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         register.setOnClickListener(view -> {
+            if (!UserFunctions.isNetworkConnected(this, true)) return;
+
             UserFunctions.clearError(layouts);
             final String nameText = Objects.requireNonNull(name.getText()).toString().trim();
             final String emailText = Objects.requireNonNull(email.getText()).toString().trim();

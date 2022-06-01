@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.net.ConnectivityManager;
 import android.view.View;
 
 import androidx.core.app.ActivityCompat;
@@ -65,10 +66,14 @@ public final class UserFunctions {
     }
 
     public static void logout(Context ctx) {
-        final SharedPreferences userPrefs = ctx.getSharedPreferences("User", Context.MODE_PRIVATE);
-        final SharedPreferences cookiePrefs = ctx.getSharedPreferences("Cookie", Context.MODE_PRIVATE);
-        userPrefs.edit().clear().apply();
-        cookiePrefs.edit().clear().apply();
+        try {
+            final SharedPreferences userPrefs = ctx.getSharedPreferences("User", Context.MODE_PRIVATE);
+            final SharedPreferences cookiePrefs = ctx.getSharedPreferences("Cookie", Context.MODE_PRIVATE);
+            userPrefs.edit().clear().apply();
+            cookiePrefs.edit().clear().apply();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         Intent intent = new Intent(ctx, LoginActivity.class);
         ctx.startActivity(intent);
         ActivityCompat.finishAffinity((Activity) ctx);
@@ -140,5 +145,20 @@ public final class UserFunctions {
         for (TextInputLayout input : inputs) {
             input.setError(null);
         }
+    }
+
+    public static boolean isNetworkConnected(Context ctx) {
+        ConnectivityManager cm = (ConnectivityManager) ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+    }
+
+    public static boolean isNetworkConnected(Context ctx, boolean showError) {
+        ConnectivityManager cm = (ConnectivityManager) ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
+        boolean isConnected = cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+
+        if (!isConnected && showError) {
+            new ErrorDialog(ctx, "No internet connection", "Verify your internet connection and try again.", R.drawable.ic_cloud_offline);
+        }
+        return isConnected;
     }
 }
