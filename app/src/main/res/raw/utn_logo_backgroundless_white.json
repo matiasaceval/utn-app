@@ -2,7 +2,7 @@
   "v": "5.9.4",
   "fr": 60,
   "ip": 0,
-  "op": 218,
+  "op": 120,
   "w": 1920,
   "h": 1920,
   "nm": "Comp 1",
@@ -731,6 +731,29 @@
               "hd": false
             },
             {
+              "ty": "fl",
+              "c": {
+                "a": 0,
+                "k": [
+                  0,
+                  0,
+                  0,
+                  1
+                ],
+                "ix": 4
+              },
+              "o": {
+                "a": 0,
+                "k": 100,
+                "ix": 5
+              },
+              "r": 1,
+              "bm": 0,
+              "nm": "Relleno 1",
+              "mn": "ADBE Vector Graphic - Fill",
+              "hd": false
+            },
+            {
               "ty": "tr",
               "p": {
                 "a": 0,
@@ -1236,6 +1259,29 @@
               "bm": 0,
               "nm": "Trazo 1",
               "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "fl",
+              "c": {
+                "a": 0,
+                "k": [
+                  0,
+                  0,
+                  0,
+                  1
+                ],
+                "ix": 4
+              },
+              "o": {
+                "a": 0,
+                "k": 100,
+                "ix": 5
+              },
+              "r": 1,
+              "bm": 0,
+              "nm": "Relleno 1",
+              "mn": "ADBE Vector Graphic - Fill",
               "hd": false
             },
             {
@@ -1748,6 +1794,29 @@
               "hd": false
             },
             {
+              "ty": "fl",
+              "c": {
+                "a": 0,
+                "k": [
+                  0,
+                  0,
+                  0,
+                  1
+                ],
+                "ix": 4
+              },
+              "o": {
+                "a": 0,
+                "k": 100,
+                "ix": 5
+              },
+              "r": 1,
+              "bm": 0,
+              "nm": "Relleno 1",
+              "mn": "ADBE Vector Graphic - Fill",
+              "hd": false
+            },
+            {
               "ty": "tr",
               "p": {
                 "a": 0,
@@ -2256,6 +2325,29 @@
               "hd": false
             },
             {
+              "ty": "fl",
+              "c": {
+                "a": 0,
+                "k": [
+                  0,
+                  0,
+                  0,
+                  1
+                ],
+                "ix": 4
+              },
+              "o": {
+                "a": 0,
+                "k": 100,
+                "ix": 5
+              },
+              "r": 1,
+              "bm": 0,
+              "nm": "Relleno 1",
+              "mn": "ADBE Vector Graphic - Fill",
+              "hd": false
+            },
+            {
               "ty": "tr",
               "p": {
                 "a": 0,
@@ -2683,6 +2775,29 @@
               "hd": false
             },
             {
+              "ty": "fl",
+              "c": {
+                "a": 0,
+                "k": [
+                  0,
+                  0,
+                  0,
+                  1
+                ],
+                "ix": 4
+              },
+              "o": {
+                "a": 0,
+                "k": 100,
+                "ix": 5
+              },
+              "r": 1,
+              "bm": 0,
+              "nm": "Relleno 1",
+              "mn": "ADBE Vector Graphic - Fill",
+              "hd": false
+            },
+            {
               "ty": "tr",
               "p": {
                 "a": 0,
@@ -3107,6 +3222,29 @@
               "bm": 0,
               "nm": "Trazo 1",
               "mn": "ADBE Vector Graphic - Stroke",
+              "hd": false
+            },
+            {
+              "ty": "fl",
+              "c": {
+                "a": 0,
+                "k": [
+                  0,
+                  0,
+                  0,
+                  1
+                ],
+                "ix": 4
+              },
+              "o": {
+                "a": 0,
+                "k": 100,
+                "ix": 5
+              },
+              "r": 1,
+              "bm": 0,
+              "nm": "Relleno 1",
+              "mn": "ADBE Vector Graphic - Fill",
               "hd": false
             },
             {

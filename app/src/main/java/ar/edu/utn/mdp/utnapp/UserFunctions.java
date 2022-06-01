@@ -120,8 +120,8 @@ public final class UserFunctions {
 
         for (TextInputLayout input : inputs) {
             TextInputEditText editText = (TextInputEditText) input.getEditText();
-            final String hint = Objects.requireNonNull(Objects.requireNonNull(editText).getHint()).toString();
-            final String text = Objects.requireNonNull(editText.getText()).toString();
+            final String hint = Objects.requireNonNull(Objects.requireNonNull(editText).getHint()).toString().trim();
+            final String text = Objects.requireNonNull(editText.getText()).toString().trim();
 
             if (text.isEmpty()) {
                 setError(input, String.format(fieldRequired, hint));

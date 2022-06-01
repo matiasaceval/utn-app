@@ -42,8 +42,8 @@ public class LoginActivity extends AppCompatActivity {
 
         login.setOnClickListener(view -> {
             UserFunctions.clearError(layouts);
-            final String mail = Objects.requireNonNull(email.getText()).toString();
-            final String pass = Objects.requireNonNull(password.getText()).toString();
+            final String mail = Objects.requireNonNull(email.getText()).toString().trim();
+            final String pass = Objects.requireNonNull(password.getText()).toString().trim();
             final User usr = new User(mail, pass);
 
             if (UserFunctions.existInputError(this, layouts)) return;

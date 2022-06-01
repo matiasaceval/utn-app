@@ -62,9 +62,9 @@ public class RegisterActivity extends AppCompatActivity {
 
         register.setOnClickListener(view -> {
             UserFunctions.clearError(layouts);
-            final String nameText = Objects.requireNonNull(name.getText()).toString();
-            final String emailText = Objects.requireNonNull(email.getText()).toString();
-            final String passwordText = Objects.requireNonNull(password.getText()).toString();
+            final String nameText = Objects.requireNonNull(name.getText()).toString().trim();
+            final String emailText = Objects.requireNonNull(email.getText()).toString().trim();
+            final String passwordText = Objects.requireNonNull(password.getText()).toString().trim();
             User user = new User(nameText, emailText, passwordText, Roles.USER.getName());
 
             if (UserFunctions.existInputError(this, layouts)) return;
@@ -74,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
 
-            if (!passwordText.equals(Objects.requireNonNull(confirmPassword.getText()).toString())) {
+            if (!passwordText.equals(Objects.requireNonNull(confirmPassword.getText()).toString().trim())) {
                 UserFunctions.setError(confirmPasswordLayout, getResources().getString(R.string.password_mismatch));
                 return;
             }
