@@ -41,7 +41,7 @@
         android:text="@string/dialog_error_title"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textColor="@color/primary_500"
+        android:textColor="?attr/colorOnPrimary"
         android:textIsSelectable="false"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,19 +57,20 @@
         android:fontFamily="@font/opensans_regular"
         android:text="@string/example_loremIpsum"
         android:textAlignment="center"
-        android:textColor="@color/primary_500"
+        android:textColor="?attr/colorOnPrimary"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dialogErrorTitle" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/error_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="32dp"
         android:text="@string/default_dialog_button_message"
+        android:textColor="?attr/colorOnSecondary"
         android:background="@drawable/button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -53,8 +53,8 @@
         <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="Black500" parent="ThemeOverlay.AppCompat.Light">
-        <item name="colorAccent">@color/primary_500</item>
+    <style name="colorSecondaryProgressBar" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorAccent">?attr/colorSecondary</item>
     </style>
 
     <style name="TextInputLayoutCustom" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
