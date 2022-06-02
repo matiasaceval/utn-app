@@ -1,25 +1,19 @@
 package ar.edu.utn.mdp.utnapp;
 
-import android.app.Dialog;
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-
-import org.json.JSONObject;
-
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
+import java.util.Map;
+import ar.edu.utn.mdp.utnapp.errors.ErrorLayout;
+import ar.edu.utn.mdp.utnapp.events.LoginEvent;
 
-import ar.edu.utn.mdp.utnapp.fetch.callback_request.CallBackRequest;
-import ar.edu.utn.mdp.utnapp.fetch.models.User;
-import ar.edu.utn.mdp.utnapp.fetch.request.user_auth.login.LoginModel;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -35,47 +29,17 @@ public class LoginActivity extends AppCompatActivity {
 
         TextInputEditText password = findViewById(R.id.password);
         TextInputEditText email = findViewById(R.id.email);
+        Map<String, TextInputEditText> credentialsMap = new HashMap<>();
+        credentialsMap.put("password", password);
+        credentialsMap.put("email", email);
 
         TextView signUpButton = findViewById(R.id.signUpButton);
         Button login = findViewById(R.id.login);
 
+        login.setOnClickListener(LoginEvent.clickOnLoginButton(this, layouts, credentialsMap));
+        signUpButton.setOnClickListener(LoginEvent.clickOnSignUpButton(LoginActivity.this, layouts));
 
-        login.setOnClickListener(view -> {
-            if (!UserFunctions.isNetworkConnected(this, true)) return;
-
-            UserFunctions.clearError(layouts);
-            final String mail = Objects.requireNonNull(email.getText()).toString().trim();
-            final String pass = Objects.requireNonNull(password.getText()).toString().trim();
-            final User usr = new User(mail, pass);
-
-            if (UserFunctions.existInputError(this, layouts)) return;
-
-            Dialog progress = new ProgressDialog(this);
-
-            LoginModel.loginUser(LoginActivity.this, usr, new CallBackRequest<JSONObject>() {
-                @Override
-                public void onSuccess(JSONObject response) {
-                    progress.dismiss();
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-
-                @Override
-                public void onError(int statusCode) {
-                    progress.dismiss();
-                    UserFunctions.handleErrorDialog(statusCode, LoginActivity.this);
-                }
-            });
-        });
-
-        signUpButton.setOnClickListener(view -> {
-            UserFunctions.clearError(layouts);
-            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-            startActivity(intent);
-        });
-
-        email.setOnFocusChangeListener((v, hasFocus) -> UserFunctions.clearError(layouts));
-        password.setOnFocusChangeListener((v, hasFocus) -> UserFunctions.clearError(layouts));
+        email.setOnFocusChangeListener((v, hasFocus) -> ErrorLayout.clearError(layouts));
+        password.setOnFocusChangeListener((v, hasFocus) -> ErrorLayout.clearError(layouts));
     }
 }

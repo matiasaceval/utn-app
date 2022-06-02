@@ -1,4 +1,4 @@
-package ar.edu.utn.mdp.utnapp.fetch;
+package ar.edu.utn.mdp.utnapp.fetch.request;
 
 public enum API_URL {
     BASE("https://utn-api.herokuapp.com/api"),

@@ -10,50 +10,21 @@ import com.android.volley.Request;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Base64;
-
-import ar.edu.utn.mdp.utnapp.UserFunctions;
-import ar.edu.utn.mdp.utnapp.fetch.API_URL;
+import ar.edu.utn.mdp.utnapp.fetch.request.API_URL;
+import ar.edu.utn.mdp.utnapp.fetch.request.HTTP_STATUS;
+import ar.edu.utn.mdp.utnapp.user.UserFunctions;
 import ar.edu.utn.mdp.utnapp.utils.Password;
 import ar.edu.utn.mdp.utnapp.fetch.callback_request.CallBackRequest;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
-import ar.edu.utn.mdp.utnapp.fetch.request.HTTP_STATUS;
 import ar.edu.utn.mdp.utnapp.fetch.request.RequestSingleton;
 
 public final class LoginModel {
 
-    public static String cookie;
-    private static SharedPreferences userPrefs;
-    private static SharedPreferences cookiePrefs;
-
-    public static int verifyAccountIntegration(@NonNull Context ctx) {
-        userPrefs = ctx.getSharedPreferences("User", Context.MODE_PRIVATE);
-        cookiePrefs = ctx.getSharedPreferences("Cookie", Context.MODE_PRIVATE);
-
-        final String cookieBody = cookiePrefs.getString("access_token", "null");
-        final User user = UserFunctions.getUserCredentials(ctx);
-
-        if (cookieBody.equals("null") || !user.canLogin()) {
-            return HTTP_STATUS.CLIENT_ERROR_UNAUTHORIZED;
-        }
-
-        cookie = cookieBody;
-
-        final String[] chunks = cookieBody.split("=")[1].split("\\.");
-
-        try {
-            final JSONObject payload = new JSONObject(Password.decode(chunks[1]));
-            if (payload.getLong("exp") < (System.currentTimeMillis() / 1000)) {
-                return HTTP_STATUS.REDIRECTION_TEMPORARY_REDIRECT;
-            }
-            return HTTP_STATUS.SUCCESS_OK;
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return HTTP_STATUS.CLIENT_ERROR_UNAUTHORIZED;
-    }
-
     public static void loginUser(@NonNull Context ctx, User user, CallBackRequest<JSONObject> callBack) {
+
+        final SharedPreferences userPrefs = ctx.getSharedPreferences("User", Context.MODE_PRIVATE);
+        final SharedPreferences cookiePrefs = ctx.getSharedPreferences("Cookie", Context.MODE_PRIVATE);
+
         final String URL_LOGIN = API_URL.LOGIN.getURL();
         JSONObject body = userLoginBodyObject(user);
         try {
@@ -64,7 +35,7 @@ public final class LoginModel {
                             userPrefs.edit().putString("email", response.getString("email")).apply();
                             userPrefs.edit().putString("role", response.getString("role")).apply();
                             userPrefs.edit().putString("password", Password.encode(user.getPassword())).apply();
-                            cookiePrefs.edit().putString("access_token", cookie).apply();
+                            cookiePrefs.edit().putString("access_token", LoginConnection.getCookie()).apply();
                             if (callBack != null) callBack.onSuccess(null);
 
                         } catch (JSONException e) {
@@ -96,11 +67,4 @@ public final class LoginModel {
         return body;
     }
 
-    public static void setCookie(String cookie) {
-        LoginModel.cookie = cookie;
-    }
-
-    public static String getCookie() {
-        return cookie;
-    }
 }

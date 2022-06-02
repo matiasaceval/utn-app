@@ -8,7 +8,7 @@ import com.android.volley.Request;
 
 import org.json.JSONArray;
 
-import ar.edu.utn.mdp.utnapp.fetch.API_URL;
+import ar.edu.utn.mdp.utnapp.fetch.request.API_URL;
 import ar.edu.utn.mdp.utnapp.fetch.callback_request.CallBackRequest;
 import ar.edu.utn.mdp.utnapp.fetch.request.JSONArrayRequest;
 import ar.edu.utn.mdp.utnapp.fetch.request.RequestSingleton;

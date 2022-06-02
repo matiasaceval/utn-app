@@ -9,9 +9,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONObject;
 
+import ar.edu.utn.mdp.utnapp.errors.ErrorDialog;
+import ar.edu.utn.mdp.utnapp.events.LoginEvent;
 import ar.edu.utn.mdp.utnapp.fetch.callback_request.CallBackRequest;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
 import ar.edu.utn.mdp.utnapp.fetch.request.calendar.CalendarModel;
+import ar.edu.utn.mdp.utnapp.user.UserFunctions;
+import ar.edu.utn.mdp.utnapp.utils.Network;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,18 +28,18 @@ public class MainActivity extends AppCompatActivity {
         Button btn = findViewById(R.id.logout);
         Button btn2 = findViewById(R.id.holidays);
 
-        UserFunctions.verifyConnection(this);
+        UserFunctions.verifyUserConnection(this);
         User user = UserFunctions.getUser(this);
 
         tv.setText(String.format("Hi %s! Your email is %s and your role is %s.", user.getName(), user.getEmail(), user.getRole()));
 
         btn.setOnClickListener(view -> {
-            UserFunctions.logout(MainActivity.this);
+            LoginEvent.logout(MainActivity.this);
             finish();
         });
 
         btn2.setOnClickListener(view -> {
-            if (!UserFunctions.isNetworkConnected(this, true)) return;
+            if (!Network.isNetworkConnected(this, true)) return;
 
             Dialog progress = new ProgressDialog(this);
             String query = "?date=02/02/2022";
@@ -49,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onError(int statusCode) {
                     progress.dismiss();
-                    UserFunctions.handleErrorDialog(statusCode, MainActivity.this);
+                    ErrorDialog.handler(statusCode, MainActivity.this);
                 }
             });
         });

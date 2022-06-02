@@ -26,7 +26,7 @@ public class UserLoginRequest extends JsonObjectRequest {
                 String cookies = responseHeaders.get("Set-Cookie");
                 if (cookies != null) {
                     accessCookie = cookies.split(";")[0];
-                    LoginModel.setCookie(accessCookie);
+                    LoginConnection.setCookie(accessCookie);
                 }
             }
         } catch (Exception e) {

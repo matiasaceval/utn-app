@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import ar.edu.utn.mdp.utnapp.fetch.request.user_auth.login.LoginConnection;
 import ar.edu.utn.mdp.utnapp.fetch.request.user_auth.login.LoginModel;
 
 
@@ -22,7 +23,7 @@ public class JSONObjectRequest extends JsonObjectRequest {
     public Map<String, String> getHeaders() {
         HashMap<String, String> headers = new HashMap<>();
         headers.put("Content-Type", "application/json");
-        headers.put("Cookie", LoginModel.getCookie());
+        headers.put("Cookie", LoginConnection.getCookie());
         return headers;
     }
 }

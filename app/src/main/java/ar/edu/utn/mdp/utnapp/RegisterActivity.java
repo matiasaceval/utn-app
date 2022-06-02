@@ -17,9 +17,13 @@ import com.google.android.material.textfield.TextInputLayout;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
+import ar.edu.utn.mdp.utnapp.errors.ErrorLayout;
+import ar.edu.utn.mdp.utnapp.events.RegisterEvent;
 import ar.edu.utn.mdp.utnapp.fetch.callback_request.CallBackRequest;
 import ar.edu.utn.mdp.utnapp.fetch.models.Roles;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
@@ -47,69 +51,24 @@ public class RegisterActivity extends AppCompatActivity {
         TextInputEditText password = findViewById(R.id.password);
         TextInputEditText email = findViewById(R.id.email);
         TextInputEditText name = findViewById(R.id.name);
+        Map<String, TextInputEditText> credentialsMap = new HashMap<>();
+        credentialsMap.put("password", password);
+        credentialsMap.put("email", email);
+        credentialsMap.put("name", name);
+        credentialsMap.put("confirmPassword", confirmPassword);
+
+
         TextView login = findViewById(R.id.logInButton);
-        ImageView back = findViewById(R.id.backToLogin);
+        ImageView backArrow = findViewById(R.id.backToLogin);
         Button register = findViewById(R.id.register);
 
-        login.setOnClickListener(view -> {
-            UserFunctions.clearError(layouts);
-            onBackPressed();
-        });
-        back.setOnClickListener(view -> {
-            UserFunctions.clearError(layouts);
-            onBackPressed();
-        });
+        login.setOnClickListener(RegisterEvent.clickOnBackToLogin(this, layouts));
+        backArrow.setOnClickListener(RegisterEvent.clickOnBackToLogin(this, layouts));
+        register.setOnClickListener(RegisterEvent.clickOnRegisterButton(this, layouts, credentialsMap));
 
-        register.setOnClickListener(view -> {
-            if (!UserFunctions.isNetworkConnected(this, true)) return;
-
-            UserFunctions.clearError(layouts);
-            final String nameText = Objects.requireNonNull(name.getText()).toString().trim();
-            final String emailText = Objects.requireNonNull(email.getText()).toString().trim();
-            final String passwordText = Objects.requireNonNull(password.getText()).toString().trim();
-            User user = new User(nameText, emailText, passwordText, Roles.USER.getName());
-
-            if (UserFunctions.existInputError(this, layouts)) return;
-
-            if (!Password.isPasswordSecure(this, passwordText, false)) {
-                UserFunctions.setError(passwordLayout, getString(R.string.password_not_secure));
-                return;
-            }
-
-            if (!passwordText.equals(Objects.requireNonNull(confirmPassword.getText()).toString().trim())) {
-                UserFunctions.setError(confirmPasswordLayout, getResources().getString(R.string.password_mismatch));
-                return;
-            }
-
-            Dialog dialog = new ProgressDialog(this);
-
-            RegisterModel.registerUser(this, user, new CallBackRequest<JSONObject>() {
-                @Override
-                public void onSuccess(JSONObject response) {
-                    dialog.dismiss();
-                    LoginModel.loginUser(RegisterActivity.this, user, new CallBackRequest<JSONObject>() {
-                        @Override
-                        public void onSuccess(JSONObject response) {
-                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                            startActivity(intent);
-                            ActivityCompat.finishAffinity(RegisterActivity.this);
-                        }
-                    });
-                }
-
-                @Override
-                public void onError(int statusCode) {
-                    dialog.dismiss();
-                    if (statusCode == HTTP_STATUS.CLIENT_ERROR_CONFLICT) {
-                        UserFunctions.setError(emailLayout, getResources().getString(R.string.email_already_exists));
-                    }
-                }
-            });
-        });
-
-        name.setOnFocusChangeListener((v, hasFocus) -> UserFunctions.clearError(layouts));
-        email.setOnFocusChangeListener((v, hasFocus) -> UserFunctions.clearError(layouts));
-        password.setOnFocusChangeListener((v, hasFocus) -> UserFunctions.clearError(layouts));
-        confirmPassword.setOnFocusChangeListener((v, hasFocus) -> UserFunctions.clearError(layouts));
+        name.setOnFocusChangeListener((v, hasFocus) -> ErrorLayout.clearError(layouts));
+        email.setOnFocusChangeListener((v, hasFocus) -> ErrorLayout.clearError(layouts));
+        password.setOnFocusChangeListener((v, hasFocus) -> ErrorLayout.clearError(layouts));
+        confirmPassword.setOnFocusChangeListener((v, hasFocus) -> ErrorLayout.clearError(layouts));
     }
 }

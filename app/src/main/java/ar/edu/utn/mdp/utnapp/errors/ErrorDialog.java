@@ -1,4 +1,4 @@
-package ar.edu.utn.mdp.utnapp;
+package ar.edu.utn.mdp.utnapp.errors;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -9,6 +9,10 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.net.HttpURLConnection;
+
+import ar.edu.utn.mdp.utnapp.R;
 
 public final class ErrorDialog extends Dialog {
 
@@ -91,5 +95,26 @@ public final class ErrorDialog extends Dialog {
         ((TextView) findViewById(R.id.dialogErrorMessage)).setText(message);
 
         show();
+    }
+
+    public static void handler(int statusCode, Context ctx) {
+        handler(statusCode, ctx, null);
+    }
+
+    public static void handler(int statusCode, Context ctx, View.OnClickListener onClickListener) {
+        switch (statusCode) {
+            case HttpURLConnection.HTTP_UNAUTHORIZED:
+                new ErrorDialog(ctx, "Invalid credentials", "Email or password is wrong. Please try again.", R.drawable.ic_alert, onClickListener);
+                break;
+            case HttpURLConnection.HTTP_INTERNAL_ERROR:
+                new ErrorDialog(ctx, "Error", "Internal server error", R.drawable.ic_cloud_offline, onClickListener);
+                break;
+            case HttpURLConnection.HTTP_UNAVAILABLE:
+                new ErrorDialog(ctx, "Error", "Service unavailable. Please try again later.", R.drawable.ic_cloud_offline, onClickListener);
+                break;
+            default:
+                new ErrorDialog(ctx, "Error", "Unknown error. Please report it to the support.", R.drawable.ic_warning, onClickListener);
+                break;
+        }
     }
 }
