@@ -13,10 +13,21 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="alpha_white">#1AFFFFFF</color>
+    <color name="alpha_white_date">#80FFFFFF</color>
     <color name="transparent">#00FFFFFF</color>
 
     <color name="focused">@color/secondary_700</color>
     <color name="link">@color/secondary_500</color>
     <color name="error">#FB4545</color>
     <color name="footer_drawable">@color/primary_700</color>
+
+    <color name="activity">#A47CFF</color>
+    <color name="holiday">#FFFD7C</color>
+
+    <color name="onActivity">@color/primary_700</color>
+    <color name="onHoliday">@color/primary_700</color>
+
+    <color name="exam">#FF7C7C</color>
+    <color name="makeup_exam">#57FF5A</color>
+    <color name="extra">#7CFFD1</color>
 </resources>
