@@ -42,7 +42,9 @@ public class CalendarActivity extends AppCompatActivity {
             @Override
             public void onSuccess(JSONArray response) {
                 progress.dismiss();
+                events.clear();
                 events.addAll(Holiday.parse(response));
+                cv.addEvents(events);
             }
 
             @Override
@@ -55,7 +57,9 @@ public class CalendarActivity extends AppCompatActivity {
         CalendarModel.getActivity(CalendarActivity.this, "", new CallBackRequest<JSONArray>() {
             @Override
             public void onSuccess(JSONArray response) {
+                events.clear();
                 events.addAll(Activity.parse(response));
+                cv.addEvents(events);
             }
 
             @Override
@@ -63,7 +67,5 @@ public class CalendarActivity extends AppCompatActivity {
                 ErrorDialog.handler(statusCode, CalendarActivity.this);
             }
         });
-
-        cv.setEvents(events);
     }
 }

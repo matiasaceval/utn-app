@@ -213,12 +213,12 @@ public class CalendarView extends LinearLayout {
             if (month != currentLocalDate.getMonthValue() || year != currentLocalDate.getYear()) {
                 // if this day is outside current month, grey it out
                 text.setTextColor(getResources().getColor(R.color.alpha_white_date));
-                now.setVisibility(View.INVISIBLE);
             }
 
             if (isCurrentDay) {
                 // if it is today, set it to blue/bold
                 text.setTypeface(null, Typeface.BOLD);
+                now.setVisibility(View.VISIBLE);
             }
 
             // if this day has an event, specify event image
@@ -251,7 +251,6 @@ public class CalendarView extends LinearLayout {
                                 exam.setVisibility(View.VISIBLE);
                                 break;
                         }
-                        break;
                     }
                 }
             }
@@ -290,6 +289,11 @@ public class CalendarView extends LinearLayout {
     public void setEvents(HashSet<CalendarSchema> events) {
         this.events = events;
         updateCalendar(events);
+    }
+
+    public void addEvents(HashSet<CalendarSchema> events) {
+        this.events.addAll(events);
+        updateCalendar(this.events);
     }
 
     /**
