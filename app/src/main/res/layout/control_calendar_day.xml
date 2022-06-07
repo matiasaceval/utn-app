@@ -4,48 +4,16 @@
     android:layout_width="48dp">
 
     <ImageView
-        android:id="@+id/calendar_exam"
-        android:contentDescription="@string/calendar_exam_ic"
-        android:layout_width="12dp"
-        android:layout_height="12dp"
+        android:id="@+id/calendar_event"
+        android:contentDescription="@string/calendar_ic"
+        android:layout_width="6dp"
+        android:layout_height="6dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_margin="4dp"
-        android:visibility="invisible"
-        android:src="@drawable/ic_exam" />
-
-    <ImageView
-        android:id="@+id/calendar_activity"
-        android:contentDescription="@string/calendar_activity_ic"
-        android:layout_width="12dp"
-        android:layout_height="12dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_margin="4dp"
-        android:visibility="invisible"
-        android:src="@drawable/ic_activity" />
-
-    <ImageView
-        android:id="@+id/calendar_holiday"
-        android:contentDescription="@string/calendar_holiday_ic"
-        android:layout_width="12dp"
-        android:layout_height="12dp"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="4dp"
         android:visibility="invisible"
-        android:src="@drawable/ic_holiday" />
-
-    <ImageView
-        android:id="@+id/calendar_now"
-        android:contentDescription="@string/calendar_now_ic"
-        android:layout_width="12dp"
-        android:layout_height="12dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="4dp"
-        android:visibility="invisible"
-        android:src="@drawable/ic_now" />
+        android:src="@drawable/ic_circle" />
 
     <TextView
         android:id="@+id/calendar_date_display"

@@ -190,10 +190,7 @@ public class CalendarView extends LinearLayout {
                 view = inflater.inflate(R.layout.control_calendar_day, parent, false);
 
             TextView text = view.findViewById(R.id.calendar_date_display);
-            ImageView activity = view.findViewById(R.id.calendar_activity);
-            ImageView holiday = view.findViewById(R.id.calendar_holiday);
-            ImageView now = view.findViewById(R.id.calendar_now);
-            ImageView exam = view.findViewById(R.id.calendar_exam);
+            ImageView eventIcon = view.findViewById(R.id.calendar_event);
 
             // day in question
             LocalDate date = getItem(position);
@@ -209,16 +206,21 @@ public class CalendarView extends LinearLayout {
             // clear styling
             text.setTypeface(null, Typeface.NORMAL);
             text.setTextColor(Color.WHITE);
-
-            if (month != currentLocalDate.getMonthValue() || year != currentLocalDate.getYear()) {
-                // if this day is outside current month, grey it out
-                text.setTextColor(getResources().getColor(R.color.alpha_white_date));
-            }
+            text.setBackgroundResource(0);
 
             if (isCurrentDay) {
                 // if it is today, set it to blue/bold
                 text.setTypeface(null, Typeface.BOLD);
-                now.setVisibility(View.VISIBLE);
+                text.setBackgroundResource(R.drawable.ic_circle_now);
+            }
+
+            if (month != currentLocalDate.getMonthValue() || year != currentLocalDate.getYear()) {
+                // if this day is outside current month, grey it out
+                text.setTextColor(getResources().getColor(R.color.alpha_white_date));
+
+                if (isCurrentDay) {
+                    text.setBackgroundResource(R.drawable.ic_circle_now_alpha);
+                }
             }
 
             // if this day has an event, specify event image
@@ -232,25 +234,7 @@ public class CalendarView extends LinearLayout {
                     boolean betweenDates = betweenDates(date, eventStartDate, eventEndDate);
 
                     if (startDate || endDate || betweenDates) {
-                        switch (event.getType()) {
-                            case ACTIVITY:
-                                activity.setVisibility(View.VISIBLE);
-                                break;
-                            case HOLIDAY:
-                                holiday.setVisibility(View.VISIBLE);
-                                break;
-                            case EXAM:
-                                exam.setVisibility(View.VISIBLE);
-                                break;
-                            case MAKEUP_EXAM:
-                                exam.setImageResource(R.drawable.ic_makeup_exam);
-                                exam.setVisibility(View.VISIBLE);
-                                break;
-                            case EXTRA:
-                                exam.setImageResource(R.drawable.ic_extra);
-                                exam.setVisibility(View.VISIBLE);
-                                break;
-                        }
+                        eventIcon.setVisibility(View.VISIBLE);
                     }
                 }
             }

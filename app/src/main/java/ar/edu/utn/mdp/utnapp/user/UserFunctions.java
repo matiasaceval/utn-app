@@ -3,11 +3,6 @@ package ar.edu.utn.mdp.utnapp.user;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import androidx.annotation.NonNull;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import ar.edu.utn.mdp.utnapp.events.LoginEvent;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
 import ar.edu.utn.mdp.utnapp.fetch.request.HTTP_STATUS;
@@ -42,6 +37,19 @@ public final class UserFunctions {
             case HTTP_STATUS.REDIRECTION_TEMPORARY_REDIRECT:
                 LoginEvent.logUserAgain(ctx);
                 break;
+            case HTTP_STATUS.SUCCESS_OK:
+                break;
+        }
+    }
+
+    public static void clearCache(Context ctx) {
+        try {
+            final SharedPreferences userPrefs = ctx.getSharedPreferences("User", Context.MODE_PRIVATE);
+            final SharedPreferences cookiePrefs = ctx.getSharedPreferences("Cookie", Context.MODE_PRIVATE);
+            userPrefs.edit().clear().apply();
+            cookiePrefs.edit().clear().apply();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

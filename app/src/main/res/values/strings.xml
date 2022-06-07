@@ -42,10 +42,7 @@
     <string name="email_already_exists">Email is already on use</string>
     <string name="footer">by students, for students</string>
 
-    <string name="calendar_exam_ic">This day has an exam</string>
-    <string name="calendar_activity_ic">This day has an activity</string>
-    <string name="calendar_holiday_ic">This day has a holiday</string>
-    <string name="calendar_now_ic">Today</string>
+    <string name="calendar_ic">This day has an exam</string>
     <string name="calendar_previous_month">Previous month</string>
     <string name="calendar_next_month">Next month</string>
 
