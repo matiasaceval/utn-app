@@ -9,25 +9,12 @@ public class UserSubscription {
     }
 
     public static void addSubject(User user, String year, String numCommission, String subject) {
-        String subscription = "";
-        subscription = subscription.concat(year + "-com" + numCommission + "-" + subject);
+        final String subscription = year + "-com" + numCommission + "-" + subject;
         user.addSubscription(subscription);
     }
 
     public static void deleteSubject(User user, String year, String numCommission, String subject) {
-        String subscription = "";
-        subscription = subscription.concat(year + "-com" + numCommission + "-" + subject);
-        boolean subjectFound = false;
-        String indexSubs;
-        int i = 0;
-
-        while(i < user.getSubscription().size() && !subjectFound){
-            indexSubs = user.getSubscription().get(i);
-            if(subscription.equals(indexSubs)){
-                user.getSubscription().remove(i);
-                subjectFound = true;
-            }
-            i++;
-        }
+        final String subscription = year + "-com" + numCommission + "-" + subject;
+        user.getSubscription().removeIf(s -> s.equals(subscription));
     }
 }

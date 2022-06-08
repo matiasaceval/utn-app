@@ -31,11 +31,15 @@ public final class User {
         setPassword(password);
     }
 
-    public User(String name, String email, String role,ArrayList<String> subscription) {
+    public User(String name, String email, String role, ArrayList<String> subscription) {
         setName(name);
         setEmail(email);
         setRole(role);
+        setSubscription(subscription);
+    }
 
+    private void setSubscription(ArrayList<String> subscription) {
+        this.subscription = subscription;
     }
 
     public static User parse(JSONObject response) {
