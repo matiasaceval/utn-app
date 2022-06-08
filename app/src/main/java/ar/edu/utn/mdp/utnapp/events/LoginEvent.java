@@ -22,7 +22,7 @@ import ar.edu.utn.mdp.utnapp.ProgressDialog;
 import ar.edu.utn.mdp.utnapp.RegisterActivity;
 import ar.edu.utn.mdp.utnapp.errors.ErrorDialog;
 import ar.edu.utn.mdp.utnapp.errors.ErrorLayout;
-import ar.edu.utn.mdp.utnapp.fetch.callback_request.CallBackRequest;
+import ar.edu.utn.mdp.utnapp.fetch.callbacks.CallBackRequest;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
 import ar.edu.utn.mdp.utnapp.fetch.request.user_auth.login.LoginModel;
 import ar.edu.utn.mdp.utnapp.user.UserContext;
@@ -82,6 +82,20 @@ public final class LoginEvent {
                         ErrorDialog.handler(statusCode, ctx, view -> logout(ctx));
                     }
                 });
+            } else {
+                new ErrorDialog(ctx, "Unexpected error", "Please login again.", view -> logout(ctx));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            new ErrorDialog(ctx, "Unexpected error", e.getMessage(), view -> logout(ctx));
+        }
+    }
+
+    public static void logUserAgain(Context ctx, CallBackRequest<JSONObject> callback) {
+        try {
+            final User user = UserContext.getUserCredentials(ctx);
+            if (user.canLogin()) {
+                LoginModel.loginUser(ctx, user, callback);
             } else {
                 new ErrorDialog(ctx, "Unexpected error", "Please login again.", view -> logout(ctx));
             }

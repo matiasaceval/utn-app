@@ -14,16 +14,18 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import ar.edu.utn.mdp.utnapp.calendar.CalendarView;
 import ar.edu.utn.mdp.utnapp.errors.ErrorDialog;
-import ar.edu.utn.mdp.utnapp.fetch.callback_request.CallBackRequest;
-import ar.edu.utn.mdp.utnapp.fetch.models.Activity;
 import ar.edu.utn.mdp.utnapp.events.calendar.CalendarEventAdapter;
+import ar.edu.utn.mdp.utnapp.fetch.callbacks.CallBackRequest;
+import ar.edu.utn.mdp.utnapp.fetch.models.Activity;
 import ar.edu.utn.mdp.utnapp.fetch.models.CalendarSchema;
 import ar.edu.utn.mdp.utnapp.fetch.models.Holiday;
+import ar.edu.utn.mdp.utnapp.fetch.models.Subject;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
 import ar.edu.utn.mdp.utnapp.fetch.request.calendar.CalendarModel;
+import ar.edu.utn.mdp.utnapp.fetch.request.commission.CommissionModel;
 import ar.edu.utn.mdp.utnapp.user.UserContext;
-import ar.edu.utn.mdp.utnapp.calendar.CalendarView;
 
 public class CalendarActivity extends AppCompatActivity {
 
@@ -35,7 +37,6 @@ public class CalendarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
-        UserContext.verifyUserConnection(this);
         User user = UserContext.getUser(this);
 
         eventsRV = findViewById(R.id.calendar_recycler_view);
@@ -68,6 +69,19 @@ public class CalendarActivity extends AppCompatActivity {
             @Override
             public void onSuccess(JSONArray response) {
                 events.addAll(Activity.parse(response));
+                cv.addEvents(events);
+            }
+
+            @Override
+            public void onError(int statusCode) {
+                ErrorDialog.handler(statusCode, CalendarActivity.this);
+            }
+        });
+
+        CommissionModel.getSubjectsByCommission(CalendarActivity.this, 5, 1, new CallBackRequest<JSONArray>() {
+            @Override
+            public void onSuccess(JSONArray response) {
+                events.addAll(Subject.toCalendarSchemaList(Subject.parse(response)));
                 cv.addEvents(events);
             }
 

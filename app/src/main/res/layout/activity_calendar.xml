@@ -23,6 +23,14 @@
         android:background="@color/primary_500"
         tools:ignore="ContentDescription" />
 
+    <ImageView
+        android:id="@+id/calendar_footer2"
+        android:layout_width="350dp"
+        android:layout_height="6dp"
+        android:layout_below="@+id/calendar_footer"
+        android:background="@color/primary_700"
+        tools:ignore="ContentDescription" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/calendar_recycler_view"
         android:layout_width="350dp"

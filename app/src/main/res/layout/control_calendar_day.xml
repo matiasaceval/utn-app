@@ -13,7 +13,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="8dp"
         android:visibility="invisible"
-        android:src="@drawable/ic_circle" />
+        android:src="@drawable/ic_circle_common" />
 
     <TextView
         android:id="@+id/calendar_date_display"

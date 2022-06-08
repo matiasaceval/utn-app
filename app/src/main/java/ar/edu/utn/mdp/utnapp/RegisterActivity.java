@@ -1,36 +1,23 @@
 package ar.edu.utn.mdp.utnapp;
 
 
-import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-
-import org.json.JSONObject;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import ar.edu.utn.mdp.utnapp.errors.ErrorLayout;
 import ar.edu.utn.mdp.utnapp.events.RegisterEvent;
-import ar.edu.utn.mdp.utnapp.fetch.callback_request.CallBackRequest;
-import ar.edu.utn.mdp.utnapp.fetch.models.Roles;
-import ar.edu.utn.mdp.utnapp.fetch.models.User;
-import ar.edu.utn.mdp.utnapp.fetch.request.HTTP_STATUS;
-import ar.edu.utn.mdp.utnapp.fetch.request.user_auth.login.LoginModel;
-import ar.edu.utn.mdp.utnapp.fetch.request.user_auth.signup.RegisterModel;
-import ar.edu.utn.mdp.utnapp.utils.Password;
 
 
 public class RegisterActivity extends AppCompatActivity {

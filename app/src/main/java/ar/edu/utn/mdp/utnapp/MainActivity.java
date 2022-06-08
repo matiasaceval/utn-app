@@ -36,8 +36,10 @@ public class MainActivity extends AppCompatActivity {
         btn2.setOnClickListener(view -> {
             if (!Network.isNetworkConnected(this, true)) return;
 
-            Intent intent = new Intent(this, CalendarActivity.class);
-            startActivity(intent);
+            UserContext.verifyUserConnection(this, null, null, () -> {
+                Intent intent = new Intent(MainActivity.this, CalendarActivity.class);
+                startActivity(intent);
+            });
         });
     }
 }

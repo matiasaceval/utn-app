@@ -230,6 +230,13 @@ public class CalendarView extends LinearLayout {
 
                     if (startDate || endDate || betweenDates) {
                         eventIcon.setVisibility(View.VISIBLE);
+                        switch (event.getType()) {
+                            case EXAM:
+                            case EXTRA:
+                            case MAKEUP_EXAM:
+                                eventIcon.setImageResource(R.drawable.ic_circle_secondary_color);
+                                break;
+                        }
                     }
                 }
             }

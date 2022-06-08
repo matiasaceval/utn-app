@@ -1,19 +1,16 @@
 package ar.edu.utn.mdp.utnapp.fetch.models;
 
-import android.content.res.Resources;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
-import ar.edu.utn.mdp.utnapp.R;
 
 public final class Subject {
     private final String subject;
@@ -72,6 +69,7 @@ public final class Subject {
     private static ArrayList<Map<String, String>> getExtraFromJSON(JSONArray extra) {
         ArrayList<Map<String, String>> list = new ArrayList<>();
         try {
+            if (extra.length() == 1 && extra.get(0).equals("")) return null;
             for (int i = 0; i < extra.length(); i++) {
                 Map<String, String> map = new HashMap<>();
                 map.put("name", extra.getJSONObject(i).getString("name"));
@@ -85,6 +83,8 @@ public final class Subject {
     }
 
     private static Map<String, String> getTimetableFromJSON(JSONObject timetable) {
+        if (timetable == null) return null;
+
         Map<String, String> map = new HashMap<>();
         try {
             map.put("monday", timetable.getString("monday"));
@@ -101,8 +101,9 @@ public final class Subject {
     private static Map<String, LocalDate> getExamFromJSON(JSONObject exam) {
         Map<String, LocalDate> map = new HashMap<>();
         try {
-            map.put("first", LocalDate.parse(exam.getString("first")));
-            map.put("second", LocalDate.parse(exam.getString("second")));
+            DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
+            map.put("first", LocalDate.parse(exam.getString("first"), pattern));
+            map.put("second", LocalDate.parse(exam.getString("second"), pattern));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -132,30 +133,35 @@ public final class Subject {
 
     public List<CalendarSchema> getActivities() {
         List<CalendarSchema> list = new ArrayList<>();
-        Resources resources = Resources.getSystem();
-        String first = resources.getString(R.string.subject_prefix_first);
-        String second = resources.getString(R.string.subject_prefix_second);
+        //Resources resources = Resources.getSystem();
+        //String first = resources.getString(R.string.subject_prefix_first);
+        //String second = resources.getString(R.string.subject_prefix_second);
+        String first = "Primer";
+        String second = "Segundo";
 
         Map<String, LocalDate> exam = this.getExam();
         if (exam != null) {
-            String title = resources.getString(R.string.subject_title_exam) + "(" + this.getSubject() + ")";
+            //String title = resources.getString(R.string.subject_title_exam) + "(" + this.getSubject() + ")";
+            String title = "Parcial" + " (" + this.getSubject() + ")";
             list.add(new CalendarSchema(first + " " + title, Objects.requireNonNull(exam.get("first")).atStartOfDay(), CalendarSchema.Type.EXAM));
             list.add(new CalendarSchema(second + " " + title, Objects.requireNonNull(exam.get("second")).atStartOfDay(), CalendarSchema.Type.EXAM));
         }
 
         Map<String, LocalDate> makeup = this.getMakeupExam();
         if (makeup != null) {
-            String title = resources.getString(R.string.subject_title_makeup_exam) + "(" + this.getSubject() + ")";
+            //String title = resources.getString(R.string.subject_title_makeup_exam) + "(" + this.getSubject() + ")";
+            String title = "Recuperatorio" + " (" + this.getSubject() + ")";
             list.add(new CalendarSchema(first + " " + title, Objects.requireNonNull(makeup.get("first")).atStartOfDay(), CalendarSchema.Type.MAKEUP_EXAM));
             list.add(new CalendarSchema(second + " " + title, Objects.requireNonNull(makeup.get("second")).atStartOfDay(), CalendarSchema.Type.MAKEUP_EXAM));
         }
 
         ArrayList<Map<String, String>> extra = this.getExtra();
         if (extra != null) {
+            DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
             for (Map<String, String> map : extra) {
                 String name = map.get("name");
-                LocalDate date = LocalDate.parse(map.get("date"));
-                list.add(new CalendarSchema(name, date.atStartOfDay(), CalendarSchema.Type.EXTRA));
+                LocalDate date = LocalDate.parse(map.get("date"), pattern);
+                list.add(new CalendarSchema(name + " (" + this.getSubject() + ")", date.atStartOfDay(), CalendarSchema.Type.EXTRA));
             }
         }
 

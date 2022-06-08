@@ -1,4 +1,4 @@
-package ar.edu.utn.mdp.utnapp.fetch.callback_request;
+package ar.edu.utn.mdp.utnapp.fetch.callbacks;
 
 public class CallBackRequest<T>  implements ICallBack <T>{
 

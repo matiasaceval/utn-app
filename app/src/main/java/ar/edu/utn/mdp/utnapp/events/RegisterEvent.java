@@ -16,12 +16,13 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import ar.edu.utn.mdp.utnapp.LoginActivity;
 import ar.edu.utn.mdp.utnapp.MainActivity;
 import ar.edu.utn.mdp.utnapp.ProgressDialog;
 import ar.edu.utn.mdp.utnapp.R;
 import ar.edu.utn.mdp.utnapp.errors.ErrorLayout;
-import ar.edu.utn.mdp.utnapp.fetch.callback_request.CallBackRequest;
+import ar.edu.utn.mdp.utnapp.fetch.callbacks.CallBackRequest;
 import ar.edu.utn.mdp.utnapp.fetch.models.Roles;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
 import ar.edu.utn.mdp.utnapp.fetch.request.HTTP_STATUS;

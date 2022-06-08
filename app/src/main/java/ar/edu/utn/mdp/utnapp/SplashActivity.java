@@ -12,10 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.json.JSONObject;
 
 import ar.edu.utn.mdp.utnapp.errors.ErrorDialog;
-import ar.edu.utn.mdp.utnapp.fetch.callback_request.CallBackRequest;
+import ar.edu.utn.mdp.utnapp.fetch.callbacks.CallBackRequest;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
-import ar.edu.utn.mdp.utnapp.fetch.request.HTTP_STATUS;
-import ar.edu.utn.mdp.utnapp.fetch.request.user_auth.login.LoginConnection;
 import ar.edu.utn.mdp.utnapp.fetch.request.user_auth.login.LoginModel;
 import ar.edu.utn.mdp.utnapp.user.UserContext;
 import ar.edu.utn.mdp.utnapp.utils.Network;
@@ -29,41 +27,31 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         if (getSupportActionBar() != null) getSupportActionBar().hide();
 
-        final int status = LoginConnection.verifyAccountIntegration(this);
-
-        switch (status) {
-            case HTTP_STATUS.SUCCESS_OK:
-                goToMain();
-                break;
-            case HTTP_STATUS.CLIENT_ERROR_UNAUTHORIZED:
-                logout(this);
-                break;
-            case HTTP_STATUS.REDIRECTION_TEMPORARY_REDIRECT:
-                try {
-                    final User user = UserContext.getUserCredentials(SplashActivity.this);
-                    if (user.canLogin()) {
-                        LoginModel.loginUser(SplashActivity.this, user, new CallBackRequest<JSONObject>() {
-
-                            @Override
-                            public void onSuccess(JSONObject response) {
-                                goToMain();
-                            }
-
-                            @Override
-                            public void onError(int statusCode) {
-                                // this event will be triggered only if user in database is corrupted or deleted
-                                ErrorDialog.handler(statusCode, SplashActivity.this, errorCallback());
-                            }
-                        });
-                    } else {
-                        logout(SplashActivity.this);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    new ErrorDialog(SplashActivity.this, "Unexpected error", e.getMessage(), errorCallback());
+        UserContext.verifyUserConnection(SplashActivity.this, null, () -> {
+            try {
+                final User user = UserContext.getUserCredentials(SplashActivity.this);
+                if (!user.canLogin()) {
+                    logout(SplashActivity.this);
+                    return;
                 }
-                break;
-        }
+                LoginModel.loginUser(SplashActivity.this, user, new CallBackRequest<JSONObject>() {
+
+                    @Override
+                    public void onSuccess(JSONObject response) {
+                        goToMain();
+                    }
+
+                    @Override
+                    public void onError(int statusCode) {
+                        // this event will be triggered only if user in database is corrupted or deleted
+                        ErrorDialog.handler(statusCode, SplashActivity.this, errorCallback());
+                    }
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+                new ErrorDialog(SplashActivity.this, "Unexpected error", e.getMessage(), errorCallback());
+            }
+        }, this::goToMain);
     }
 
     private void goToMain() {
