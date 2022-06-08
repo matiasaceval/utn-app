@@ -4,14 +4,20 @@ import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONArray;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 import ar.edu.utn.mdp.utnapp.errors.ErrorDialog;
 import ar.edu.utn.mdp.utnapp.fetch.callback_request.CallBackRequest;
 import ar.edu.utn.mdp.utnapp.fetch.models.Activity;
+import ar.edu.utn.mdp.utnapp.fetch.models.CalendarEventAdapter;
 import ar.edu.utn.mdp.utnapp.fetch.models.CalendarSchema;
 import ar.edu.utn.mdp.utnapp.fetch.models.Holiday;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
@@ -21,6 +27,9 @@ import ar.edu.utn.mdp.utnapp.utils.CalendarView;
 
 public class CalendarActivity extends AppCompatActivity {
 
+    HashSet<CalendarSchema> events = new HashSet<>();
+    RecyclerView eventsRV;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,20 +38,21 @@ public class CalendarActivity extends AppCompatActivity {
         UserFunctions.verifyUserConnection(this);
         User user = UserFunctions.getUser(this);
 
-        HashSet<CalendarSchema> events = new HashSet<>();
+        eventsRV = findViewById(R.id.calendar_recycler_view);
+        eventsRV.setLayoutManager(new LinearLayoutManager(this));
 
         CalendarView cv = findViewById(R.id.calendar_view);
-        cv.setEventHandler(event -> {
-            System.out.println(event);
+        cv.setEventHandler(date -> {
+            List<CalendarSchema> list = getEventsFromDate(date);
+            clearAdapter();
+            setAdapter(list);
         });
 
-
         Dialog progress = new ProgressDialog(this);
-        CalendarModel.getHoliday(CalendarActivity.this, "", new CallBackRequest<JSONArray>() {
+        CalendarModel.getHoliday(CalendarActivity.this, "fullYear", new CallBackRequest<JSONArray>() {
             @Override
             public void onSuccess(JSONArray response) {
                 progress.dismiss();
-                events.clear();
                 events.addAll(Holiday.parse(response));
                 cv.addEvents(events);
             }
@@ -54,10 +64,9 @@ public class CalendarActivity extends AppCompatActivity {
             }
         });
 
-        CalendarModel.getActivity(CalendarActivity.this, "", new CallBackRequest<JSONArray>() {
+        CalendarModel.getActivity(CalendarActivity.this, "fullYear", new CallBackRequest<JSONArray>() {
             @Override
             public void onSuccess(JSONArray response) {
-                events.clear();
                 events.addAll(Activity.parse(response));
                 cv.addEvents(events);
             }
@@ -67,5 +76,31 @@ public class CalendarActivity extends AppCompatActivity {
                 ErrorDialog.handler(statusCode, CalendarActivity.this);
             }
         });
+    }
+
+    private void clearAdapter() {
+        eventsRV.setAdapter(null);
+    }
+
+    private void setAdapter(List<CalendarSchema> events) {
+        CalendarEventAdapter adapter = new CalendarEventAdapter(events, this);
+        eventsRV.setAdapter(adapter);
+    }
+
+    private List<CalendarSchema> getEventsFromDate(LocalDate date) {
+        List<CalendarSchema> list = new ArrayList<>();
+        for (CalendarSchema e : events) {
+            LocalDate start = e.getStart().toLocalDate();
+            LocalDate end = e.getEnd().toLocalDate();
+
+            if (start.equals(date)) list.add(e);
+            else if (end.equals(date)) list.add(e);
+            else if (betweenDates(date, start, end)) list.add(e);
+        }
+        return list;
+    }
+
+    private boolean betweenDates(LocalDate date, LocalDate start, LocalDate end) {
+        return date.isAfter(start) && date.isBefore(end);
     }
 }

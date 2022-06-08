@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="10dp">
+
+    <RelativeLayout
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_500">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:src="@drawable/gradient"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/event_title"
+            android:layout_width="245dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/opensans_bold"
+            android:text="@string/event_title_placeholder"
+            android:textColor="?attr/colorOnPrimary" />
+
+        <TextView
+            android:id="@+id/event_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/opensans_bold"
+            android:text="@string/event_type_placeholder"
+            android:textColor="?attr/colorOnPrimary"
+            tools:ignore="RelativeOverlap" />
+
+        <TextView
+            android:id="@+id/event_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/event_title"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/opensans_regular"
+            android:text="@string/event_details_placeholder"
+            android:textColor="?attr/colorOnPrimary" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

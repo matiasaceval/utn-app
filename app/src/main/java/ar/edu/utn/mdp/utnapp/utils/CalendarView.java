@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+
+import androidx.core.content.res.ResourcesCompat;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -49,6 +52,9 @@ public class CalendarView extends LinearLayout {
 
     //event handling
     private EventHandler eventHandler = null;
+
+    private View selectedView;
+    private Drawable selectedResource;
 
     // internal components
     private ImageView btnPrev;
@@ -117,13 +123,6 @@ public class CalendarView extends LinearLayout {
             currentDate.add(Calendar.MONTH, -1);
             updateCalendar(events);
         });
-
-        // long-pressing a day
-        grid.setOnItemClickListener((view, cell, position, id) -> {
-            // handle long-press
-            if (eventHandler == null) return;
-            eventHandler.onDayLongPress((LocalDate) view.getItemAtPosition(position));
-        });
     }
 
     /**
@@ -145,7 +144,7 @@ public class CalendarView extends LinearLayout {
 
         // determine the cell for current month's beginning
         calendar.set(Calendar.DAY_OF_MONTH, 1);
-        int monthBeginningCell = calendar.get(Calendar.DAY_OF_WEEK) - 2;
+        int monthBeginningCell = calendar.get(Calendar.DAY_OF_WEEK) - 1;
 
         // move calendar backwards to the beginning of the week
         calendar.add(Calendar.DAY_OF_MONTH, -monthBeginningCell);
@@ -211,16 +210,12 @@ public class CalendarView extends LinearLayout {
             if (isCurrentDay) {
                 // if it is today, set it to blue/bold
                 text.setTypeface(null, Typeface.BOLD);
-                text.setBackgroundResource(R.drawable.ic_circle_now);
+                text.setTextColor(ResourcesCompat.getColor(getResources(), R.color.secondary_500, null));
             }
 
             if (month != currentLocalDate.getMonthValue() || year != currentLocalDate.getYear()) {
                 // if this day is outside current month, grey it out
-                text.setTextColor(getResources().getColor(R.color.alpha_white_date));
-
-                if (isCurrentDay) {
-                    text.setBackgroundResource(R.drawable.ic_circle_now_alpha);
-                }
+                view.setAlpha(0.5f);
             }
 
             // if this day has an event, specify event image
@@ -241,6 +236,18 @@ public class CalendarView extends LinearLayout {
 
             // set text
             text.setText(String.valueOf(date.getDayOfMonth()));
+
+            View finalView = view;
+            text.setOnClickListener(v -> {
+                if (eventHandler == null) return;
+                if (selectedView != null) {
+                    selectedView.setBackground(selectedResource);
+                }
+                selectedView = finalView;
+                selectedResource = finalView.getBackground();
+                finalView.setBackgroundResource(R.drawable.ic_circumference);
+                eventHandler.onDayPress(date);
+            });
 
             return view;
         }
@@ -285,6 +292,6 @@ public class CalendarView extends LinearLayout {
      * the outside world
      */
     public interface EventHandler {
-        void onDayLongPress(LocalDate date);
+        void onDayPress(LocalDate date);
     }
 }

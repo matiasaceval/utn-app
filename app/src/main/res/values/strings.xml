@@ -53,4 +53,9 @@
     <string name="calendar_friday">VIE</string>
     <string name="calendar_saturday">SAB</string>
     <string name="calendar_sunday">DOM</string>
+
+    <string name="cardview_event_allday">Todo el día</string>
+    <string name="event_type_placeholder">HOLIDAY</string>
+    <string name="event_title_placeholder">Event title displayed here</string>
+    <string name="event_details_placeholder">Todo el día</string>
 </resources>
