@@ -17,6 +17,13 @@ public class CalendarSchema {
         this.type = type;
     }
 
+    public CalendarSchema(String activity, LocalDateTime start, Type type) {
+        this.activity = activity;
+        this.start = start;
+        this.end = start;
+        this.type = type;
+    }
+
     public String getActivity() {
         return activity;
     }

@@ -21,18 +21,29 @@ public final class Holiday extends CalendarSchema {
         if (response == null) return null;
 
         List<Holiday> list = new ArrayList<>();
-        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
         for (int i = 0; i < response.length(); i++) {
             try {
-                JSONObject object = response.getJSONObject(i);
-                list.add(new Holiday(object.getString("activity"),
-                        object.getString("category"),
-                        LocalDateTime.parse(object.getString("start"), pattern),
-                        LocalDateTime.parse(object.getString("end"), pattern)));
+                Holiday object = parse(response.getJSONObject(i));
+                if (object != null) list.add(object);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
         return list;
+    }
+
+    public static Holiday parse(JSONObject response) {
+        if (response == null) return null;
+
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
+        try {
+            return new Holiday(response.getString("activity"),
+                    response.getString("category"),
+                    LocalDateTime.parse(response.getString("start"), pattern),
+                    LocalDateTime.parse(response.getString("end"), pattern));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

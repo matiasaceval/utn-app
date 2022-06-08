@@ -19,18 +19,28 @@ public final class Activity extends CalendarSchema {
         if (response == null) return null;
 
         List<Activity> list = new ArrayList<>();
-        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
-
         for (int i = 0; i < response.length(); i++) {
             try {
-                JSONObject object = response.getJSONObject(i);
-                list.add(new Activity(object.getString("activity"),
-                        LocalDateTime.parse(object.getString("start"), pattern),
-                        LocalDateTime.parse(object.getString("end"), pattern)));
+                Activity object = parse(response.getJSONObject(i));
+                if (object != null) list.add(object);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
         return list;
+    }
+
+    public static Activity parse(JSONObject response) {
+        if (response == null) return null;
+
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
+        try {
+            return new Activity(response.getString("activity"),
+                    LocalDateTime.parse(response.getString("start"), pattern),
+                    LocalDateTime.parse(response.getString("end"), pattern));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

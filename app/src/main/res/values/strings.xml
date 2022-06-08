@@ -58,4 +58,10 @@
     <string name="event_type_placeholder">HOLIDAY</string>
     <string name="event_title_placeholder">Event title displayed here</string>
     <string name="event_details_placeholder">Todo el día</string>
+
+    <string name="subject_title_exam">Parcial</string>
+    <string name="subject_title_makeup_exam">Recuperatorio</string>
+    <string name="subject_prefix_first">Primer</string>
+    <string name="subject_prefix_second">Segundo</string>
+    <string name="subject_prefix_third">Tercer</string>
 </resources>
