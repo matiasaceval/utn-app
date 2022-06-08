@@ -1,19 +1,14 @@
 package ar.edu.utn.mdp.utnapp;
 
-import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.json.JSONObject;
-
-import ar.edu.utn.mdp.utnapp.errors.ErrorDialog;
 import ar.edu.utn.mdp.utnapp.events.LoginEvent;
-import ar.edu.utn.mdp.utnapp.fetch.callback_request.CallBackRequest;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
-import ar.edu.utn.mdp.utnapp.fetch.request.calendar.CalendarModel;
 import ar.edu.utn.mdp.utnapp.user.UserFunctions;
 import ar.edu.utn.mdp.utnapp.utils.Network;
 
@@ -41,21 +36,8 @@ public class MainActivity extends AppCompatActivity {
         btn2.setOnClickListener(view -> {
             if (!Network.isNetworkConnected(this, true)) return;
 
-            Dialog progress = new ProgressDialog(this);
-            String query = "?date=02/02/2022";
-            CalendarModel.getNextHoliday(MainActivity.this, query, new CallBackRequest<JSONObject>() {
-                @Override
-                public void onSuccess(JSONObject response) {
-                    progress.dismiss();
-                    tv.setText(response.toString());
-                }
-
-                @Override
-                public void onError(int statusCode) {
-                    progress.dismiss();
-                    ErrorDialog.handler(statusCode, MainActivity.this);
-                }
-            });
+            Intent intent = new Intent(this, CalendarActivity.class);
+            startActivity(intent);
         });
     }
 }

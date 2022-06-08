@@ -41,4 +41,21 @@
     <string name="password_mismatch">Passwords don\'t match</string>
     <string name="email_already_exists">Email is already on use</string>
     <string name="footer">by students, for students</string>
+
+    <string name="calendar_ic">This day has an exam</string>
+    <string name="calendar_previous_month">Previous month</string>
+    <string name="calendar_next_month">Next month</string>
+
+    <string name="calendar_monday">LUN</string>
+    <string name="calendar_tuesday">MAR</string>
+    <string name="calendar_wednesday">MIE</string>
+    <string name="calendar_thursday">JUE</string>
+    <string name="calendar_friday">VIE</string>
+    <string name="calendar_saturday">SAB</string>
+    <string name="calendar_sunday">DOM</string>
+
+    <string name="cardview_event_allday">Todo el día</string>
+    <string name="event_type_placeholder">HOLIDAY</string>
+    <string name="event_title_placeholder">Event title displayed here</string>
+    <string name="event_details_placeholder">Todo el día</string>
 </resources>

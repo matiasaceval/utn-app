@@ -4,14 +4,15 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.view.View;
 
 import androidx.core.app.ActivityCompat;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+
 import org.json.JSONObject;
+
 import java.util.List;
 import java.util.Map;
 
@@ -19,12 +20,12 @@ import ar.edu.utn.mdp.utnapp.LoginActivity;
 import ar.edu.utn.mdp.utnapp.MainActivity;
 import ar.edu.utn.mdp.utnapp.ProgressDialog;
 import ar.edu.utn.mdp.utnapp.RegisterActivity;
-import ar.edu.utn.mdp.utnapp.user.UserFunctions;
 import ar.edu.utn.mdp.utnapp.errors.ErrorDialog;
 import ar.edu.utn.mdp.utnapp.errors.ErrorLayout;
 import ar.edu.utn.mdp.utnapp.fetch.callback_request.CallBackRequest;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
 import ar.edu.utn.mdp.utnapp.fetch.request.user_auth.login.LoginModel;
+import ar.edu.utn.mdp.utnapp.user.UserFunctions;
 import ar.edu.utn.mdp.utnapp.utils.Network;
 
 public final class LoginEvent {
@@ -91,14 +92,7 @@ public final class LoginEvent {
     }
 
     public static void logout(Context ctx) {
-        try {
-            final SharedPreferences userPrefs = ctx.getSharedPreferences("User", Context.MODE_PRIVATE);
-            final SharedPreferences cookiePrefs = ctx.getSharedPreferences("Cookie", Context.MODE_PRIVATE);
-            userPrefs.edit().clear().apply();
-            cookiePrefs.edit().clear().apply();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        UserFunctions.clearCache(ctx);
         Intent intent = new Intent(ctx, LoginActivity.class);
         ctx.startActivity(intent);
         ActivityCompat.finishAffinity((Activity) ctx);

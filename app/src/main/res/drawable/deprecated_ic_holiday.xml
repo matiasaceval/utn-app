@@ -1,0 +1,13 @@
+<vector android:height="24dp"
+    android:viewportHeight="1000"
+    android:viewportWidth="1000"
+    android:width="24dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <path
+        android:fillColor="@color/holiday"
+        android:pathData="M510.5,496.5m-431.5,0a431.5,431.5 0,1 1,863 0a431.5,431.5 0,1 1,-863 0" />
+    <path
+        android:fillColor="@color/onHoliday"
+        android:fillType="evenOdd"
+        android:pathData="M730.3,263.5H597.4V435.7h-168.8V263.5H296.3V725.1H428.5V549.4h168.8V725.1H730.3V263.5Z" />
+</vector>
