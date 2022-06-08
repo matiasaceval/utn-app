@@ -11,8 +11,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import ar.edu.utn.mdp.utnapp.fetch.request.API_URL;
-import ar.edu.utn.mdp.utnapp.fetch.request.HTTP_STATUS;
-import ar.edu.utn.mdp.utnapp.user.UserFunctions;
 import ar.edu.utn.mdp.utnapp.utils.Password;
 import ar.edu.utn.mdp.utnapp.fetch.callback_request.CallBackRequest;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;

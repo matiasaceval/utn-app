@@ -17,7 +17,8 @@ import ar.edu.utn.mdp.utnapp.fetch.models.User;
 import ar.edu.utn.mdp.utnapp.fetch.request.HTTP_STATUS;
 import ar.edu.utn.mdp.utnapp.fetch.request.user_auth.login.LoginConnection;
 import ar.edu.utn.mdp.utnapp.fetch.request.user_auth.login.LoginModel;
-import ar.edu.utn.mdp.utnapp.user.UserFunctions;
+import ar.edu.utn.mdp.utnapp.user.UserContext;
+import ar.edu.utn.mdp.utnapp.utils.Network;
 
 @SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
@@ -39,7 +40,7 @@ public class SplashActivity extends AppCompatActivity {
                 break;
             case HTTP_STATUS.REDIRECTION_TEMPORARY_REDIRECT:
                 try {
-                    final User user = UserFunctions.getUserCredentials(SplashActivity.this);
+                    final User user = UserContext.getUserCredentials(SplashActivity.this);
                     if (user.canLogin()) {
                         LoginModel.loginUser(SplashActivity.this, user, new CallBackRequest<JSONObject>() {
 
@@ -73,7 +74,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private View.OnClickListener errorCallback() {
         return view -> {
-            UserFunctions.clearCache(SplashActivity.this);
+            Network.clearCache(SplashActivity.this);
             finish();
         };
     }

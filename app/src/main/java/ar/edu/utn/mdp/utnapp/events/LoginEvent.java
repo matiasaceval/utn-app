@@ -25,7 +25,7 @@ import ar.edu.utn.mdp.utnapp.errors.ErrorLayout;
 import ar.edu.utn.mdp.utnapp.fetch.callback_request.CallBackRequest;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
 import ar.edu.utn.mdp.utnapp.fetch.request.user_auth.login.LoginModel;
-import ar.edu.utn.mdp.utnapp.user.UserFunctions;
+import ar.edu.utn.mdp.utnapp.user.UserContext;
 import ar.edu.utn.mdp.utnapp.utils.Network;
 
 public final class LoginEvent {
@@ -73,7 +73,7 @@ public final class LoginEvent {
 
     public static void logUserAgain(Context ctx) {
         try {
-            final User user = UserFunctions.getUserCredentials(ctx);
+            final User user = UserContext.getUserCredentials(ctx);
             if (user.canLogin()) {
                 LoginModel.loginUser(ctx, user, new CallBackRequest<JSONObject>() {
                     @Override
@@ -92,7 +92,7 @@ public final class LoginEvent {
     }
 
     public static void logout(Context ctx) {
-        UserFunctions.clearCache(ctx);
+        Network.clearCache(ctx);
         Intent intent = new Intent(ctx, LoginActivity.class);
         ctx.startActivity(intent);
         ActivityCompat.finishAffinity((Activity) ctx);

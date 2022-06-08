@@ -1,10 +1,17 @@
 package ar.edu.utn.mdp.utnapp.fetch.models;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 public final class User {
     private String name = "null";
     private String email = "null";
     private String password = "null";
     private String role = "user";
+    private ArrayList<String> subscription = new ArrayList<>();
 
     public User(String email, String password) {
         setEmail(email);
@@ -24,6 +31,48 @@ public final class User {
         setPassword(password);
     }
 
+    public User(String name, String email, String role,ArrayList<String> subscription) {
+        setName(name);
+        setEmail(email);
+        setRole(role);
+
+    }
+
+    public static User parse(JSONObject response) {
+        if (response == null) return null;
+
+        try {
+            return new User(response.getString("name"),
+                    response.getString("email"),
+                    response.getString("role"),
+                    getSubscriptionFromJSON(response.getJSONArray("subscription")));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    private static ArrayList<String> getSubscriptionFromJSON(JSONArray subscription){
+        ArrayList<String> subscriptionList = new ArrayList<>();
+
+        try {
+            for (int i = 0; i < subscription.length(); i++) {
+                subscriptionList.add((String) subscription.get(i));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return subscriptionList;
+
+    }
+
+    public void addSubscription(String newSubscription){
+        this.subscription.add(newSubscription);
+    }
+
+    public ArrayList<String> getSubscription() {
+        return new ArrayList<>(subscription);
+    }
     public String getName() {
         return name;
     }
@@ -59,4 +108,6 @@ public final class User {
     public boolean canLogin(){
         return !email.equals("null") && !password.equals("null");
     }
+
+
 }

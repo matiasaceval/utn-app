@@ -10,7 +10,7 @@ import org.json.JSONObject;
 
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
 import ar.edu.utn.mdp.utnapp.fetch.request.HTTP_STATUS;
-import ar.edu.utn.mdp.utnapp.user.UserFunctions;
+import ar.edu.utn.mdp.utnapp.user.UserContext;
 import ar.edu.utn.mdp.utnapp.utils.Password;
 
 public class LoginConnection {
@@ -20,7 +20,7 @@ public class LoginConnection {
         final SharedPreferences cookiePrefs = ctx.getSharedPreferences("Cookie", Context.MODE_PRIVATE);
 
         String cookieBody = cookiePrefs.getString("access_token", "null");
-        final User user = UserFunctions.getUserCredentials(ctx);
+        final User user = UserContext.getUserCredentials(ctx);
 
         if (cookieBody.equals("null") || !user.canLogin()) {
             return HTTP_STATUS.CLIENT_ERROR_UNAUTHORIZED;

@@ -1,4 +1,4 @@
-package ar.edu.utn.mdp.utnapp.fetch.models;
+package ar.edu.utn.mdp.utnapp.events.calendar;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,6 +15,7 @@ import java.time.format.FormatStyle;
 import java.util.List;
 
 import ar.edu.utn.mdp.utnapp.R;
+import ar.edu.utn.mdp.utnapp.fetch.models.CalendarSchema;
 
 public class CalendarEventAdapter extends RecyclerView.Adapter<CalendarEventAdapter.ViewHolder> {
 

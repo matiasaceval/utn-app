@@ -17,13 +17,13 @@ import java.util.List;
 import ar.edu.utn.mdp.utnapp.errors.ErrorDialog;
 import ar.edu.utn.mdp.utnapp.fetch.callback_request.CallBackRequest;
 import ar.edu.utn.mdp.utnapp.fetch.models.Activity;
-import ar.edu.utn.mdp.utnapp.fetch.models.CalendarEventAdapter;
+import ar.edu.utn.mdp.utnapp.events.calendar.CalendarEventAdapter;
 import ar.edu.utn.mdp.utnapp.fetch.models.CalendarSchema;
 import ar.edu.utn.mdp.utnapp.fetch.models.Holiday;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
 import ar.edu.utn.mdp.utnapp.fetch.request.calendar.CalendarModel;
-import ar.edu.utn.mdp.utnapp.user.UserFunctions;
-import ar.edu.utn.mdp.utnapp.utils.CalendarView;
+import ar.edu.utn.mdp.utnapp.user.UserContext;
+import ar.edu.utn.mdp.utnapp.calendar.CalendarView;
 
 public class CalendarActivity extends AppCompatActivity {
 
@@ -35,8 +35,8 @@ public class CalendarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
-        UserFunctions.verifyUserConnection(this);
-        User user = UserFunctions.getUser(this);
+        UserContext.verifyUserConnection(this);
+        User user = UserContext.getUser(this);
 
         eventsRV = findViewById(R.id.calendar_recycler_view);
         eventsRV.setLayoutManager(new LinearLayoutManager(this));

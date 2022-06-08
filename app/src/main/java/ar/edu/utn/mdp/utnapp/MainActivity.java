@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import ar.edu.utn.mdp.utnapp.events.LoginEvent;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
-import ar.edu.utn.mdp.utnapp.user.UserFunctions;
+import ar.edu.utn.mdp.utnapp.user.UserContext;
 import ar.edu.utn.mdp.utnapp.utils.Network;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
         Button btn = findViewById(R.id.logout);
         Button btn2 = findViewById(R.id.holidays);
 
-        UserFunctions.verifyUserConnection(this);
-        User user = UserFunctions.getUser(this);
+        UserContext.verifyUserConnection(this);
+        User user = UserContext.getUser(this);
 
         tv.setText(String.format("Hi %s! Your email is %s and your role is %s.", user.getName(), user.getEmail(), user.getRole()));
 

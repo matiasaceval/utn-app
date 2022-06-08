@@ -1,4 +1,4 @@
-package ar.edu.utn.mdp.utnapp.utils;
+package ar.edu.utn.mdp.utnapp.calendar;
 
 import android.content.Context;
 import android.content.res.TypedArray;
