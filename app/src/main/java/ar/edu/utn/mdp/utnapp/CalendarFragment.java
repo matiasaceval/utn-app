@@ -1,11 +1,15 @@
 package ar.edu.utn.mdp.utnapp;
 
-import android.app.Dialog;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import org.json.JSONArray;
 
@@ -27,45 +31,52 @@ import ar.edu.utn.mdp.utnapp.fetch.request.calendar.CalendarModel;
 import ar.edu.utn.mdp.utnapp.fetch.request.commission.CommissionModel;
 import ar.edu.utn.mdp.utnapp.user.UserContext;
 
-public class CalendarActivity extends AppCompatActivity {
+public class CalendarFragment extends Fragment {
 
-    HashSet<CalendarSchema> events = new HashSet<>();
-    RecyclerView eventsRV;
+    View view;
+    private final HashSet<CalendarSchema> events = new HashSet<>();
+    private RecyclerView eventsRV;
+
+    public CalendarFragment() {
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendar);
+    }
 
-        User user = UserContext.getUser(this);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_calendar, container, false);
+        User user = UserContext.getUser(view.getContext());
 
-        eventsRV = findViewById(R.id.calendar_recycler_view);
-        eventsRV.setLayoutManager(new LinearLayoutManager(this));
+        eventsRV = view.findViewById(R.id.calendar_recycler_view);
+        eventsRV.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-        CalendarView cv = findViewById(R.id.calendar_view);
+        CalendarView cv = view.findViewById(R.id.calendar_view);
         cv.setEventHandler(date -> {
             List<CalendarSchema> list = getEventsFromDate(date);
             clearAdapter();
             setAdapter(list);
         });
 
-        Dialog progress = new ProgressDialog(this);
-        CalendarModel.getHoliday(CalendarActivity.this, "fullYear", new CallBackRequest<JSONArray>() {
+        LinearProgressIndicator progressIndicator = view.findViewById(R.id.calendar_progress_indicator);
+        CalendarModel.getHoliday(view.getContext(), "fullYear", new CallBackRequest<JSONArray>() {
             @Override
             public void onSuccess(JSONArray response) {
-                progress.dismiss();
+                progressIndicator.setVisibility(View.GONE);
                 events.addAll(Holiday.parse(response));
                 cv.addEvents(events);
             }
 
             @Override
             public void onError(int statusCode) {
-                progress.dismiss();
-                ErrorDialog.handler(statusCode, CalendarActivity.this);
+                progressIndicator.setVisibility(View.GONE);
+                ErrorDialog.handler(statusCode, view.getContext());
             }
         });
 
-        CalendarModel.getActivity(CalendarActivity.this, "fullYear", new CallBackRequest<JSONArray>() {
+        CalendarModel.getActivity(view.getContext(), "fullYear", new CallBackRequest<JSONArray>() {
             @Override
             public void onSuccess(JSONArray response) {
                 events.addAll(Activity.parse(response));
@@ -74,11 +85,11 @@ public class CalendarActivity extends AppCompatActivity {
 
             @Override
             public void onError(int statusCode) {
-                ErrorDialog.handler(statusCode, CalendarActivity.this);
+                ErrorDialog.handler(statusCode, view.getContext());
             }
         });
 
-        CommissionModel.getSubjectsByCommission(CalendarActivity.this, 5, 1, new CallBackRequest<JSONArray>() {
+        CommissionModel.getSubjectsByCommission(view.getContext(), 5, 1, new CallBackRequest<JSONArray>() {
             @Override
             public void onSuccess(JSONArray response) {
                 events.addAll(Subject.toCalendarSchemaList(Subject.parse(response)));
@@ -87,9 +98,11 @@ public class CalendarActivity extends AppCompatActivity {
 
             @Override
             public void onError(int statusCode) {
-                ErrorDialog.handler(statusCode, CalendarActivity.this);
+                ErrorDialog.handler(statusCode, view.getContext());
             }
         });
+
+        return view;
     }
 
     private void clearAdapter() {
@@ -97,7 +110,7 @@ public class CalendarActivity extends AppCompatActivity {
     }
 
     private void setAdapter(List<CalendarSchema> events) {
-        CalendarEventAdapter adapter = new CalendarEventAdapter(events, this);
+        CalendarEventAdapter adapter = new CalendarEventAdapter(events, getContext());
         eventsRV.setAdapter(adapter);
     }
 

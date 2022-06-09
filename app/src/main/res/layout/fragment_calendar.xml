@@ -1,40 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
     android:gravity="center_horizontal"
-    android:background="?attr/backgroundColor">
+    android:background="?attr/backgroundColor"
+    tools:context=".CalendarFragment">
 
     <ar.edu.utn.mdp.utnapp.calendar.CalendarView
         android:id="@+id/calendar_view"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_alignParentTop="true"
         android:layout_marginTop="32dp" />
 
     <ImageView
         android:id="@+id/calendar_footer"
         android:layout_width="350dp"
-        android:layout_height="20dp"
-        android:layout_below="@+id/calendar_view"
+        android:layout_height="10dp"
+        android:layout_below="@id/calendar_view"
+        android:layout_gravity="center"
         android:background="@color/primary_500"
-        tools:ignore="ContentDescription" />
-
-    <ImageView
-        android:id="@+id/calendar_footer2"
-        android:layout_width="350dp"
-        android:layout_height="6dp"
-        android:layout_below="@+id/calendar_footer"
-        android:background="@color/primary_700"
         tools:ignore="ContentDescription" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/calendar_recycler_view"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/calendar_footer" />
+        android:layout_below="@id/calendar_footer"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center" />
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/calendar_progress_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:indeterminateOnly="true"
+        android:visibility="visible" />
 
 </RelativeLayout>
