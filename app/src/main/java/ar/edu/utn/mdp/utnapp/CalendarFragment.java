@@ -4,12 +4,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import org.json.JSONArray;
 
@@ -33,9 +32,10 @@ import ar.edu.utn.mdp.utnapp.user.UserContext;
 
 public class CalendarFragment extends Fragment {
 
-    View view;
-    private final HashSet<CalendarSchema> events = new HashSet<>();
+    private View view;
+    private CalendarView cv;
     private RecyclerView eventsRV;
+    private final HashSet<CalendarSchema> events = new HashSet<>();
 
     public CalendarFragment() {
     }
@@ -53,25 +53,29 @@ public class CalendarFragment extends Fragment {
         eventsRV = view.findViewById(R.id.calendar_recycler_view);
         eventsRV.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-        CalendarView cv = view.findViewById(R.id.calendar_view);
+        cv = view.findViewById(R.id.calendar_view);
         cv.setEventHandler(date -> {
             List<CalendarSchema> list = getEventsFromDate(date);
             clearAdapter();
             setAdapter(list);
         });
 
-        LinearProgressIndicator progressIndicator = view.findViewById(R.id.calendar_progress_indicator);
+        // TODO: Implement an actual Observer pattern
+        boolean[] done = new boolean[3];
+
+        ProgressBar progressIndicator = view.findViewById(R.id.indeterminate_linear_indicator);
         CalendarModel.getHoliday(view.getContext(), "fullYear", new CallBackRequest<JSONArray>() {
             @Override
             public void onSuccess(JSONArray response) {
-                progressIndicator.setVisibility(View.GONE);
                 events.addAll(Holiday.parse(response));
-                cv.addEvents(events);
+                done[0] = true;
+                fakeObserver(done, progressIndicator);
             }
 
             @Override
             public void onError(int statusCode) {
-                progressIndicator.setVisibility(View.GONE);
+                done[0] = true;
+                fakeObserver(done, progressIndicator);
                 ErrorDialog.handler(statusCode, view.getContext());
             }
         });
@@ -80,11 +84,14 @@ public class CalendarFragment extends Fragment {
             @Override
             public void onSuccess(JSONArray response) {
                 events.addAll(Activity.parse(response));
-                cv.addEvents(events);
+                done[1] = true;
+                fakeObserver(done, progressIndicator);
             }
 
             @Override
             public void onError(int statusCode) {
+                done[1] = true;
+                fakeObserver(done, progressIndicator);
                 ErrorDialog.handler(statusCode, view.getContext());
             }
         });
@@ -93,16 +100,25 @@ public class CalendarFragment extends Fragment {
             @Override
             public void onSuccess(JSONArray response) {
                 events.addAll(Subject.toCalendarSchemaList(Subject.parse(response)));
-                cv.addEvents(events);
+                done[2] = true;
+                fakeObserver(done, progressIndicator);
             }
 
             @Override
             public void onError(int statusCode) {
+                done[2] = true;
+                fakeObserver(done, progressIndicator);
                 ErrorDialog.handler(statusCode, view.getContext());
             }
         });
 
         return view;
+    }
+
+    private void fakeObserver(final boolean[] done, ProgressBar progressIndicator) {
+        for (boolean b : done) if (!b) return;
+        progressIndicator.setVisibility(View.GONE);
+        cv.addEvents(events);
     }
 
     private void clearAdapter() {

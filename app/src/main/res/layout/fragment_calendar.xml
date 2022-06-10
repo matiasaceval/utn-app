@@ -4,39 +4,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
+    android:layout_gravity="center_horizontal"
     android:background="?attr/backgroundColor"
     tools:context=".CalendarFragment">
 
-    <ar.edu.utn.mdp.utnapp.calendar.CalendarView
-        android:id="@+id/calendar_view"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="32dp" />
+    <RelativeLayout
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/calendar_footer"
-        android:layout_width="350dp"
-        android:layout_height="10dp"
-        android:layout_below="@id/calendar_view"
-        android:layout_gravity="center"
-        android:background="@color/primary_500"
-        tools:ignore="ContentDescription" />
+        <ar.edu.utn.mdp.utnapp.calendar.CalendarView
+            android:id="@+id/calendar_view"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="32dp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/calendar_recycler_view"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/calendar_footer"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/calendar_recycler_view"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/calendar_view"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center" />
 
-    <com.google.android.material.progressindicator.LinearProgressIndicator
-        android:id="@+id/calendar_progress_indicator"
-        android:layout_width="wrap_content"
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/indeterminate_linear_indicator"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:indeterminateOnly="true"
-        android:visibility="visible" />
+        android:indeterminateTint="?attr/colorSecondaryVariant"
+        android:layout_marginBottom="-6dp"
+        android:indeterminate="true" />
 
 </RelativeLayout>
