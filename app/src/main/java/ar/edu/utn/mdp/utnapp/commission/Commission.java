@@ -1,17 +1,28 @@
 package ar.edu.utn.mdp.utnapp.commission;
 
-import androidx.annotation.NonNull;
+
+import java.util.List;
 
 public class Commission {
 
     private int id;
     private int year;
     private boolean expandable;
+    private List<String> subjects;
 
-    public Commission(int id, int year) {
+    public Commission(int id, int year, List<String> subjects) {
         this.id = id;
         this.year = year;
         this.expandable = false;
+        this.subjects = subjects;
+    }
+
+    public List<String> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(List<String> subjects) {
+        this.subjects = subjects;
     }
 
     public boolean isExpandable() {

@@ -38,6 +38,11 @@ public class CommissionAdapter extends RecyclerView.Adapter<CommissionAdapter.Co
         holder.commissionId.setText("Comision " + commission.getId());
         holder.year.setText("Año: " + commission.getYear());
 
+        SubjectAdapter subjectAdapter = new SubjectAdapter(commission.getSubjects());
+
+        holder.subjectsRecyclerView.setAdapter(subjectAdapter);
+        holder.subjectsRecyclerView.setHasFixedSize(true);
+
         boolean isExpandable = commissionList.get(position).isExpandable();
         holder.expandableLayout.setVisibility(isExpandable ? View.VISIBLE : View.GONE);
     }
@@ -52,7 +57,7 @@ public class CommissionAdapter extends RecyclerView.Adapter<CommissionAdapter.Co
         TextView commissionId, year;
         LinearLayout linearLayout;
         RelativeLayout expandableLayout;
-
+        RecyclerView subjectsRecyclerView;
 
 
         public CommissionViewHolder(@NonNull View parent) {
@@ -60,17 +65,14 @@ public class CommissionAdapter extends RecyclerView.Adapter<CommissionAdapter.Co
 
             commissionId = parent.findViewById(R.id.commission_name);
             year = parent.findViewById(R.id.year_details);
-
+            subjectsRecyclerView = parent.findViewById(R.id.recycler_child_view);
             linearLayout = parent.findViewById(R.id.linear_layout);
             expandableLayout = parent.findViewById(R.id.expandable_layout);
 
-            linearLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Commission commission = commissionList.get(getAdapterPosition());
-                    commission.setExpandable(!commission.isExpandable());
-                    notifyItemChanged(getAdapterPosition());
-                }
+            linearLayout.setOnClickListener(v -> {
+                Commission commission = commissionList.get(getAdapterPosition());
+                commission.setExpandable(!commission.isExpandable());
+                notifyItemChanged(getAdapterPosition());
             });
         }
     }
