@@ -12,7 +12,7 @@
         android:id="@+id/linear_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="?attr/colorPrimaryVariant"
         android:orientation="vertical"
         android:padding="0dp">
 
@@ -55,7 +55,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
                 android:contentDescription="Display"
-                app:srcCompat="@drawable/deprecated_ic_key_focused" />
+                app:srcCompat="@drawable/ic_arrow_down" />
 
 
         </RelativeLayout>
