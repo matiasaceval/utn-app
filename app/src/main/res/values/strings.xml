@@ -65,6 +65,9 @@
     <string name="subject_prefix_second">Segundo</string>
     <string name="subject_prefix_third">Tercer</string>
 
-
     <string name="subscription_button">Subscribe</string>
+
+    <string name="bottom_menu_subscriptions">Subscriptions</string>
+    <string name="bottom_menu_calendar">Calendar</string>
+    <string name="bottom_menu_profile">Profile</string>
 </resources>

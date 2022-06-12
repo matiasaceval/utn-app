@@ -6,7 +6,10 @@ public class CallBackRequest<T>  implements ICallBackRequest<T> {
     }
 
     @Override
-    public void onSuccess(T response) {}
+    public void onSuccess(T response) {
+    }
+
     @Override
-    public void onError(int statusCode) {}
+    public void onError(int statusCode) {
+    }
 }

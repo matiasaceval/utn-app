@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:layout_gravity="center_horizontal"
+    android:background="?attr/backgroundColor"
+    tools:context=".CalendarFragment">
+
+    <RelativeLayout
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ar.edu.utn.mdp.utnapp.calendar.CalendarView
+            android:id="@+id/calendar_view"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="32dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/calendar_recycler_view"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/calendar_view"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center" />
+
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/indeterminate_linear_indicator"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:indeterminateTint="?attr/colorSecondaryVariant"
+        android:layout_marginBottom="-6dp"
+        android:indeterminate="true" />
+
+</RelativeLayout>
