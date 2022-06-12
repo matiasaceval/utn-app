@@ -1,6 +1,7 @@
 package ar.edu.utn.mdp.utnapp;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -57,5 +58,6 @@ public class RegisterActivity extends AppCompatActivity {
         email.setOnFocusChangeListener((v, hasFocus) -> ErrorLayout.clearError(layouts));
         password.setOnFocusChangeListener((v, hasFocus) -> ErrorLayout.clearError(layouts));
         confirmPassword.setOnFocusChangeListener((v, hasFocus) -> ErrorLayout.clearError(layouts));
+
     }
 }

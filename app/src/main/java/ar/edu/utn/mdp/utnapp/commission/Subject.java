@@ -1,5 +1,11 @@
 package ar.edu.utn.mdp.utnapp.commission;
 
+import androidx.annotation.NonNull;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.HashSet;
 import java.util.Objects;
 
 public class Subject {
@@ -12,6 +18,18 @@ public class Subject {
         this.name = name;
         this.id = id;
         this.year = year;
+    }
+
+    public static HashSet<String> parse (JSONArray response){
+        HashSet<String> subjects = new HashSet<>();
+        for (int i = 0; i < response.length(); i++) {
+            try {
+                subjects.add((String) response.get(i));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return subjects;
     }
 
     public String getName() {
@@ -59,12 +77,9 @@ public class Subject {
         return Objects.hash(name, id, year);
     }
 
+    @NonNull
     @Override
     public String toString() {
-        return "Subject{" +
-                "name='" + name + '\'' +
-                ", id=" + id +
-                ", year=" + year +
-                '}';
+        return year + "-com" + id + "-" + name;
     }
 }

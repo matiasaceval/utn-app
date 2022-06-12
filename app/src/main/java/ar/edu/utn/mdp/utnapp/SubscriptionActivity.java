@@ -1,21 +1,36 @@
 package ar.edu.utn.mdp.utnapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 
 import ar.edu.utn.mdp.utnapp.commission.Commission;
 import ar.edu.utn.mdp.utnapp.commission.CommissionAdapter;
 import ar.edu.utn.mdp.utnapp.commission.Subject;
 import ar.edu.utn.mdp.utnapp.errors.ErrorDialog;
+import ar.edu.utn.mdp.utnapp.events.SubscriptionEvent;
+import ar.edu.utn.mdp.utnapp.fetch.callbacks.CallBackRequest;
+import ar.edu.utn.mdp.utnapp.fetch.models.User;
+import ar.edu.utn.mdp.utnapp.fetch.request.HTTP_STATUS;
+import ar.edu.utn.mdp.utnapp.fetch.request.user_auth.UserModel;
+import ar.edu.utn.mdp.utnapp.fetch.request.user_auth.login.LoginModel;
+import ar.edu.utn.mdp.utnapp.user.UserContext;
 
 public class SubscriptionActivity extends AppCompatActivity {
 
@@ -34,15 +49,7 @@ public class SubscriptionActivity extends AppCompatActivity {
         setRecyclerView();
         Button submit = findViewById(R.id.submit_subscription);
 
-        submit.setOnClickListener(v -> {
-
-            if (subscriptionList.size() < 1) {
-                new ErrorDialog(this, "😱 Whoops!", "Parece que te has olvidado de seleccionar al menos una materia...", R.drawable.ic_alert);
-            } else {
-                // TODO: Implementar el envio de la suscripcion
-            }
-
-        });
+        submit.setOnClickListener(SubscriptionEvent.clickOnSubscription(this, subscriptionList));
 
 
     }

@@ -64,4 +64,7 @@
     <string name="subject_prefix_first">Primer</string>
     <string name="subject_prefix_second">Segundo</string>
     <string name="subject_prefix_third">Tercer</string>
+
+
+    <string name="subscription_button">Subscribe</string>
 </resources>

@@ -19,9 +19,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intentSub = new Intent(this, SubscriptionActivity.class);
-        startActivity(intentSub);
-
         TextView tv = findViewById(R.id.textView);
         Button btn = findViewById(R.id.logout);
         Button btn2 = findViewById(R.id.holidays);
