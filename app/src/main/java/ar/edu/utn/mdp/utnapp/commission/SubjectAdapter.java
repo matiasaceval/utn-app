@@ -11,19 +11,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import java.util.List;
 
 import ar.edu.utn.mdp.utnapp.R;
 
 public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectViewHolder> {
 
-    List<Subject> subscriptionList;
+    List<Subscription> subscriptionList;
     List<String> subjectsList;
-    private int commissionId;
-    private int commissionYear;
+    private final int commissionId;
+    private final int commissionYear;
 
-    public SubjectAdapter(Commission commission, List<Subject> subscriptionList) {
+    public SubjectAdapter(Commission commission, List<Subscription> subscriptionList) {
         this.subjectsList = commission.getSubjects();
         this.commissionId = commission.getId();
         this.commissionYear = commission.getYear();
@@ -41,7 +40,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
     @Override
     public void onBindViewHolder(@NonNull SubjectAdapter.SubjectViewHolder holder, int position) {
         String subject = subjectsList.get(position);
-        Subject cardSubject = new Subject(subject, commissionId, commissionYear);
+        Subscription cardSubject = new Subscription(subject, commissionId, commissionYear);
         holder.checkBox.setChecked(subscriptionList.contains(cardSubject));
         holder.checkBox.setTag(cardSubject);
         holder.subject.setText(subject);
@@ -57,9 +56,9 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
         TextView subject;
         CheckBox checkBox;
         RelativeLayout boxLayout;
-        List<Subject> subscriptionList;
+        List<Subscription> subscriptionList;
 
-        public SubjectViewHolder(@NonNull View parent, List<Subject> subscriptionList) {
+        public SubjectViewHolder(@NonNull View parent, List<Subscription> subscriptionList) {
             super(parent);
             this.subscriptionList = subscriptionList;
             subject = parent.findViewById(R.id.subject_name);
@@ -67,7 +66,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
             boxLayout = parent.findViewById(R.id.box_layout);
 
             boxLayout.setOnClickListener(v -> {
-                Subject subject = (Subject) checkBox.getTag();
+                Subscription subject = (Subscription) checkBox.getTag();
                 checkBox.setChecked(!checkBox.isChecked());
                 if (checkBox.isChecked()) {
                     System.out.println("Checked");

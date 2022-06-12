@@ -89,10 +89,9 @@
     </style>
 
     <style name="BottomNavigationTheme" parent="Theme.AppCompat.Light">
-        <item name="colorPrimary">@color/white</item>
-        <item name="android:textColorSecondary">?attr/colorOnSecondary</item>
-        <item name="itemTextAppearanceActive">@color/white</item>
-        <item name="itemTextAppearanceInactive">@color/alpha_white</item>
+        <item name="colorPrimary">@color/secondary_700</item>
+        <item name="android:textColorSecondary">@color/white</item>
+        <item name="backgroundColor">@color/primary_700</item>
     </style>
 
 </resources>

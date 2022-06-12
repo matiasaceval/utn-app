@@ -96,10 +96,12 @@ public class CalendarFragment extends Fragment {
             }
         });
 
-        CommissionModel.getSubjectsByCommission(view.getContext(), 5, 1, new CallBackRequest<JSONArray>() {
+        int commission = 2;
+        int year = 1;
+        CommissionModel.getSubjectsByCommission(view.getContext(), year, commission, new CallBackRequest<JSONArray>() {
             @Override
             public void onSuccess(JSONArray response) {
-                events.addAll(Subject.toCalendarSchemaList(Subject.parse(response)));
+                events.addAll(Subject.toCalendarSchemaList(Subject.parse(response, year, commission)));
                 done[2] = true;
                 fakeObserver(done, progressIndicator);
             }

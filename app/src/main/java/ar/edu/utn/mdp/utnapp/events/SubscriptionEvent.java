@@ -5,13 +5,16 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+
 import org.json.JSONObject;
+
 import java.util.HashSet;
 import java.util.List;
+
 import ar.edu.utn.mdp.utnapp.MainActivity;
 import ar.edu.utn.mdp.utnapp.ProgressDialog;
 import ar.edu.utn.mdp.utnapp.R;
-import ar.edu.utn.mdp.utnapp.commission.Subject;
+import ar.edu.utn.mdp.utnapp.commission.Subscription;
 import ar.edu.utn.mdp.utnapp.errors.ErrorDialog;
 import ar.edu.utn.mdp.utnapp.fetch.callbacks.CallBackRequest;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
@@ -21,7 +24,7 @@ import ar.edu.utn.mdp.utnapp.utils.Network;
 
 public class SubscriptionEvent {
 
-    public static View.OnClickListener clickOnSubscription(Context ctx, List<Subject> subscriptionList) {
+    public static View.OnClickListener clickOnSubscription(Context ctx, List<Subscription> subscriptionList) {
         return view -> {
             if (!Network.isNetworkConnected(ctx, true)) return;
 
@@ -57,9 +60,9 @@ public class SubscriptionEvent {
         };
     }
 
-    private static HashSet<String> subcriptionListToHashSet(List<Subject> subscriptionList) {
+    private static HashSet<String> subcriptionListToHashSet(List<Subscription> subscriptionList) {
         HashSet<String> subscriptionSet = new HashSet<>(subscriptionList.size());
-        for (Subject subject : subscriptionList) {
+        for (Subscription subject : subscriptionList) {
             subscriptionSet.add(subject.toString());
         }
         return subscriptionSet;

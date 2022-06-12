@@ -8,12 +8,23 @@
     android:background="?attr/backgroundColor"
     tools:context=".MainActivity">
 
+    <View
+        android:id="@+id/view_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/shadow"
+        app:layout_constraintBottom_toTopOf="@+id/main_bottom_navigation_view" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/main_bottom_navigation_view"
         android:theme="@style/BottomNavigationTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorSecondary"
+        android:background="?attr/backgroundColor"
+        android:elevation="8dp"
+        app:elevation="8dp"
+        app:itemIconTint="@drawable/navigation_bar_ic_color"
+        app:itemTextColor="@drawable/navigation_bar_ic_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +36,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:defaultNavHost="true"
-        app:layout_constraintBottom_toTopOf="@+id/main_bottom_navigation_view"
+        app:layout_constraintBottom_toTopOf="@+id/view_shadow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

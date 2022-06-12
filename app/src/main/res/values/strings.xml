@@ -54,6 +54,11 @@
     <string name="calendar_saturday">SAB</string>
     <string name="calendar_sunday">DOM</string>
 
+    <string name="cardview_event_type_exam">Parcial</string>
+    <string name="cardview_event_type_holiday">Feriado</string>
+    <string name="cardview_event_type_activity">Actividad</string>
+    <string name="cardview_event_type_makeup_exam">Recuperatorio</string>
+    <string name="cardview_event_type_extra">Extra</string>
     <string name="cardview_event_allday">Todo el día</string>
     <string name="event_type_placeholder">HOLIDAY</string>
     <string name="event_title_placeholder">Event title displayed here</string>

@@ -1,9 +1,5 @@
 package ar.edu.utn.mdp.utnapp.user;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-
-import ar.edu.utn.mdp.utnapp.commission.Subject;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
 
 public class UserSubscription {

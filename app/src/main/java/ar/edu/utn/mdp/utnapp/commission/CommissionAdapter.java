@@ -16,10 +16,10 @@ import ar.edu.utn.mdp.utnapp.R;
 
 public class CommissionAdapter extends RecyclerView.Adapter<CommissionAdapter.CommissionViewHolder> {
 
-    List<Subject> subscriptionList;
+    List<Subscription> subscriptionList;
     List<Commission> commissionList;
 
-    public CommissionAdapter(List<Commission> commissionList, List<Subject> subscriptionList) {
+    public CommissionAdapter(List<Commission> commissionList, List<Subscription> subscriptionList) {
         this.commissionList = commissionList;
         this.subscriptionList = subscriptionList;
     }

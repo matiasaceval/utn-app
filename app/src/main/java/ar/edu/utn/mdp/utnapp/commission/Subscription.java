@@ -8,13 +8,13 @@ import org.json.JSONException;
 import java.util.HashSet;
 import java.util.Objects;
 
-public class Subject {
+public class Subscription {
     private String name;
     private int id;
     private int year;
     private boolean subscribed;
 
-    public Subject(String name, int id, int year) {
+    public Subscription(String name, int id, int year) {
         this.name = name;
         this.id = id;
         this.year = year;
@@ -68,7 +68,7 @@ public class Subject {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Subject subject = (Subject) o;
+        Subscription subject = (Subscription) o;
         return id == subject.id && year == subject.year && Objects.equals(name, subject.name);
     }
 

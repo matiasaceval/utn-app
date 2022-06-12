@@ -9,6 +9,8 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.airbnb.lottie.LottieAnimationView;
+
 import org.json.JSONObject;
 
 import ar.edu.utn.mdp.utnapp.errors.ErrorDialog;
@@ -21,16 +23,20 @@ import ar.edu.utn.mdp.utnapp.utils.Network;
 @SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
 
+    LottieAnimationView anim;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         if (getSupportActionBar() != null) getSupportActionBar().hide();
 
+        anim = findViewById(R.id.loadingDots);
         UserContext.verifyUserConnection(SplashActivity.this, null, () -> {
             try {
                 final User user = UserContext.getUserCredentials(SplashActivity.this);
                 if (!user.canLogin()) {
+                    anim.cancelAnimation();
                     logout(SplashActivity.this);
                     return;
                 }
@@ -55,6 +61,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void goToMain() {
+        anim.cancelAnimation();
         Intent intent = new Intent(SplashActivity.this, MainActivity.class);
         startActivity(intent);
         finish();

@@ -6,6 +6,7 @@
     app:cardCornerRadius="10dp"
     android:layout_marginTop="10dp"
     android:background="?attr/backgroundColor"
+    app:cardBackgroundColor="?attr/backgroundColor"
     android:elevation="0dp">
 
     <RelativeLayout
@@ -24,6 +25,7 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="15dp"
+            android:textSize="14sp"
             android:fontFamily="@font/opensans_bold"
             android:text="@string/event_title_placeholder"
             android:textColor="?attr/colorOnPrimary" />
@@ -37,7 +39,8 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="15dp"
-            android:fontFamily="@font/opensans_bold"
+            android:textSize="12sp"
+            android:fontFamily="@font/opensans_italic"
             android:text="@string/event_type_placeholder"
             android:textColor="?attr/colorOnPrimary" />
 
@@ -50,6 +53,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/opensans_regular"
+            android:textSize="12sp"
             android:text="@string/event_details_placeholder"
             android:textColor="?attr/colorOnPrimary" />
 

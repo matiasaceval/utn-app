@@ -9,19 +9,19 @@
     tools:context=".SubscriptionActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:fadingEdge="horizontal"
-        android:fadingEdgeLength="30dp"
-        android:fillViewport="false"
-        android:requiresFadingEdge="vertical"
-
         android:id="@+id/recycler_view"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/submit_subscription"
+
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="12dp"
+        android:fadingEdge="horizontal"
+        android:fadingEdgeLength="30dp"
+        android:fillViewport="false"
+        android:requiresFadingEdge="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
 
 

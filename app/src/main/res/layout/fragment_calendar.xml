@@ -25,8 +25,12 @@
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/calendar_view"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center" />
+            android:fadingEdge="horizontal"
+            android:fadingEdgeLength="30dp"
+            android:fillViewport="false"
+            android:requiresFadingEdge="vertical"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp" />
 
     </RelativeLayout>
 
@@ -35,9 +39,9 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:indeterminateTint="?attr/colorSecondaryVariant"
-        android:layout_marginBottom="-6dp"
-        android:indeterminate="true" />
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="-6dp"
+        android:indeterminate="true"
+        android:indeterminateTint="?attr/colorSecondaryVariant" />
 
 </RelativeLayout>

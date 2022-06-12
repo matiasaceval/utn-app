@@ -16,7 +16,7 @@ import ar.edu.utn.mdp.utnapp.user.UserContext;
 
 public class CommissionModel {
 
-    public static void getSubjectsByCommission(@NonNull Context ctx, int commission, int year, CallBackRequest<JSONArray> callBack) {
+    public static void getSubjectsByCommission(@NonNull Context ctx, int year, int commission, CallBackRequest<JSONArray> callBack) {
         UserContext.verifyUserConnection(ctx);
         String URL_COM = API_URL.COMMISSION.getURL();
         URL_COM = URL_COM.concat("/" + commission + "/" + year);
