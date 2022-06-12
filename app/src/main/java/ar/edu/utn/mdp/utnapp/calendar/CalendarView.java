@@ -211,6 +211,7 @@ public class CalendarView extends LinearLayout {
                 // if it is today, set it to blue/bold
                 text.setTypeface(null, Typeface.BOLD);
                 text.setTextColor(ResourcesCompat.getColor(getResources(), R.color.secondary_500, null));
+                text.post(text::callOnClick);
             }
 
             if (month != currentLocalDate.getMonthValue() || year != currentLocalDate.getYear()) {
