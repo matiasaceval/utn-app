@@ -3,7 +3,7 @@
     <color name="mtrl_textinput_default_box_stroke_color" tools:ignore="PrivateResource">
         @color/white
     </color>
-
+    <color name="primary_200">#3C4148</color>
     <color name="primary_500">#2a2e34</color>
     <color name="primary_700">#1e2328</color>
 

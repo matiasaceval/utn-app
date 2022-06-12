@@ -1,5 +1,9 @@
 package ar.edu.utn.mdp.utnapp.user;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
+import ar.edu.utn.mdp.utnapp.commission.Subject;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
 
 public class UserSubscription {
@@ -8,9 +12,8 @@ public class UserSubscription {
         return user.getSubscription().size() != 0;
     }
 
-    public static void addSubject(User user, String year, String numCommission, String subject) {
-        final String subscription = year + "-com" + numCommission + "-" + subject;
-        user.addSubscription(subscription);
+    public static void addSubject(User user) {
+
     }
 
     public static void deleteSubject(User user, String year, String numCommission, String subject) {

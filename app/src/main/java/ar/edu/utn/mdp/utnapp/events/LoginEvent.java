@@ -13,6 +13,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONObject;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,7 @@ import ar.edu.utn.mdp.utnapp.LoginActivity;
 import ar.edu.utn.mdp.utnapp.MainActivity;
 import ar.edu.utn.mdp.utnapp.ProgressDialog;
 import ar.edu.utn.mdp.utnapp.RegisterActivity;
+import ar.edu.utn.mdp.utnapp.SubscriptionActivity;
 import ar.edu.utn.mdp.utnapp.errors.ErrorDialog;
 import ar.edu.utn.mdp.utnapp.errors.ErrorLayout;
 import ar.edu.utn.mdp.utnapp.fetch.callbacks.CallBackRequest;
@@ -47,9 +49,16 @@ public final class LoginEvent {
             LoginModel.loginUser(ctx, usr, new CallBackRequest<JSONObject>() {
                 @Override
                 public void onSuccess(JSONObject response) {
-                    progress.dismiss();
-                    Intent intent = new Intent(ctx, MainActivity.class);
+                    User user = UserContext.getUser(ctx);
+                    HashSet<String> subscriptionSet = user.getSubscription();
+                    Intent intent;
+                    if (!subscriptionSet.isEmpty()) {
+                        intent = new Intent(ctx, MainActivity.class);
+                    } else {
+                        intent = new Intent(ctx, SubscriptionActivity.class);
+                    }
                     ctx.startActivity(intent);
+                    progress.dismiss();
                     ((Activity)ctx).finish();
                 }
 

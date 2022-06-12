@@ -15,6 +15,12 @@
         android:theme="@style/Theme.UTNApp"
         tools:targetApi="31">
         <activity
+            android:name=".SubscriptionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CalendarActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="false"
             android:launchMode="singleTask"

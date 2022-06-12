@@ -50,11 +50,12 @@ public class UserModel {
     }
 
     // The user is sent to the request with his validated fields
-    public static void putUserByEmail(@NonNull Context ctx, User user, CallBackRequest<JSONObject> callBack) {
+    public static void updateUser(@NonNull Context ctx, User user, CallBackRequest<JSONObject> callBack) {
         String URL_USER = API_URL.USER.getURL();
 
         URL_USER = URL_USER.concat("/" + user.getEmail());
         JSONObject body = userToBodyObject(user);
+        System.out.println(body);
 
         JSONObjectRequest request = new JSONObjectRequest(Request.Method.PUT, URL_USER, body,
                 response -> {
@@ -71,9 +72,10 @@ public class UserModel {
         try {
 
             body.put("email", user.getEmail());
-            body.put("role", user.getName());
+            body.put("role", user.getRole());
             body.put("name", user.getName());
             body.put("subscription", user.getSubscription());
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

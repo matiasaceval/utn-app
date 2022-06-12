@@ -5,13 +5,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public final class User {
     private String name = "null";
     private String email = "null";
     private String password = "null";
     private String role = "user";
-    private ArrayList<String> subscription = new ArrayList<>();
+    private HashSet<String> subscription = new HashSet<>();
 
     public User(String email, String password) {
         setEmail(email);
@@ -31,14 +32,14 @@ public final class User {
         setPassword(password);
     }
 
-    public User(String name, String email, String role, ArrayList<String> subscription) {
+    public User(String name, String email, String role, HashSet<String> subscription) {
         setName(name);
         setEmail(email);
         setRole(role);
         setSubscription(subscription);
     }
 
-    private void setSubscription(ArrayList<String> subscription) {
+    public void setSubscription(HashSet<String> subscription) {
         this.subscription = subscription;
     }
 
@@ -56,8 +57,8 @@ public final class User {
         }
         return null;
     }
-    private static ArrayList<String> getSubscriptionFromJSON(JSONArray subscription){
-        ArrayList<String> subscriptionList = new ArrayList<>();
+    private static HashSet<String> getSubscriptionFromJSON(JSONArray subscription){
+        HashSet<String> subscriptionList = new HashSet<>();
 
         try {
             for (int i = 0; i < subscription.length(); i++) {
@@ -74,8 +75,8 @@ public final class User {
         this.subscription.add(newSubscription);
     }
 
-    public ArrayList<String> getSubscription() {
-        return new ArrayList<>(subscription);
+    public HashSet<String> getSubscription() {
+        return subscription;
     }
     public String getName() {
         return name;

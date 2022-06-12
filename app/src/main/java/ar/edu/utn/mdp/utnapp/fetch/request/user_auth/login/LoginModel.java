@@ -10,6 +10,9 @@ import com.android.volley.Request;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Set;
+
+import ar.edu.utn.mdp.utnapp.commission.Subject;
 import ar.edu.utn.mdp.utnapp.fetch.callbacks.CallBackRequest;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
 import ar.edu.utn.mdp.utnapp.fetch.request.API_URL;
@@ -33,6 +36,7 @@ public final class LoginModel {
                             userPrefs.edit().putString("email", response.getString("email")).apply();
                             userPrefs.edit().putString("role", response.getString("role")).apply();
                             userPrefs.edit().putString("password", Password.encode(user.getPassword())).apply();
+                            userPrefs.edit().putStringSet("subscription", Subject.parse(response.getJSONArray("subscription"))).apply();
                             cookiePrefs.edit().putString("access_token", LoginConnection.getCookie()).apply();
                             if (callBack != null) callBack.onSuccess(null);
 

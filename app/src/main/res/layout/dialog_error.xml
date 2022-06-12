@@ -40,7 +40,6 @@
         android:fontFamily="@font/opensans_bold"
         android:text="@string/dialog_error_title"
         android:textAlignment="center"
-        android:textAllCaps="true"
         android:textColor="?attr/colorOnPrimary"
         android:textIsSelectable="false"
         android:textSize="24sp"
