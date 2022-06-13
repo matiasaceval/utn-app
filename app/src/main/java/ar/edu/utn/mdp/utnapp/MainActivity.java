@@ -1,5 +1,6 @@
 package ar.edu.utn.mdp.utnapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,11 +21,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         if (getSupportActionBar() != null) getSupportActionBar().hide();
 
+        if (getIntent().getBooleanExtra("UPDATED", false)) {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        }
+
         UserContext.verifyUserConnection(this);
         User user = UserContext.getUser(this);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.main_bottom_navigation_view);
         NavController navController = Navigation.findNavController(this, R.id.fragmentContainerView);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
+
     }
 }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="mtrl_textinput_default_box_stroke_color" tools:ignore="PrivateResource">
+        @color/white
+    </color>
+    <color name="primary_200">#3C4148</color>
+    <color name="primary_500">#2a2e34</color>
+    <color name="primary_700">#1e2328</color>
+
+    <color name="secondary_500">#6bd0ff</color>
+    <color name="secondary_700">#3fa0ef</color>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="alpha_white">#1AFFFFFF</color>
+    <color name="alpha_white_date">#80FFFFFF</color>
+    <color name="transparent">#00FFFFFF</color>
+
+    <color name="focused">@color/secondary_700</color>
+    <color name="link">@color/secondary_500</color>
+    <color name="error">#FB4545</color>
+    <color name="footer_drawable">@color/primary_700</color>
+
+    <color name="activity">#A47CFF</color>
+    <color name="holiday">#FFFD7C</color>
+
+    <color name="onActivity">@color/primary_700</color>
+    <color name="onHoliday">@color/primary_700</color>
+
+    <color name="exam">#FF7C7C</color>
+    <color name="makeup_exam">#57FF5A</color>
+    <color name="extra">#7CFFD1</color>
+</resources>

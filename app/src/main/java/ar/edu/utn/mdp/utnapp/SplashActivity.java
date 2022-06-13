@@ -4,10 +4,12 @@ import static ar.edu.utn.mdp.utnapp.events.LoginEvent.logout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.airbnb.lottie.LottieAnimationView;
 
@@ -30,6 +32,10 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         if (getSupportActionBar() != null) getSupportActionBar().hide();
+
+        SharedPreferences prefs = getSharedPreferences("Theme", MODE_PRIVATE);
+        boolean isNightModeOn = prefs.getBoolean("isNightModeOn", true);
+        AppCompatDelegate.setDefaultNightMode(isNightModeOn ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
 
         anim = findViewById(R.id.loadingDots);
         UserContext.verifyUserConnection(SplashActivity.this, null, () -> {
