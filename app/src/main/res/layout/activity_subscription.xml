@@ -38,8 +38,8 @@
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="12dp"
         android:background="@drawable/button"
-        android:text="@string/subscription_button"
-        android:textColor="?attr/colorOnPrimary" />
+        android:text="@string/subscription_button_text"
+        android:textColor="?attr/colorOnSecondary" />
 
 
 </RelativeLayout>

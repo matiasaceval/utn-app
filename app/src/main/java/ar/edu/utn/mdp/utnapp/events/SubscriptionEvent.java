@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.View;
 
 import org.json.JSONObject;
@@ -33,10 +34,13 @@ public class SubscriptionEvent {
                 return;
             }
 
+            final SharedPreferences userPrefs = ctx.getSharedPreferences("User", Context.MODE_PRIVATE);
             HashSet<String> subscriptionSet = subcriptionListToHashSet(subscriptionList);
 
             User user = UserContext.getUser(ctx);
             user.setSubscription(subscriptionSet);
+            userPrefs.edit().putStringSet("subscription", subscriptionSet).apply();
+
 
             Dialog progress = new ProgressDialog(ctx);
 
@@ -45,9 +49,9 @@ public class SubscriptionEvent {
                 public void onSuccess(JSONObject response) {
                     progress.dismiss();
                     Intent intent = new Intent(ctx, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     ctx.startActivity(intent);
                     ((Activity) ctx).finish();
-
                 }
 
                 @Override

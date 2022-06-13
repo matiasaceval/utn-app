@@ -5,4 +5,7 @@
     <integer name="password_min_length">8</integer>
     <integer name="password_max_length">64</integer>
 
+    <integer name="first_year_commission_amount">10</integer>
+    <integer name="second_year_commission_amount">5</integer>
+
 </resources>

@@ -1,9 +1,11 @@
 package ar.edu.utn.mdp.utnapp.commission;
 
 
+import androidx.annotation.NonNull;
+
 import java.util.List;
 
-public class Commission {
+public final class Commission {
 
     private int id;
     private int year;
@@ -50,6 +52,7 @@ public class Commission {
     }
 
 
+    @NonNull
     @Override
     public String toString() {
         return "Commission{" +

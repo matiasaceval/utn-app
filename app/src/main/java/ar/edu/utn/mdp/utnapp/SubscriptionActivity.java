@@ -27,11 +27,28 @@ public class SubscriptionActivity extends AppCompatActivity {
         this.subscriptionList = new ArrayList<>(50);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subscription);
+        if (getSupportActionBar() != null) getSupportActionBar().hide();
+
+
         recyclerView = findViewById(R.id.recycler_view);
+        Button submit = findViewById(R.id.submit_subscription);
+
+        List<String> previousList = getIntent().getExtras().getStringArrayList("subscriptions");
+        if (previousList != null) {
+            subscriptionList.clear();
+            submit.setText(this.getResources().getString(R.string.subscription_button_text_update));
+            for (String s : previousList) {
+                final String[] splitted = s.split("-");
+                final String year = splitted[0];
+                final String com = splitted[1].split("com")[1];
+                final String subject = splitted[2];
+                System.out.println(year + " " + com + " " + subject);
+                this.subscriptionList.add(new Subscription(subject, Integer.parseInt(com), Integer.parseInt(year)));
+            }
+        }
 
         populateCommissionList();
         setRecyclerView();
-        Button submit = findViewById(R.id.submit_subscription);
 
         submit.setOnClickListener(SubscriptionEvent.clickOnSubscription(this, subscriptionList));
 
@@ -51,8 +68,8 @@ public class SubscriptionActivity extends AppCompatActivity {
         final String[] SECOND_YEAR_SUBJECTS = {"Elementos de Investigación Operativa", "Programación III", "Laboratorio III", "Organización Contable de la Empresa", "Organización Empresarial"};
         final int FIRST_YEAR = 1;
         final int SECOND_YEAR = 2;
-        final int FIRST_YEAR_COMMISSION_SIZE = 10;
-        final int SECOND_YEAR_COMMISSION_SIZE = 5;
+        final int FIRST_YEAR_COMMISSION_SIZE = getResources().getInteger(R.integer.first_year_commission_amount);
+        final int SECOND_YEAR_COMMISSION_SIZE = getResources().getInteger(R.integer.second_year_commission_amount);
         List<String> firstYearSubjectsList = new ArrayList<>(Arrays.asList(FIRST_YEAR_SUBJECTS));
         List<String> secondYearSubjectsList = new ArrayList<>(Arrays.asList(SECOND_YEAR_SUBJECTS));
         firstYearSubjectsList.sort(String::compareTo);
@@ -65,7 +82,6 @@ public class SubscriptionActivity extends AppCompatActivity {
             if (i < SECOND_YEAR_COMMISSION_SIZE) {
                 commissionList.add(new Commission(i + 1, SECOND_YEAR, secondYearSubjectsList));
             }
-
         }
         commissionList.sort(Comparator.comparingInt(Commission::getYear));
     }

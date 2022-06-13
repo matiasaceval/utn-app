@@ -15,6 +15,19 @@
         android:background="@drawable/button"
         android:textColor="?attr/colorOnPrimary"
         android:gravity="center"
-        android:text="LOG OUT" />
+        android:text="LOG OUT"
+        tools:ignore="HardcodedText" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/theme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/button"
+        android:textColor="?attr/colorOnPrimary"
+        android:layout_below="@id/logout"
+        android:gravity="center"
+        android:text="THEME"
+        tools:ignore="HardcodedText" />
 
 </RelativeLayout>

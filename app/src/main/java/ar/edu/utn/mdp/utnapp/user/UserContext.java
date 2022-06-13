@@ -33,7 +33,7 @@ public final class UserContext {
         return new User(email, decodedPassword);
     }
 
-    public static void verifyUserConnection(Context ctx) {
+    public static int verifyUserConnection(Context ctx) {
         final int statusCode = LoginConnection.verifyAccountIntegration(ctx);
 
         switch (statusCode) {
@@ -46,6 +46,7 @@ public final class UserContext {
             case HTTP_STATUS.SUCCESS_OK:
                 break;
         }
+        return statusCode;
     }
 
     public static void verifyUserConnection(Context ctx, @Nullable Function unauthorized, @Nullable Function redirect, @Nullable Function success) {
