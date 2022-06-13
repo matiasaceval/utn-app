@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -21,7 +22,8 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:contentDescription="@string/calendar_previous_month"
-            android:src="@drawable/ic_previous_arrow" />
+            android:src="@drawable/ic_previous_arrow"
+            app:tint="?attr/colorOnPrimary" />
 
         <!-- date title -->
         <TextView
@@ -34,7 +36,7 @@
             android:gravity="center"
             android:text="current date"
             android:textAppearance="@android:style/TextAppearance.Medium"
-            android:textColor="?attr/colorOnSecondary"
+            android:textColor="?attr/colorOnPrimary"
             tools:ignore="HardcodedText" />
 
         <!-- next button -->
@@ -45,7 +47,8 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:contentDescription="@string/calendar_next_month"
-            android:src="@drawable/ic_next_arrow" />
+            android:src="@drawable/ic_next_arrow"
+            app:tint="?attr/colorOnPrimary" />
     </RelativeLayout>
 
     <!-- days header -->
@@ -61,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:textColor="?attr/colorOnSecondary"
+            android:textColor="?attr/colorOnPrimary"
             android:text="@string/calendar_sunday" />
 
         <TextView
@@ -69,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:textColor="?attr/colorOnSecondary"
+            android:textColor="?attr/colorOnPrimary"
             android:text="@string/calendar_monday" />
 
         <TextView
@@ -77,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:textColor="?attr/colorOnSecondary"
+            android:textColor="?attr/colorOnPrimary"
             android:text="@string/calendar_tuesday" />
 
         <TextView
@@ -85,7 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:textColor="?attr/colorOnSecondary"
+            android:textColor="?attr/colorOnPrimary"
             android:text="@string/calendar_wednesday" />
 
         <TextView
@@ -93,7 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:textColor="?attr/colorOnSecondary"
+            android:textColor="?attr/colorOnPrimary"
             android:text="@string/calendar_thursday" />
 
         <TextView
@@ -101,7 +104,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:textColor="?attr/colorOnSecondary"
+            android:textColor="?attr/colorOnPrimary"
             android:text="@string/calendar_friday" />
 
         <TextView
@@ -109,7 +112,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:textColor="?attr/colorOnSecondary"
+            android:textColor="?attr/colorOnPrimary"
             android:text="@string/calendar_saturday" />
 
     </LinearLayout>
