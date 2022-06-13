@@ -4,8 +4,8 @@
         @color/black
     </color>
     <color name="primary_200">#FFFFFF</color>
-    <color name="primary_500">#F6F6F6</color>
-    <color name="primary_700">#FFFFFF</color>
+    <color name="primary_500">#FFFFFF</color>
+    <color name="primary_700">#F6F6F6</color>
 
     <color name="secondary_500">#8BDAFF</color>
     <color name="secondary_700">#55B1FB</color>

@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -54,6 +55,32 @@ public final class Subject {
         this.exam = exam;
         this.makeupExam = makeupExam;
         this.extra = extra;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public int getCommission() {
+        return commission;
+    }
+
+    public static List<Subject> filter(List<Subject> list, HashSet<String> filters) {
+        List<Subject> result = new ArrayList<>();
+        for (Subject subject : list) {
+            for (String filter : filters) {
+                String[] splitted = filter.split("-");
+                int year = Integer.parseInt(splitted[0]);
+                int commission = Integer.parseInt(splitted[1].split("com")[1]);
+                String name = splitted[2];
+
+                if (subject.getSubject().equals(name) && subject.getYear() == year && subject.getCommission() == commission) {
+                    result.add(subject);
+                    break;
+                }
+            }
+        }
+        return result;
     }
 
     public static List<Subject> parse(JSONArray response) {

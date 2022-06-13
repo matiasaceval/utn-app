@@ -14,8 +14,11 @@ import org.json.JSONArray;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 import ar.edu.utn.mdp.utnapp.calendar.CalendarView;
 import ar.edu.utn.mdp.utnapp.errors.ErrorDialog;
@@ -60,21 +63,21 @@ public class CalendarFragment extends Fragment {
             setAdapter(list);
         });
 
-        // TODO: Implement an actual Observer pattern
-        boolean[] done = new boolean[3];
+        HashMap<Integer, HashSet<Integer>> commissionsToFetch = getCommissionsToFetch(user.getSubscription());
+        HashMap<String, Boolean> done = generateFakeObserver(commissionsToFetch);
 
         ProgressBar progressIndicator = view.findViewById(R.id.indeterminate_linear_indicator);
         CalendarModel.getHoliday(view.getContext(), "fullYear", new CallBackRequest<JSONArray>() {
             @Override
             public void onSuccess(JSONArray response) {
                 events.addAll(Holiday.parse(response));
-                done[0] = true;
+                done.put("holiday", true);
                 fakeObserver(done, progressIndicator);
             }
 
             @Override
             public void onError(int statusCode) {
-                done[0] = true;
+                done.put("holiday", true);
                 fakeObserver(done, progressIndicator);
                 ErrorDialog.handler(statusCode, view.getContext());
             }
@@ -84,41 +87,73 @@ public class CalendarFragment extends Fragment {
             @Override
             public void onSuccess(JSONArray response) {
                 events.addAll(Activity.parse(response));
-                done[1] = true;
+                done.put("activity", true);
                 fakeObserver(done, progressIndicator);
             }
 
             @Override
             public void onError(int statusCode) {
-                done[1] = true;
+                done.put("activity", true);
                 fakeObserver(done, progressIndicator);
                 ErrorDialog.handler(statusCode, view.getContext());
             }
         });
 
-        int commission = 2;
-        int year = 1;
-        CommissionModel.getSubjectsByCommission(view.getContext(), year, commission, new CallBackRequest<JSONArray>() {
-            @Override
-            public void onSuccess(JSONArray response) {
-                events.addAll(Subject.toCalendarSchemaList(Subject.parse(response, year, commission)));
-                done[2] = true;
-                fakeObserver(done, progressIndicator);
-            }
+        for (Map.Entry<Integer, HashSet<Integer>> entry : commissionsToFetch.entrySet()) {
+            for (Integer commission : entry.getValue()) {
+                CommissionModel.getSubjectsByCommission(view.getContext(), entry.getKey(), commission, new CallBackRequest<JSONArray>() {
+                    @Override
+                    public void onSuccess(JSONArray response) {
+                        done.put(entry.getKey() + "-" + commission, true);
+                        List<Subject> subjects = Subject.parse(response, entry.getKey(), commission);
+                        List<Subject> filtered = Subject.filter(subjects, user.getSubscription());
+                        events.addAll(Subject.toCalendarSchemaList(filtered));
+                        fakeObserver(done, progressIndicator);
+                    }
 
-            @Override
-            public void onError(int statusCode) {
-                done[2] = true;
-                fakeObserver(done, progressIndicator);
-                ErrorDialog.handler(statusCode, view.getContext());
+                    @Override
+                    public void onError(int statusCode) {
+                        fakeObserver(done, progressIndicator);
+                        ErrorDialog.handler(statusCode, view.getContext());
+                    }
+                });
             }
-        });
+        }
 
         return view;
     }
 
-    private void fakeObserver(final boolean[] done, ProgressBar progressIndicator) {
-        for (boolean b : done) if (!b) return;
+    private HashMap<Integer, HashSet<Integer>> getCommissionsToFetch(HashSet<String> subscriptions) {
+        HashMap<Integer, HashSet<Integer>> commissionsToFetch = new HashMap<>();
+        for (String s : subscriptions) {
+            String[] split = s.split("-");
+            int year = Integer.parseInt(split[0]);
+            int commission = Integer.parseInt(split[1].split("com")[1]);
+
+            if (!commissionsToFetch.containsKey(year)) {
+                commissionsToFetch.put(year, new HashSet<>());
+            }
+
+            Objects.requireNonNull(commissionsToFetch.get(year)).add(commission);
+        }
+        return commissionsToFetch;
+    }
+
+    private HashMap<String, Boolean> generateFakeObserver(HashMap<Integer, HashSet<Integer>> commissionsToFetch) {
+        HashMap<String, Boolean> done = new HashMap<>();
+        done.put("holiday", false);
+        done.put("activity", false);
+
+        for (Map.Entry<Integer, HashSet<Integer>> entry : commissionsToFetch.entrySet()) {
+            for (Integer commission : entry.getValue()) {
+                done.put(entry.getKey() + "-" + commission, false);
+            }
+        }
+        return done;
+    }
+
+    private void fakeObserver(HashMap<String, Boolean> done, ProgressBar progressIndicator) {
+        for (Boolean value : done.values()) if (!value) return;
         progressIndicator.setVisibility(View.GONE);
         cv.addEvents(events);
     }

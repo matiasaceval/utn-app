@@ -37,6 +37,7 @@ public class SplashActivity extends AppCompatActivity {
         boolean isNightModeOn = prefs.getBoolean("isNightModeOn", true);
         AppCompatDelegate.setDefaultNightMode(isNightModeOn ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
 
+
         anim = findViewById(R.id.loadingDots);
 
         UserContext.verifyUserConnection(SplashActivity.this, null, () -> {
