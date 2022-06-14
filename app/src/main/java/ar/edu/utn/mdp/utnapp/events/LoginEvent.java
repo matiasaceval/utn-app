@@ -26,6 +26,7 @@ import ar.edu.utn.mdp.utnapp.errors.ErrorDialog;
 import ar.edu.utn.mdp.utnapp.errors.ErrorLayout;
 import ar.edu.utn.mdp.utnapp.fetch.callbacks.CallBackRequest;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
+import ar.edu.utn.mdp.utnapp.fetch.request.RequestSingleton;
 import ar.edu.utn.mdp.utnapp.fetch.request.user_auth.login.LoginModel;
 import ar.edu.utn.mdp.utnapp.user.UserContext;
 import ar.edu.utn.mdp.utnapp.utils.Network;
@@ -116,6 +117,7 @@ public final class LoginEvent {
 
     public static void logout(Context ctx) {
         Network.clearCache(ctx);
+        RequestSingleton.getInstance(ctx).clearCache();
         Intent intent = new Intent(ctx, LoginActivity.class);
         ctx.startActivity(intent);
         ActivityCompat.finishAffinity((Activity) ctx);

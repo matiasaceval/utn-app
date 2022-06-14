@@ -72,11 +72,13 @@ public class SplashActivity extends AppCompatActivity {
         }, () -> {
             Set<String> list = userPrefs.getStringSet("subscription", null);
 
-            if (list != null && !list.isEmpty()) goToMain();
-
-            Intent intent = new Intent(this, SubscriptionActivity.class);
-            startActivity(intent);
-            finish();
+            if (list != null && !list.isEmpty()) {
+                goToMain();
+            } else {
+                Intent intent = new Intent(this, SubscriptionActivity.class);
+                startActivity(intent);
+                finish();
+            }
         });
     }
 
