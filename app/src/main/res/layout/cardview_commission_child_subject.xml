@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="0dp"
     android:layout_marginBottom="10dp"
-    app:cardBackgroundColor="@color/primary_200"
+    app:cardBackgroundColor="@color/primary_700"
     android:elevation="0dp"
     app:cardCornerRadius="10dp">
 
@@ -14,7 +15,7 @@
         android:id="@+id/box_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primary_200"
+        android:background="@color/primary_700"
         android:gravity="center_vertical"
         android:paddingLeft="15dp"
         android:paddingTop="15dp"
@@ -30,7 +31,8 @@
             android:layout_centerVertical="true"
             android:fontFamily="@font/opensans_bold"
             android:text="Subject"
-            android:textColor="?attr/colorOnPrimary" />
+            android:textColor="?attr/colorOnPrimary"
+            tools:ignore="HardcodedText" />
 
         <CheckBox
             android:clickable="false"
@@ -38,7 +40,8 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:buttonTint="?attr/colorOnPrimary" />
 
     </RelativeLayout>
 
