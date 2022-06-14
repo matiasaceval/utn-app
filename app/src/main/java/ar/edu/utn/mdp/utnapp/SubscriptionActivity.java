@@ -33,7 +33,7 @@ public class SubscriptionActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
         Button submit = findViewById(R.id.submit_subscription);
 
-        List<String> previousList = getIntent().getExtras().getStringArrayList("subscriptions");
+        List<String> previousList = getIntent().getStringArrayListExtra("subscriptions");
         if (previousList != null) {
             subscriptionList.clear();
             submit.setText(this.getResources().getString(R.string.subscription_button_text_update));
