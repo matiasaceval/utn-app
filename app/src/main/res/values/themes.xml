@@ -91,6 +91,37 @@
         <item name="boxCornerRadiusTopEnd">10dp</item>
     </style>
 
+    <style name="TextInputLayoutCustomOutlined" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+        <item name="android:textColorHint">?attr/colorOnPrimary</item>
+        <item name="boxBackgroundColor">?attr/colorPrimaryVariant</item>
+
+        <item name="boxStrokeColor">@color/black</item>
+        <item name="hintTextColor">@color/black</item>
+
+        <item name="placeholderTextColor">@color/black</item>
+        <item name="suffixTextColor">@color/black</item>
+        <item name="prefixTextColor">@color/black</item>
+        <item name="counterTextColor">@color/black</item>
+        <item name="helperTextTextColor">@color/black</item>
+        <item name="counterOverflowTextColor">@color/black</item>
+
+        <item name="endIconTint">@color/black</item>
+
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+
+        <item name="boxStrokeErrorColor">@color/error</item>
+        <item name="errorIconTint">@color/error</item>
+        <item name="errorEnabled">false</item>
+        <item name="errorTextColor">@color/error</item>
+        <item name="errorTextAppearance">@style/ErrorStyle</item>
+
+        <item name="boxCornerRadiusTopStart">10dp</item>
+        <item name="boxCornerRadiusBottomEnd">10dp</item>
+        <item name="boxCornerRadiusBottomStart">10dp</item>
+        <item name="boxCornerRadiusTopEnd">10dp</item>
+    </style>
+
     <style name="BottomNavigationTheme" parent="Theme.AppCompat.Light">
         <item name="colorPrimary">@color/secondary_700</item>
         <item name="android:textColorSecondary">@color/black</item>

@@ -90,4 +90,16 @@
 
     <string name="subscription_button_text">Subscribe</string>
     <string name="subscription_button_text_update">Update</string>
+
+    <string name="subject_details_zoom_placeholder">Zoom</string>
+    <string name="subject_details_code_placeholder">Code</string>
+    <string name="subject_details_teacher_placeholder">Profesor</string>
+    <string name="subject_textview_exam">Parciales</string>
+    <string name="subject_details_exam_second">Segundo</string>
+    <string name="subject_details_exam_first">Primero</string>
+    <string name="subject_textview_makeup_exam">Recuperatorios</string>
+    <string name="subject_details_zoom">Zoom</string>
+    <string name="subject_textview_general_info">Información General</string>
+    <string name="timetable_hour_placeholder">10:30</string>
+    <string name="subject_textview_timetable">Horarios</string>
 </resources>

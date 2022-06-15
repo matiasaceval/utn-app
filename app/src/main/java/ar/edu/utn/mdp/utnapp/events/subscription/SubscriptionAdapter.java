@@ -1,6 +1,7 @@
 package ar.edu.utn.mdp.utnapp.events.subscription;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,13 +12,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 import ar.edu.utn.mdp.utnapp.R;
 import ar.edu.utn.mdp.utnapp.SubjectActivity;
+import ar.edu.utn.mdp.utnapp.errors.ErrorDialog;
+import ar.edu.utn.mdp.utnapp.fetch.callbacks.CallBackRequest;
 import ar.edu.utn.mdp.utnapp.fetch.models.Subject;
+import ar.edu.utn.mdp.utnapp.fetch.request.commission.CommissionModel;
 
 public class SubscriptionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -86,11 +94,33 @@ public class SubscriptionAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             view.setOnClickListener(v -> {
                 String comYear = (String) com_year.getText();
                 String subjectStr = (String) subject.getText();
-                String subscription = splitComYearText(comYear) + "-" + subjectStr;
+                Map<String, String> comYearMap = splitComYearText(comYear);
 
-                Intent intent = new Intent(v.getContext(), SubjectActivity.class);
-                intent.putExtra("subject", subscription);
-                v.getContext().startActivity(intent);
+                Subject subject = new Subject(subjectStr,
+                        Integer.parseInt(comYearMap.get("year")),
+                        Integer.parseInt(comYearMap.get("commission")));
+
+                Dialog dialog = new Dialog(v.getContext());
+                CommissionModel.getSubjectByCommission(view.getContext(), subject, new CallBackRequest<JSONObject>() {
+                    @Override
+                    public void onSuccess(JSONObject response) {
+                        dialog.dismiss();
+                        Intent intent = new Intent(v.getContext(), SubjectActivity.class);
+                        intent.putExtra("subject", response.toString());
+                        v.getContext().startActivity(intent);
+                    }
+
+                    @Override
+                    public void onError(int statusCode) {
+                        dialog.dismiss();
+                        new ErrorDialog(
+                                view.getContext(),
+                                "Lo sentimos... 😥",
+                                subjectStr + " aún no se encuentra cargada en la base de datos.",
+                                R.drawable.ic_warning);
+
+                    }
+                });
             });
         }
     }
@@ -106,13 +136,17 @@ public class SubscriptionAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
     }
 
-    private static String splitComYearText(String comYear){
+    private static Map<String, String> splitComYearText(String comYear) {
         String[] str = comYear.split("·");
         String commission = str[0].split("Comisión ")[1].trim();
         String year = str[1].split(" año")[0].trim();
         year = year.substring(0, year.length() - 2);
 
-        return year + "-com" + commission;
+        Map<String, String> map = new HashMap<>();
+        map.put("commission", commission);
+        map.put("year", year);
+
+        return map;
     }
 
     @NonNull
