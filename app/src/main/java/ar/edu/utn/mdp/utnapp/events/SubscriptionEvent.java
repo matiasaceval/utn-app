@@ -15,6 +15,7 @@ import java.util.List;
 import ar.edu.utn.mdp.utnapp.MainActivity;
 import ar.edu.utn.mdp.utnapp.ProgressDialog;
 import ar.edu.utn.mdp.utnapp.R;
+import ar.edu.utn.mdp.utnapp.SubscriptionsFragment;
 import ar.edu.utn.mdp.utnapp.commission.Subscription;
 import ar.edu.utn.mdp.utnapp.errors.ErrorDialog;
 import ar.edu.utn.mdp.utnapp.fetch.callbacks.CallBackRequest;
@@ -47,9 +48,9 @@ public class SubscriptionEvent {
             UserModel.updateUser(ctx, user, new CallBackRequest<JSONObject>() {
                 @Override
                 public void onSuccess(JSONObject response) {
+                    SubscriptionsFragment.SubscriptionsFragmentActivity.finish();
                     progress.dismiss();
                     Intent intent = new Intent(ctx, MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     ctx.startActivity(intent);
                     ((Activity) ctx).finish();
                 }
