@@ -31,7 +31,6 @@ public final class RequestSingleton {
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(ctx.getApplicationContext());
         }
-        requestQueue.getCache().clear();
         return requestQueue;
     }
 
@@ -39,5 +38,8 @@ public final class RequestSingleton {
         getRequestQueue().add(req);
     }
 
+    public void clearCache() {
+        requestQueue.getCache().clear();
+    }
 
 }

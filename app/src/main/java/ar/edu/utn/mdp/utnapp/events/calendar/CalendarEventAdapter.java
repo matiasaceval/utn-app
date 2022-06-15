@@ -38,8 +38,31 @@ public class CalendarEventAdapter extends RecyclerView.Adapter<CalendarEventAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         CalendarSchema event = events.get(position);
+        switch (event.getType()) {
+            case EXAM:
+                holder.type.setText(R.string.cardview_event_type_exam);
+                break;
+            case HOLIDAY:
+                holder.type.setText(R.string.cardview_event_type_holiday);
+                break;
+            case ACTIVITY:
+                holder.type.setText(R.string.cardview_event_type_activity);
+                break;
+            case MAKEUP_EXAM:
+                holder.type.setText(R.string.cardview_event_type_makeup_exam);
+                break;
+            case EXTRA:
+                if (event.getActivity().contains("Parcial")) {
+                    holder.type.setText(R.string.cardview_event_type_exam);
+                } else if (event.getActivity().contains("Recuperatorio")) {
+                    holder.type.setText(R.string.cardview_event_type_makeup_exam);
+                } else {
+                    holder.type.setText(R.string.cardview_event_type_extra);
+                }
+                break;
+        }
+
         holder.title.setText(event.getActivity());
-        holder.type.setText(event.getType().toString());
 
         LocalDate start = event.getStart().toLocalDate();
         LocalDate end = event.getEnd().toLocalDate();

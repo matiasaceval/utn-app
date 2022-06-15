@@ -1,0 +1,85 @@
+<resources>
+    <string name="app_name">UTN</string>
+    <string name="logo_description">UTN Logo</string>
+    <string name="login_logo_text_campus">MDP</string>
+
+    <!-- Buttons at login/register -->
+    <string name="login_btn">LOGIN</string>
+    <string name="register_btn">REGISTER</string>
+
+    <!-- Texts under button in login/register -->
+    <string name="log_in"><u>Log in</u></string>
+    <string name="sign_up"><u>Sign up</u></string>
+    <string name="do_not_have_account">Don\'t have an account?</string>
+    <string name="already_have_account">Already have an account?</string>
+
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="see_password">See Password</string>
+
+    <string name="back_btn">Back Button</string>
+
+    <!-- Title in activity_register -->
+    <string name="register_title">Sign Up</string>
+    <string name="login_title">Login</string>
+
+    <!-- Error dialog template -->
+    <string name="dialog_error_title">TITLE</string>
+    <string name="example_loremIpsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu fermentum elit. Praesent eget lacus molestie, laoreet est quis, accumsan.</string>
+    <string name="example_simpleLorem">Lorem ipsum</string>
+    <string name="dialog_close_button">Close button</string>
+    <string name="default_dialog_button_message">OK</string>
+
+    <!-- Loading dialog -->
+    <string name="dialog_pleaseWait">Please wait</string>
+
+    <!-- Errors -->
+    <string name="invalid_email">Invalid email</string>
+    <string name="field_required">%s is required</string>
+    <string name="password_not_secure">Password is weak. Must be 8–64 length with upper &amp; lowercase characters and numbers</string>
+    <string name="password_mismatch">Passwords don\'t match</string>
+    <string name="email_already_exists">Email is already on use</string>
+    <string name="footer">by students, for students</string>
+
+    <string name="calendar_ic">This day has an exam</string>
+    <string name="calendar_previous_month">Previous month</string>
+    <string name="calendar_next_month">Next month</string>
+
+    <string name="calendar_monday">LUN</string>
+    <string name="calendar_tuesday">MAR</string>
+    <string name="calendar_wednesday">MIE</string>
+    <string name="calendar_thursday">JUE</string>
+    <string name="calendar_friday">VIE</string>
+    <string name="calendar_saturday">SAB</string>
+    <string name="calendar_sunday">DOM</string>
+
+    <string name="cardview_event_type_exam">Parcial</string>
+    <string name="cardview_event_type_holiday">Feriado</string>
+    <string name="cardview_event_type_activity">Actividad</string>
+    <string name="cardview_event_type_makeup_exam">Recuperatorio</string>
+    <string name="cardview_event_type_extra">Extra</string>
+    <string name="cardview_event_allday">Todo el día</string>
+    <string name="event_type_placeholder">HOLIDAY</string>
+    <string name="event_title_placeholder">Event title displayed here</string>
+    <string name="event_details_placeholder">Todo el día</string>
+
+    <string name="subject_title_exam">Parcial</string>
+    <string name="subject_title_makeup_exam">Recuperatorio</string>
+    <string name="subject_prefix_first">Primer</string>
+    <string name="subject_prefix_second">Segundo</string>
+    <string name="subject_prefix_third">Tercer</string>
+
+
+    <string name="bottom_menu_subscriptions">Subscriptions</string>
+    <string name="bottom_menu_calendar">Calendar</string>
+    <string name="bottom_menu_profile">Profile</string>
+
+    <string name="description_fragment_subscription_fab">Edit current subscriptions</string>
+    <string name="subscription_subject_placeholder">Programación III</string>
+    <string name="subscription_com_year_placeholderr">Comisión 4 · 2do año</string>
+
+    <string name="subscription_button_text">Subscribe</string>
+    <string name="subscription_button_text_update">Update</string>
+</resources>

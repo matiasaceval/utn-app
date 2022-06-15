@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="?attr/backgroundColor"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SubjectActivity"
+    tools:ignore="ScrollViewCount">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="32dp">
+
+        <TextView
+            android:id="@+id/subject_textview_subject_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/opensans_bold"
+            android:text="@string/subscription_subject_placeholder"
+            android:textAlignment="center"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="28sp" />
+
+        <TextView
+            android:id="@+id/subject_textview_general_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/subject_textview_subject_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="64dp"
+            android:fontFamily="@font/opensans_italic"
+            android:text="@string/subject_textview_general_info"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:id="@+id/subject_input_layouts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/subject_textview_general_info"
+            android:layout_marginTop="12dp"
+            android:baselineAligned="false"
+            android:gravity="center">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/subject_input_layout_teacher"
+                style="@style/TextInputLayoutCustomOutlined"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_weight="0.75"
+                android:hint="@string/subject_details_teacher_placeholder">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/subject_input_teacher"
+                    style="@style/InputType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:editable="false"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:minWidth="175dp"
+                    android:minHeight="50dp"
+                    android:singleLine="true"
+                    android:text="Matias Aceval"
+                    tools:ignore="Deprecated,HardcodedText" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/subject_input_layout_code"
+                style="@style/TextInputLayoutCustomOutlined"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:hint="@string/subject_details_code_placeholder">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/subject_input_code"
+                    style="@style/InputType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:editable="false"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:minWidth="175dp"
+                    android:minHeight="50dp"
+                    android:singleLine="true"
+                    android:text="1125"
+                    tools:ignore="Deprecated,HardcodedText" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_below="@id/subject_input_layouts"
+            app:dividerColor="?attr/colorOnPrimary"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp" />
+
+        <TextView
+            android:id="@+id/subject_textview_timetable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/opensans_italic"
+            android:text="@string/subject_textview_timetable"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="20sp" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
+            android:background="@drawable/subject_timetable_stroke"
+            app:cardBackgroundColor="?attr/backgroundColor"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/subject_textview_timetable"
+            android:layout_marginTop="12dp"
+            android:layout_centerHorizontal="true"
+            app:cardCornerRadius="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/colorPrimaryVariant"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/subject_timetable_days"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:showDividers="middle">
+
+                    <TextView
+                        android:id="@+id/subject_timetable_day_monday"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/opensans_bold"
+                        android:gravity="center_horizontal"
+                        android:text="@string/calendar_monday"
+                        android:textColor="?attr/colorOnPrimary" />
+
+                    <TextView
+                        android:id="@+id/subject_timetable_day_tuesday"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/opensans_bold"
+                        android:gravity="center_horizontal"
+                        android:text="@string/calendar_tuesday"
+                        android:textColor="?attr/colorOnPrimary" />
+
+                    <TextView
+                        android:id="@+id/subject_timetable_day_wednesday"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/opensans_bold"
+                        android:gravity="center_horizontal"
+                        android:text="@string/calendar_wednesday"
+                        android:textColor="?attr/colorOnPrimary" />
+
+                    <TextView
+                        android:id="@+id/subject_timetable_day_thursday"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/opensans_bold"
+                        android:gravity="center_horizontal"
+                        android:text="@string/calendar_thursday"
+                        android:textColor="?attr/colorOnPrimary" />
+
+                    <TextView
+                        android:id="@+id/subject_timetable_day_friday"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/opensans_bold"
+                        android:gravity="center_horizontal"
+                        android:text="@string/calendar_friday"
+                        android:textColor="?attr/colorOnPrimary" />
+
+                </LinearLayout>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/timetable_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_below="@id/subject_timetable_days"
+                    app:dividerColor="?attr/backgroundColor" />
+
+                <LinearLayout
+                    android:id="@+id/subject_timetable_hours"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/timetable_divider"
+                    android:divider="@drawable/divider"
+                    android:showDividers="middle"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/subject_timetable_hour_monday"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="@string/timetable_hour_placeholder"
+                        android:textColor="?attr/colorOnPrimary"
+                        android:fontFamily="@font/opensans_regular" />
+
+                    <TextView
+                        android:id="@+id/subject_timetable_hour_tuesday"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="@string/timetable_hour_placeholder"
+                        android:textColor="?attr/colorOnPrimary"
+                        android:fontFamily="@font/opensans_regular" />
+
+                    <TextView
+                        android:id="@+id/subject_timetable_hour_wednesday"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="@string/timetable_hour_placeholder"
+                        android:textColor="?attr/colorOnPrimary"
+                        android:fontFamily="@font/opensans_regular" />
+
+                    <TextView
+                        android:id="@+id/subject_timetable_hour_thursday"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="@string/timetable_hour_placeholder"
+                        android:textColor="?attr/colorOnPrimary"
+                        android:fontFamily="@font/opensans_regular" />
+
+                    <TextView
+                        android:id="@+id/subject_timetable_hour_friday"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="@string/timetable_hour_placeholder"
+                        android:textColor="?attr/colorOnPrimary"
+                        android:fontFamily="@font/opensans_regular" />
+
+                </LinearLayout>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/timetable_second_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_below="@id/subject_timetable_hours"
+                    app:dividerColor="?attr/backgroundColor" />
+
+                <LinearLayout
+                    android:id="@+id/subject_timetable_second_hours"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/timetable_second_divider"
+                    android:divider="@drawable/divider"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:showDividers="middle">
+
+                    <TextView
+                        android:id="@+id/subject_timetable_second_hour_monday"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/opensans_regular"
+                        android:gravity="center_horizontal"
+                        android:text="@string/timetable_hour_placeholder"
+                        android:textColor="?attr/colorOnPrimary" />
+
+                    <TextView
+                        android:id="@+id/subject_timetable_second_hour_tuesday"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/opensans_regular"
+                        android:gravity="center_horizontal"
+                        android:text="@string/timetable_hour_placeholder"
+                        android:textColor="?attr/colorOnPrimary" />
+
+                    <TextView
+                        android:id="@+id/subject_timetable_second_hour_wednesday"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/opensans_regular"
+                        android:gravity="center_horizontal"
+                        android:text="@string/timetable_hour_placeholder"
+                        android:textColor="?attr/colorOnPrimary" />
+
+                    <TextView
+                        android:id="@+id/subject_timetable_second_hour_thursday"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/opensans_regular"
+                        android:gravity="center_horizontal"
+                        android:text="@string/timetable_hour_placeholder"
+                        android:textColor="?attr/colorOnPrimary" />
+
+                    <TextView
+                        android:id="@+id/subject_timetable_second_hour_friday"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/opensans_regular"
+                        android:gravity="center_horizontal"
+                        android:text="@string/timetable_hour_placeholder"
+                        android:textColor="?attr/colorOnPrimary" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider_post_timetable"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_below="@id/card_view"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            app:dividerColor="?attr/colorOnPrimary" />
+
+        <TextView
+            android:id="@+id/subject_textview_exam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider_post_timetable"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/opensans_italic"
+            android:text="@string/subject_textview_exam"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:id="@+id/subject_input_layouts_exam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/subject_textview_exam"
+            android:layout_marginTop="12dp"
+            android:baselineAligned="false"
+            android:gravity="center">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/subject_input_layout_exam_first"
+                style="@style/TextInputLayoutCustomOutlined"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_weight="0.5"
+                android:hint="@string/subject_details_exam_first">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/subject_input_exam_first"
+                    style="@style/InputType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:editable="false"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:minWidth="175dp"
+                    android:minHeight="50dp"
+                    android:singleLine="true"
+                    android:text="18/05/2022"
+                    tools:ignore="Deprecated,HardcodedText" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/subject_input_layout_exam_second"
+                style="@style/TextInputLayoutCustomOutlined"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:hint="@string/subject_details_exam_second">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/subject_input_exam_second"
+                    style="@style/InputType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:editable="false"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:minWidth="175dp"
+                    android:minHeight="50dp"
+                    android:singleLine="true"
+                    android:text="18/05/2022"
+                    tools:ignore="Deprecated,HardcodedText" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/subject_textview_makeup_exam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/subject_input_layouts_exam"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/opensans_italic"
+            android:text="@string/subject_textview_makeup_exam"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:id="@+id/subject_input_layouts_makeup_exam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/subject_textview_makeup_exam"
+            android:layout_marginTop="12dp"
+            android:baselineAligned="false"
+            android:gravity="center">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/subject_input_layout_makeup_exam_first"
+                style="@style/TextInputLayoutCustomOutlined"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_weight="0.5"
+                android:hint="@string/subject_details_exam_first">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/subject_input_makeup_exam_first"
+                    style="@style/InputType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:editable="false"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:minWidth="175dp"
+                    android:minHeight="50dp"
+                    android:singleLine="true"
+                    android:text="18/05/2022"
+                    tools:ignore="Deprecated,HardcodedText" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/subject_input_layout_makeup_exam_second"
+                style="@style/TextInputLayoutCustomOutlined"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:hint="@string/subject_details_exam_second">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/subject_input_makeup_exam_second"
+                    style="@style/InputType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:editable="false"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:minWidth="175dp"
+                    android:minHeight="50dp"
+                    android:singleLine="true"
+                    android:text="18/05/2022"
+                    tools:ignore="Deprecated,HardcodedText" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider_post_exams"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_below="@id/subject_input_layouts_makeup_exam"
+            app:dividerColor="?attr/colorOnPrimary"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/subject_input_layout_zoom"
+            style="@style/TextInputLayoutCustomOutlined"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider_post_exams"
+            app:endIconCheckable="true"
+            app:endIconMode="custom"
+            app:endIconDrawable="@drawable/ic_copy_clipboard"
+            android:hint="@string/subject_details_zoom">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/subject_input_zoom"
+                style="@style/InputType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="false"
+                android:editable="false"
+                android:ellipsize="end"
+                android:lines="1"
+                android:maxLines="1"
+                android:minWidth="175dp"
+                android:minHeight="50dp"
+                android:singleLine="true"
+                android:text="www.zoom.us/j/123456789"
+                tools:ignore="Deprecated,HardcodedText" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </RelativeLayout>
+
+</ScrollView>

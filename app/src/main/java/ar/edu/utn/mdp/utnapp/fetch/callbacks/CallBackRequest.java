@@ -1,12 +1,15 @@
 package ar.edu.utn.mdp.utnapp.fetch.callbacks;
 
-public class CallBackRequest<T>  implements ICallBack <T>{
+public class CallBackRequest<T>  implements ICallBackRequest<T> {
 
     public CallBackRequest() {
     }
 
     @Override
-    public void onSuccess(T response) {}
+    public void onSuccess(T response) {
+    }
+
     @Override
-    public void onError(int statusCode) {}
+    public void onError(int statusCode) {
+    }
 }

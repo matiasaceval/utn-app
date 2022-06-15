@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <color name="mtrl_textinput_default_box_stroke_color" tools:ignore="PrivateResource">
-        @color/white
+        @color/black
     </color>
+    <color name="primary_500">#FFFFFF</color>
+    <color name="primary_700">#EFEEEB</color>
 
-    <color name="primary_500">#2a2e34</color>
-    <color name="primary_700">#1e2328</color>
+    <color name="secondary_500">#8BDAFF</color>
+    <color name="secondary_700">#55B1FB</color>
 
-    <color name="secondary_500">#f78361</color>
-    <color name="secondary_700">#DD345C</color>
-
-    <color name="black">#FF000000</color>
+    <color name="black">#1e2328</color>
     <color name="white">#FFFFFFFF</color>
     <color name="alpha_white">#1AFFFFFF</color>
-    <color name="alpha_white_date">#80FFFFFF</color>
+    <color name="alpha_black">#1A1E2328</color>
+    <color name="alpha_circle_date">#801F2429</color>
     <color name="transparent">#00FFFFFF</color>
 
     <color name="focused">@color/secondary_700</color>
-    <color name="link">@color/secondary_500</color>
+    <color name="link">@color/secondary_700</color>
     <color name="error">#FB4545</color>
     <color name="footer_drawable">@color/primary_700</color>
 
@@ -30,4 +30,11 @@
     <color name="exam">#FF7C7C</color>
     <color name="makeup_exam">#57FF5A</color>
     <color name="extra">#7CFFD1</color>
+
+    <color name="navigation_bar_selected">#55B1FB</color>
+    <color name="custom_calendar_background">@color/primary_500</color>
+    <color name="custom_calendar_text_color">#1e2328</color>
+    <color name="custom_calendar_today_text_color">#3D9AE4</color>
+    <color name="custom_calendar_important_event">#3D9AE4</color>
+    <color name="custom_calendar_circle_event">#B6B6B6</color>
 </resources>

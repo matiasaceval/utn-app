@@ -2,7 +2,6 @@ package ar.edu.utn.mdp.utnapp.calendar;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -16,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import java.text.SimpleDateFormat;
@@ -30,10 +30,6 @@ import java.util.Locale;
 import ar.edu.utn.mdp.utnapp.R;
 import ar.edu.utn.mdp.utnapp.fetch.models.CalendarSchema;
 
-
-/**
- * Created by a7med on 28/06/2015.
- */
 public class CalendarView extends LinearLayout {
 
     // how many days to show, defaults to six weeks, 42 days
@@ -204,13 +200,14 @@ public class CalendarView extends LinearLayout {
 
             // clear styling
             text.setTypeface(null, Typeface.NORMAL);
-            text.setTextColor(Color.WHITE);
+            text.setTextColor(ResourcesCompat.getColor(getResources(), R.color.custom_calendar_text_color, null));
             text.setBackgroundResource(0);
 
             if (isCurrentDay) {
                 // if it is today, set it to blue/bold
                 text.setTypeface(null, Typeface.BOLD);
-                text.setTextColor(ResourcesCompat.getColor(getResources(), R.color.secondary_500, null));
+                text.setTextColor(ResourcesCompat.getColor(getResources(), R.color.custom_calendar_today_text_color, null));
+                text.post(text::callOnClick);
             }
 
             if (month != currentLocalDate.getMonthValue() || year != currentLocalDate.getYear()) {
@@ -234,7 +231,8 @@ public class CalendarView extends LinearLayout {
                             case EXAM:
                             case EXTRA:
                             case MAKEUP_EXAM:
-                                eventIcon.setImageResource(R.drawable.ic_circle_secondary_color);
+                                eventIcon.setColorFilter(ContextCompat.getColor(view.getContext(), R.color.custom_calendar_important_event));
+                                view.setAlpha(1f);
                                 break;
                         }
                     }

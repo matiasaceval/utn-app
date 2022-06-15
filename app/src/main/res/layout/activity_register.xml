@@ -8,7 +8,47 @@
     android:focusableInTouchMode="true"
     android:background="@drawable/register_background"
     android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="18dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        tools:ignore="RelativeOverlap,UseCompoundDrawables">
 
+        <ImageView
+            android:id="@+id/utnLogo"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_marginTop="1dp"
+            android:contentDescription="@string/logo_description"
+            app:srcCompat="@drawable/ic_utn"
+            tools:ignore="RedundantDescriptionCheck,RtlHardcoded"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:id="@+id/utnLogoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="32sp"
+            android:text="@string/app_name"
+            android:fontFamily="@font/opensans_bold"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:textColor="?attr/colorOnPrimary" />
+
+        <TextView
+            android:id="@+id/utnLogoTextCampus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="32sp"
+            android:text="@string/login_logo_text_campus"
+            android:fontFamily="@font/opensans_regular"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:textColor="?attr/colorOnPrimary" />
+    </LinearLayout>
     <ImageView
         android:id="@+id/backToLogin"
         android:layout_width="45dp"
@@ -18,8 +58,9 @@
         android:contentDescription="@string/back_btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_arrow_back"
-        tools:ignore="RedundantDescriptionCheck" />
+        app:srcCompat="@drawable/ic_previous_arrow"
+        tools:ignore="RedundantDescriptionCheck"
+        app:tint="?attr/colorOnPrimary" />
 
 
     <LinearLayout
@@ -115,7 +156,7 @@
             android:ems="10"
             android:fontFamily="@font/opensans_bold"
             android:text="@string/register_btn"
-            android:textColor="@color/white"
+            android:textColor="?attr/colorOnSecondary"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

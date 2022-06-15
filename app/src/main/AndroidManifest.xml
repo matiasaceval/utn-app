@@ -15,34 +15,59 @@
         android:theme="@style/Theme.UTNApp"
         tools:targetApi="31">
         <activity
-            android:name=".CalendarActivity"
-            android:exported="false" />
+            android:name=".SubjectActivity"
+            android:configChanges="orientation"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.UTNApp"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".SubscriptionActivity"
+            android:configChanges="orientation"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.UTNApp"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".RegisterActivity"
+            android:configChanges="orientation"
             android:exported="false"
             android:launchMode="singleTask"
-            android:theme="@style/Theme.UTNApp" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.UTNApp"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".LoginActivity"
+            android:configChanges="orientation"
             android:exported="false"
             android:launchMode="singleTask"
-            android:theme="@style/Theme.UTNApp" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.UTNApp"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.UTNApp"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".SplashActivity"
+            android:configChanges="orientation"
             android:exported="true"
             android:launchMode="singleTask"
-            android:theme="@style/Theme.UTNApp">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.UTNApp"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="false"
-            android:launchMode="singleTask"
-            android:theme="@style/Theme.UTNApp" />
     </application>
 
 </manifest>

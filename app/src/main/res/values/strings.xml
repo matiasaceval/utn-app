@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">UTN</string>
     <string name="logo_description">UTN Logo</string>
+    <string name="login_logo_text_campus">MDP</string>
 
     <!-- Buttons at login/register -->
     <string name="login_btn">LOGIN</string>
@@ -54,6 +55,11 @@
     <string name="calendar_saturday">SAB</string>
     <string name="calendar_sunday">DOM</string>
 
+    <string name="cardview_event_type_exam">Parcial</string>
+    <string name="cardview_event_type_holiday">Feriado</string>
+    <string name="cardview_event_type_activity">Actividad</string>
+    <string name="cardview_event_type_makeup_exam">Recuperatorio</string>
+    <string name="cardview_event_type_extra">Extra</string>
     <string name="cardview_event_allday">Todo el día</string>
     <string name="event_type_placeholder">HOLIDAY</string>
     <string name="event_title_placeholder">Event title displayed here</string>
@@ -64,4 +70,36 @@
     <string name="subject_prefix_first">Primer</string>
     <string name="subject_prefix_second">Segundo</string>
     <string name="subject_prefix_third">Tercer</string>
+
+
+    <string name="bottom_menu_subscriptions">Subscriptions</string>
+    <string name="bottom_menu_calendar">Calendar</string>
+    <string name="bottom_menu_profile">Profile</string>
+
+    <string name="description_fragment_subscription_fab">Edit current subscriptions</string>
+    <string name="subscription_subject_placeholder">Programación III</string>
+    <string name="subscription_com_year_placeholderr">Comisión 4 · 2do año</string>
+
+    <string name="subject_teacher_placeholder">Profesor</string>
+    <string name="subject_teacher_email_placeholder">Email</string>
+    <string name="subject_zoom_placeholder">Zoom</string>
+    <string name="subject_timetable_placeholder">Horarios</string>
+    <string name="subject_exam_placeholder">Examen</string>
+    <string name="subject_makeup_exam_placeholder">Recuperatorio</string>
+    <string name="subject_extra_placeholder">Extra</string>
+
+    <string name="subscription_button_text">Subscribe</string>
+    <string name="subscription_button_text_update">Update</string>
+
+    <string name="subject_details_zoom_placeholder">Zoom</string>
+    <string name="subject_details_code_placeholder">Code</string>
+    <string name="subject_details_teacher_placeholder">Profesor</string>
+    <string name="subject_textview_exam">Parciales</string>
+    <string name="subject_details_exam_second">Segundo</string>
+    <string name="subject_details_exam_first">Primero</string>
+    <string name="subject_textview_makeup_exam">Recuperatorios</string>
+    <string name="subject_details_zoom">Zoom</string>
+    <string name="subject_textview_general_info">Información General</string>
+    <string name="timetable_hour_placeholder">10:30</string>
+    <string name="subject_textview_timetable">Horarios</string>
 </resources>

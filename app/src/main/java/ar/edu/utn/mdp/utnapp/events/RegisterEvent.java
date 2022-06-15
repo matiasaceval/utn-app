@@ -18,15 +18,14 @@ import java.util.List;
 import java.util.Map;
 
 import ar.edu.utn.mdp.utnapp.LoginActivity;
-import ar.edu.utn.mdp.utnapp.MainActivity;
 import ar.edu.utn.mdp.utnapp.ProgressDialog;
 import ar.edu.utn.mdp.utnapp.R;
+import ar.edu.utn.mdp.utnapp.SubscriptionActivity;
 import ar.edu.utn.mdp.utnapp.errors.ErrorLayout;
 import ar.edu.utn.mdp.utnapp.fetch.callbacks.CallBackRequest;
 import ar.edu.utn.mdp.utnapp.fetch.models.Roles;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
 import ar.edu.utn.mdp.utnapp.fetch.request.HTTP_STATUS;
-import ar.edu.utn.mdp.utnapp.fetch.request.user_auth.login.LoginModel;
 import ar.edu.utn.mdp.utnapp.fetch.request.user_auth.signup.RegisterModel;
 import ar.edu.utn.mdp.utnapp.utils.Network;
 import ar.edu.utn.mdp.utnapp.utils.Password;
@@ -65,16 +64,16 @@ public class RegisterEvent {
             }
 
             Dialog dialog = new ProgressDialog(ctx);
-            User user = new User(nameText, emailText, passwordText, Roles.USER.getName());
+            User user = new User(nameText, emailText, passwordText, Roles.USER.getRole());
 
             RegisterModel.registerUser(ctx, user, new CallBackRequest<JSONObject>() {
                 @Override
                 public void onSuccess(JSONObject response) {
                     dialog.dismiss();
-                    LoginModel.loginUser(ctx, user, new CallBackRequest<JSONObject>() {
+                    LoginEvent.logUserAgain(ctx, new CallBackRequest<JSONObject>() {
                         @Override
                         public void onSuccess(JSONObject response) {
-                            Intent intent = new Intent(ctx, MainActivity.class);
+                            Intent intent = new Intent(ctx, SubscriptionActivity.class);
                             ctx.startActivity(intent);
                             ActivityCompat.finishAffinity((Activity) ctx);
                         }

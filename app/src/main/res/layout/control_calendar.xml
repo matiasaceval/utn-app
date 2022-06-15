@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorPrimaryVariant">
+    android:background="@drawable/calendar_background">
 
     <!-- date toolbar -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="12dp"
-        android:paddingBottom="12dp"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp">
+        android:paddingBottom="12dp">
 
         <!-- prev button -->
         <ImageView
             android:id="@+id/calendar_prev_button"
-            android:contentDescription="@string/calendar_previous_month"
-            android:layout_width="30dp"
+            android:layout_width="100dp"
             android:layout_height="30dp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_previous_arrow" />
+            android:contentDescription="@string/calendar_previous_month"
+            android:src="@drawable/ic_previous_arrow"
+            app:tint="?attr/colorOnPrimary" />
 
         <!-- date title -->
         <TextView
@@ -42,12 +42,13 @@
         <!-- next button -->
         <ImageView
             android:id="@+id/calendar_next_button"
-            android:contentDescription="@string/calendar_next_month"
-            android:layout_width="30dp"
+            android:layout_width="100dp"
             android:layout_height="30dp"
-            android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            android:src="@drawable/ic_next_arrow" />
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/calendar_next_month"
+            android:src="@drawable/ic_next_arrow"
+            app:tint="?attr/colorOnPrimary" />
     </RelativeLayout>
 
     <!-- days header -->
@@ -121,5 +122,6 @@
         android:id="@+id/calendar_grid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="12dp"
         android:numColumns="7" />
 </LinearLayout>
