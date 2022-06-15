@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,6 +23,7 @@ public class SubscriptionsFragment extends Fragment {
 
     private View view;
     private RecyclerView subscriptionsRV;
+    public static FragmentActivity SubscriptionsFragmentActivity;
 
     public SubscriptionsFragment() {
     }
@@ -41,6 +43,7 @@ public class SubscriptionsFragment extends Fragment {
             Intent intent = new Intent(view.getContext(), SubscriptionActivity.class);
             intent.putStringArrayListExtra("subscriptions", new ArrayList<>(subscriptions));
             startActivity(intent);
+            SubscriptionsFragmentActivity = getActivity();
         });
 
         subscriptionsRV = view.findViewById(R.id.subscription_recycler_view);
