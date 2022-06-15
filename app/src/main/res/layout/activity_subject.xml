@@ -53,7 +53,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="12dp"
-                android:layout_weight="0.7"
+                android:layout_weight="0.75"
                 android:hint="@string/subject_details_teacher_placeholder">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -79,7 +79,7 @@
                 style="@style/TextInputLayoutCustomOutlined"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.3"
+                android:layout_weight="0.25"
                 android:hint="@string/subject_details_code_placeholder">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -519,6 +519,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/divider_post_exams"
+            app:endIconCheckable="true"
+            app:endIconMode="custom"
+            app:endIconDrawable="@drawable/ic_copy_clipboard"
             android:hint="@string/subject_details_zoom">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -526,7 +529,7 @@
                 style="@style/InputType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="false"
+                android:focusableInTouchMode="false"
                 android:editable="false"
                 android:ellipsize="end"
                 android:lines="1"
