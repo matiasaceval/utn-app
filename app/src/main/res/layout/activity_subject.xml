@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    tools:context=".SubjectActivity">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="407dp"
+        android:layout_height="637dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/primary_500"
+
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <TextView
+            android:id="@+id/subscription_com_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/subscription_subject"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@font/opensans_italic"
+            android:text="@string/subscription_com_year_placeholderr"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/subscription_subject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:fontFamily="@font/opensans_bold"
+            android:text="@string/subscription_subject_placeholder"
+            android:textAlignment="center"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/subject_teacher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="115dp"
+            android:layout_marginBottom="0dp"
+            android:fontFamily="@font/opensans_italic"
+            android:text="@string/subject_teacher_placeholder"
+            android:textAlignment="center"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/subject_zoom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="160dp"
+            android:layout_marginEnd="0dp"
+            android:fontFamily="@font/opensans_regular"
+            android:text="@string/subject_zoom_placeholder"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/subject_teacher_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="190dp"
+            android:layout_marginEnd="0dp"
+            android:fontFamily="@font/opensans_regular"
+            android:text="@string/subject_teacher_email_placeholder"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/subject_timetable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="250dp"
+            android:layout_marginBottom="0dp"
+            android:fontFamily="@font/opensans_regular"
+            android:text="@string/subject_timetable_placeholder"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/subject_exam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="310dp"
+            android:layout_marginBottom="0dp"
+            android:fontFamily="@font/opensans_regular"
+            android:text="@string/subject_exam_placeholder"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/subject_makeup_exam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="360dp"
+            android:layout_marginBottom="0dp"
+            android:fontFamily="@font/opensans_regular"
+            android:text="@string/subject_makeup_exam_placeholder"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/subject_extra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="420dp"
+            android:layout_marginBottom="0dp"
+            android:fontFamily="@font/opensans_regular"
+            android:text="@string/subject_extra_placeholder"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="18sp" />
+
+
+
+
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

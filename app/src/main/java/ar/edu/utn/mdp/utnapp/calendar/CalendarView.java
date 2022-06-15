@@ -30,10 +30,6 @@ import java.util.Locale;
 import ar.edu.utn.mdp.utnapp.R;
 import ar.edu.utn.mdp.utnapp.fetch.models.CalendarSchema;
 
-
-/**
- * Created by a7med on 28/06/2015.
- */
 public class CalendarView extends LinearLayout {
 
     // how many days to show, defaults to six weeks, 42 days

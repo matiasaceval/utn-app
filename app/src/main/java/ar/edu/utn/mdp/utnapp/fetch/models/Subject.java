@@ -16,14 +16,14 @@ import java.util.Objects;
 public final class Subject {
     private int year;
     private int commission;
-    private final String subject;
-    private final String zoom;
-    private final String code;
-    private final Map<String, String> teacher;
-    private final Map<String, String> timetable;
-    private final Map<String, LocalDate> exam;
-    private final Map<String, LocalDate> makeupExam;
-    private final ArrayList<Map<String, String>> extra;
+    private String subject;
+    private String zoom;
+    private String code;
+    private Map<String, String> teacher;
+    private Map<String, String> timetable;
+    private Map<String, LocalDate> exam;
+    private Map<String, LocalDate> makeupExam;
+    private ArrayList<Map<String, String>> extra;
 
     public Subject(String subject, String zoom, String code, Map<String, String> teacher, Map<String, String> timetable, Map<String, LocalDate> exam, Map<String, LocalDate> makeupExam, ArrayList<Map<String, String>> extra) {
         this.subject = subject;
@@ -36,11 +36,9 @@ public final class Subject {
         this.extra = extra;
     }
 
-    public void setYear(int year) {
+    public Subject(String subject, int year, int commission) {
+        this.subject = subject;
         this.year = year;
-    }
-
-    public void setCommission(int commission) {
         this.commission = commission;
     }
 
@@ -57,12 +55,12 @@ public final class Subject {
         this.extra = extra;
     }
 
-    public int getYear() {
-        return year;
-    }
-
-    public int getCommission() {
-        return commission;
+    public static Subject split(String subject){
+        String[] split = subject.split("-");
+        int year = Integer.parseInt(split[0]);
+        int commission = Integer.parseInt(split[1].split("com")[1]);
+        String subj = split[2];
+        return new Subject(subj, year, commission);
     }
 
     public static List<Subject> filter(List<Subject> list, HashSet<String> filters) {
@@ -277,5 +275,36 @@ public final class Subject {
 
     public ArrayList<Map<String, String>> getExtra() {
         return extra;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public int getCommission() {
+        return commission;
+    }
+    public void setYear(int year) {
+        this.year = year;
+    }
+    public void setCommission(int commission) {
+        this.commission = commission;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Subject{" +
+                "year=" + year +
+                ", commission=" + commission +
+                ", subject='" + subject + '\'' +
+                ", zoom='" + zoom + '\'' +
+                ", code='" + code + '\'' +
+                ", teacher=" + teacher +
+                ", timetable=" + timetable +
+                ", exam=" + exam +
+                ", makeupExam=" + makeupExam +
+                ", extra=" + extra +
+                '}';
     }
 }

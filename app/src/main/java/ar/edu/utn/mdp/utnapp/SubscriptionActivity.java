@@ -15,6 +15,7 @@ import ar.edu.utn.mdp.utnapp.commission.Commission;
 import ar.edu.utn.mdp.utnapp.commission.CommissionAdapter;
 import ar.edu.utn.mdp.utnapp.commission.Subscription;
 import ar.edu.utn.mdp.utnapp.events.SubscriptionEvent;
+import ar.edu.utn.mdp.utnapp.fetch.models.Subject;
 
 public class SubscriptionActivity extends AppCompatActivity {
 
@@ -37,13 +38,10 @@ public class SubscriptionActivity extends AppCompatActivity {
         if (previousList != null) {
             subscriptionList.clear();
             submit.setText(this.getResources().getString(R.string.subscription_button_text_update));
+
             for (String s : previousList) {
-                final String[] splitted = s.split("-");
-                final String year = splitted[0];
-                final String com = splitted[1].split("com")[1];
-                final String subject = splitted[2];
-                System.out.println(year + " " + com + " " + subject);
-                this.subscriptionList.add(new Subscription(subject, Integer.parseInt(com), Integer.parseInt(year)));
+                Subject subject = Subject.split(s);
+                this.subscriptionList.add(new Subscription(subject.getSubject(), subject.getCommission(), subject.getYear()));
             }
         }
 

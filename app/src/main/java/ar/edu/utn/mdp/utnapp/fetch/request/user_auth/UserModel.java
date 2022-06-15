@@ -55,7 +55,6 @@ public class UserModel {
 
         URL_USER = URL_USER.concat("/" + user.getEmail());
         JSONObject body = userToBodyObject(user);
-        System.out.println(body);
 
         JSONObjectRequest request = new JSONObjectRequest(Request.Method.PUT, URL_USER, body,
                 response -> {

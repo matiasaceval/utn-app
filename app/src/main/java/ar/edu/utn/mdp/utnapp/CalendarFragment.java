@@ -125,16 +125,15 @@ public class CalendarFragment extends Fragment {
 
     private HashMap<Integer, HashSet<Integer>> getCommissionsToFetch(HashSet<String> subscriptions) {
         HashMap<Integer, HashSet<Integer>> commissionsToFetch = new HashMap<>();
+        Subject subject;
         for (String s : subscriptions) {
-            String[] split = s.split("-");
-            int year = Integer.parseInt(split[0]);
-            int commission = Integer.parseInt(split[1].split("com")[1]);
+            subject = Subject.split(s);
 
-            if (!commissionsToFetch.containsKey(year)) {
-                commissionsToFetch.put(year, new HashSet<>());
+            if (!commissionsToFetch.containsKey(subject.getYear())) {
+                commissionsToFetch.put(subject.getYear(), new HashSet<>());
             }
 
-            Objects.requireNonNull(commissionsToFetch.get(year)).add(commission);
+            Objects.requireNonNull(commissionsToFetch.get(subject.getYear())).add(subject.getCommission());
         }
         return commissionsToFetch;
     }

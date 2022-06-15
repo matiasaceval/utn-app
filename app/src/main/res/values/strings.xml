@@ -80,6 +80,14 @@
     <string name="subscription_subject_placeholder">Programación III</string>
     <string name="subscription_com_year_placeholderr">Comisión 4 · 2do año</string>
 
+    <string name="subject_teacher_placeholder">Profesor</string>
+    <string name="subject_teacher_email_placeholder">Email</string>
+    <string name="subject_zoom_placeholder">Zoom</string>
+    <string name="subject_timetable_placeholder">Horarios</string>
+    <string name="subject_exam_placeholder">Examen</string>
+    <string name="subject_makeup_exam_placeholder">Recuperatorio</string>
+    <string name="subject_extra_placeholder">Extra</string>
+
     <string name="subscription_button_text">Subscribe</string>
     <string name="subscription_button_text_update">Update</string>
 </resources>

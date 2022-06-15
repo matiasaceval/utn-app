@@ -64,7 +64,7 @@ public class RegisterEvent {
             }
 
             Dialog dialog = new ProgressDialog(ctx);
-            User user = new User(nameText, emailText, passwordText, Roles.USER.getName());
+            User user = new User(nameText, emailText, passwordText, Roles.USER.getRole());
 
             RegisterModel.registerUser(ctx, user, new CallBackRequest<JSONObject>() {
                 @Override

@@ -1,6 +1,7 @@
 package ar.edu.utn.mdp.utnapp.events.subscription;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import java.util.Comparator;
 import java.util.HashSet;
 
 import ar.edu.utn.mdp.utnapp.R;
+import ar.edu.utn.mdp.utnapp.SubjectActivity;
+import ar.edu.utn.mdp.utnapp.fetch.models.Subject;
 
 public class SubscriptionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -46,17 +49,15 @@ public class SubscriptionAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof SubscriptionAdapter.ViewHolder && position < subscriptions.size()) {
-            final String subscription = subscriptions.get(position);
-            final String[] splitted = subscription.split("-");
-            final String year = splitted[0];
-            final String com = splitted[1].split("com")[1];
-            final String subject = splitted[2];
-            String ordinal = ordinals(Integer.parseInt(year));
+            Subject subject = Subject.split(subscriptions.get(position));
+
+            String ordinal = ordinals(subject.getYear());
             ordinal = ordinal.substring(ordinal.length() - 2);
 
-            ((ViewHolder) holder).subject.setText(subject);
-            ((ViewHolder) holder).com_year.setText("Comisión " + com + "  ·  " + year + ordinal + " año");
+            ((ViewHolder) holder).subject.setText(subject.getSubject());
+            ((ViewHolder) holder).com_year.setText("Comisión " + subject.getCommission() + "  ·  " + subject.getYear() + ordinal + " año");
         }
+
     }
 
     @Override
@@ -82,6 +83,15 @@ public class SubscriptionAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             subject = view.findViewById(R.id.subscription_subject);
             com_year = view.findViewById(R.id.subscription_com_year);
+            view.setOnClickListener(v -> {
+                String comYear = (String) com_year.getText();
+                String subjectStr = (String) subject.getText();
+                String subscription = splitComYearText(comYear) + "-" + subjectStr;
+
+                Intent intent = new Intent(v.getContext(), SubjectActivity.class);
+                intent.putExtra("subject", subscription);
+                v.getContext().startActivity(intent);
+            });
         }
     }
 
@@ -96,28 +106,32 @@ public class SubscriptionAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
     }
 
+    private static String splitComYearText(String comYear){
+        String[] str = comYear.split("·");
+        String commission = str[0].split("Comisión ")[1].trim();
+        String year = str[1].split(" año")[0].trim();
+        year = year.substring(0, year.length() - 2);
+
+        return year + "-com" + commission;
+    }
+
     @NonNull
     private Comparator<String> byYearComSubject() {
         return (o1, o2) -> {
-            String[] split1 = o1.split("-");
-            String[] split2 = o2.split("-");
-            int year1 = Integer.parseInt(split1[0]);
-            int year2 = Integer.parseInt(split2[0]);
-            int commission1 = Integer.parseInt(split1[1].split("com")[1]);
-            int commission2 = Integer.parseInt(split2[1].split("com")[1]);
-            String subject1 = split1[2];
-            String subject2 = split2[2];
-            if (year1 < year2) {
+            Subject s1 = Subject.split(o1);
+            Subject s2 = Subject.split(o2);
+
+            if (s1.getYear() < s2.getYear()) {
                 return -1;
-            } else if (year1 > year2) {
+            } else if (s1.getYear() > s2.getYear()) {
                 return 1;
             } else {
-                if (commission1 < commission2) {
+                if (s1.getCommission() < s2.getCommission()) {
                     return -1;
-                } else if (commission1 > commission2) {
+                } else if (s1.getCommission()  > s2.getCommission()) {
                     return 1;
                 } else {
-                    return Integer.compare(subject1.compareTo(subject2), 0);
+                    return Integer.compare(s1.getSubject().compareTo(s1.getSubject()), 0);
                 }
             }
         };
