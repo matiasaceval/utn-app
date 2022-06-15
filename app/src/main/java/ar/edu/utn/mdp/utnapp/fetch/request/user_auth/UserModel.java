@@ -10,12 +10,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import ar.edu.utn.mdp.utnapp.events.LoginEvent;
 import ar.edu.utn.mdp.utnapp.fetch.callbacks.CallBackRequest;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
 import ar.edu.utn.mdp.utnapp.fetch.request.API_URL;
+import ar.edu.utn.mdp.utnapp.fetch.request.HTTP_STATUS;
 import ar.edu.utn.mdp.utnapp.fetch.request.JSONArrayRequest;
 import ar.edu.utn.mdp.utnapp.fetch.request.JSONObjectRequest;
 import ar.edu.utn.mdp.utnapp.fetch.request.RequestSingleton;
+import ar.edu.utn.mdp.utnapp.user.UserContext;
 import ar.edu.utn.mdp.utnapp.utils.Email;
 
 public class UserModel {
@@ -49,8 +52,24 @@ public class UserModel {
         RequestSingleton.getInstance(ctx).addToRequestQueue(request);
     }
 
-    // The user is sent to the request with his validated fields
     public static void updateUser(@NonNull Context ctx, User user, CallBackRequest<JSONObject> callBack) {
+        int statusCode = UserContext.verifyUserConnection(ctx);
+
+        if (statusCode == HTTP_STATUS.REDIRECTION_TEMPORARY_REDIRECT || statusCode == HTTP_STATUS.CLIENT_ERROR_UNAUTHORIZED) {
+            LoginEvent.logUserAgain(ctx, new CallBackRequest<JSONObject>() {
+                @Override
+                public void onSuccess(JSONObject response) {
+                    updateUser(ctx, user, callBack);
+                }
+
+                @Override
+                public void onError(int statusCode) {
+                    callBack.onError(statusCode);
+                }
+            });
+            return;
+        }
+
         String URL_USER = API_URL.USER.getURL();
 
         URL_USER = URL_USER.concat("/" + user.getEmail());

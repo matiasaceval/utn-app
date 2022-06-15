@@ -105,7 +105,7 @@
         <item name="helperTextTextColor">@color/black</item>
         <item name="counterOverflowTextColor">@color/black</item>
 
-        <item name="endIconTint">@color/black</item>
+        <item name="endIconTint">?attr/colorOnPrimary</item>
 
         <item name="boxStrokeWidth">0dp</item>
         <item name="boxStrokeWidthFocused">0dp</item>

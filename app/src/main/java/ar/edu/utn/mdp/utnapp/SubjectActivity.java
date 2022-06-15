@@ -1,11 +1,18 @@
 package ar.edu.utn.mdp.utnapp;
 
+import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.graphics.Paint;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,6 +24,7 @@ import ar.edu.utn.mdp.utnapp.fetch.models.Subject;
 
 public class SubjectActivity extends AppCompatActivity implements Serializable {
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +76,14 @@ public class SubjectActivity extends AppCompatActivity implements Serializable {
         TextInputEditText secondMakeupExam = findViewById(R.id.subject_input_makeup_exam_second);
 
         TextInputEditText zoom = findViewById(R.id.subject_input_zoom);
+        TextInputLayout zoomLayout = findViewById(R.id.subject_input_layout_zoom);
+        zoomLayout.setEndIconOnClickListener(v -> {
+            String zoomText = zoom.getText().toString();
+            if (zoomText.isEmpty()) return;
+            android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+            android.content.ClipData clip = android.content.ClipData.newPlainText("Copied Text", zoomText);
+            clipboard.setPrimaryClip(clip);
+        });
 
         title.setText(subject.getSubject());
         teacher.setText(subject.getTeacher().get("name"));
@@ -92,7 +108,30 @@ public class SubjectActivity extends AppCompatActivity implements Serializable {
         secondMakeupExam.setText(DateTimeFormatter.ofPattern("dd/MM/yyyy").format(subject.getMakeupExam().get("second")));
 
         String getZoom = subject.getZoom();
-        zoom.setText(getZoom.equals("null") ? "No disponible." : getZoom);
+        if (!getZoom.equals("null")) {
+            zoom.setOnClickListener(v -> {
+                String uri = "zoomus://zoom.us/join?confno=CONFERENCE&pwd=PASSWORD";
+                String conference = (getZoom.split("j/")[1]).split("pwd")[0].replace('?', ' ').trim();
+                String password = getZoom.split("pwd=")[1].split("#")[0].trim();
+                uri = uri.replace("CONFERENCE", conference).replace("PASSWORD", password);
+
+                try {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                    startActivity(intent);
+                } catch (ActivityNotFoundException e) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getZoom));
+                    startActivity(intent);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+            zoom.setText(getZoom);
+            zoom.setPaintFlags(zoom.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            zoom.setTextColor(ContextCompat.getColor(this, R.color.link));
+        } else {
+            zoom.setText("No está disponible.");
+            zoomLayout.setEndIconVisible(false);
+        }
     }
 
     private void setTimetableDay(TextView day, TextView firstHour, TextView secondHour, String timetable) {
