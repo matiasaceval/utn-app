@@ -26,7 +26,7 @@ import ar.edu.utn.mdp.utnapp.utils.Network;
 
 public class SubscriptionEvent {
 
-    public static View.OnClickListener clickOnSubscription(Context ctx, List<Subscription> subscriptionList) {
+    public static View.OnClickListener clickOnSubscription(Context ctx, List<Subscription> subscriptionList, boolean update) {
         return view -> {
             if (!Network.isNetworkConnected(ctx, true)) return;
 
@@ -48,7 +48,9 @@ public class SubscriptionEvent {
             UserModel.updateUser(ctx, user, new CallBackRequest<JSONObject>() {
                 @Override
                 public void onSuccess(JSONObject response) {
-                    SubscriptionsFragment.SubscriptionsFragmentActivity.finish();
+                    if (update) {
+                        SubscriptionsFragment.SubscriptionsFragmentActivity.finish();
+                    }
                     progress.dismiss();
                     Intent intent = new Intent(ctx, MainActivity.class);
                     ctx.startActivity(intent);

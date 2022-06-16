@@ -34,8 +34,10 @@ public class SubscriptionActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
         Button submit = findViewById(R.id.submit_subscription);
 
+        boolean update = false;
         List<String> previousList = getIntent().getStringArrayListExtra("subscriptions");
         if (previousList != null) {
+            update = true;
             subscriptionList.clear();
             submit.setText(this.getResources().getString(R.string.subscription_button_text_update));
 
@@ -48,7 +50,7 @@ public class SubscriptionActivity extends AppCompatActivity {
         populateCommissionList();
         setRecyclerView();
 
-        submit.setOnClickListener(SubscriptionEvent.clickOnSubscription(this, subscriptionList));
+        submit.setOnClickListener(SubscriptionEvent.clickOnSubscription(this, subscriptionList, update));
 
 
     }
