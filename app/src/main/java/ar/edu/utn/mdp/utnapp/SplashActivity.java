@@ -21,10 +21,11 @@ import java.util.Set;
 import ar.edu.utn.mdp.utnapp.errors.ErrorDialog;
 import ar.edu.utn.mdp.utnapp.fetch.callbacks.CallBackRequest;
 import ar.edu.utn.mdp.utnapp.fetch.models.User;
-import ar.edu.utn.mdp.utnapp.fetch.request.user_auth.login.LoginConnection;
 import ar.edu.utn.mdp.utnapp.fetch.request.user_auth.login.LoginModel;
 import ar.edu.utn.mdp.utnapp.user.UserContext;
 import ar.edu.utn.mdp.utnapp.utils.Network;
+import ar.edu.utn.mdp.utnapp.utils.SubscribeNotification;
+import me.pushy.sdk.Pushy;
 
 @SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
@@ -37,14 +38,20 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         if (getSupportActionBar() != null) getSupportActionBar().hide();
 
+        // notifications
+        Pushy.listen(this);
+        if (!Pushy.isRegistered(this)) {
+            new SubscribeNotification(this).execute("app-news");
+        }
+
+        // theme
         final SharedPreferences userPrefs = getSharedPreferences("User", Context.MODE_PRIVATE);
         final SharedPreferences prefs = getSharedPreferences("Theme", MODE_PRIVATE);
         boolean isNightModeOn = prefs.getBoolean("isNightModeOn", true);
         AppCompatDelegate.setDefaultNightMode(isNightModeOn ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
 
-
+        // activity
         anim = findViewById(R.id.loadingDots);
-
         UserContext.verifyUserConnection(SplashActivity.this, null, () -> {
             try {
                 final User user = UserContext.getUserCredentials(SplashActivity.this);

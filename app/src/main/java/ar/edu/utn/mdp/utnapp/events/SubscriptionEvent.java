@@ -23,6 +23,8 @@ import ar.edu.utn.mdp.utnapp.fetch.models.User;
 import ar.edu.utn.mdp.utnapp.fetch.request.user_auth.UserModel;
 import ar.edu.utn.mdp.utnapp.user.UserContext;
 import ar.edu.utn.mdp.utnapp.utils.Network;
+import ar.edu.utn.mdp.utnapp.utils.SubscribeNotification;
+import ar.edu.utn.mdp.utnapp.utils.UnsubscribeNotification;
 
 public class SubscriptionEvent {
 
@@ -36,12 +38,20 @@ public class SubscriptionEvent {
             }
 
             final SharedPreferences userPrefs = ctx.getSharedPreferences("User", Context.MODE_PRIVATE);
-            HashSet<String> subscriptionSet = subcriptionListToHashSet(subscriptionList);
+            HashSet<String> subscriptionSet = subscriptionListToHashSet(subscriptionList);
 
             User user = UserContext.getUser(ctx);
             user.setSubscription(subscriptionSet);
-            userPrefs.edit().putStringSet("subscription", subscriptionSet).apply();
 
+            // unsubscribe from previous notifications that are not in the new subscription list
+            HashSet<String> previousSubscriptions = (HashSet<String>) userPrefs.getStringSet("subscription", new HashSet<>());
+            previousSubscriptions.stream()
+                    .filter(subscription -> !subscriptionSet.contains(subscription))
+                    .forEach(subscription -> new UnsubscribeNotification(ctx).execute(subscription));
+
+            // subscribe to new notifications
+            userPrefs.edit().putStringSet("subscription", subscriptionSet).apply();
+            subscriptionSet.forEach(subscription -> new SubscribeNotification(ctx).execute(subscription));
 
             Dialog progress = new ProgressDialog(ctx);
 
@@ -67,7 +77,7 @@ public class SubscriptionEvent {
         };
     }
 
-    private static HashSet<String> subcriptionListToHashSet(List<Subscription> subscriptionList) {
+    private static HashSet<String> subscriptionListToHashSet(List<Subscription> subscriptionList) {
         HashSet<String> subscriptionSet = new HashSet<>(subscriptionList.size());
         for (Subscription subject : subscriptionList) {
             subscriptionSet.add(subject.toString());
